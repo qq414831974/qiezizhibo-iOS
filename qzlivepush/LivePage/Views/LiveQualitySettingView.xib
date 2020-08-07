@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LiveQualitySettingView" customModule="茄子直播推流" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="3yY-V7-wms">
+                    <rect key="frame" x="135" y="32" width="294" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="290" id="aKb-Qw-3M8"/>
+                    </constraints>
+                </slider>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播质量：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9O-gA-btW">
+                    <rect key="frame" x="25" y="35" width="102" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播声音：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kne-1m-I6E">
+                    <rect key="frame" x="25" y="89" width="102" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="直播亮度：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0zB-sf-hgg">
+                    <rect key="frame" x="25" y="143" width="102" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="画面效果：" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MYR-d2-rHf">
+                    <rect key="frame" x="25" y="197" width="102" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuO-U3-NpN">
+                    <rect key="frame" x="225" y="230" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="i4D-tN-sL0"/>
+                        <constraint firstAttribute="width" constant="50" id="szD-Kx-Vaw"/>
+                    </constraints>
+                    <state key="normal" image="check_round"/>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="低" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZTa-XL-9Pw">
+                    <rect key="frame" x="437" y="36.5" width="17.5" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J13-Yn-VtE">
+                    <rect key="frame" x="137" y="85.5" width="51" height="31"/>
+                </switch>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZLB-up-QN0">
+                    <rect key="frame" x="137" y="193.5" width="51" height="31"/>
+                </switch>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KbO-0k-hR7">
+                    <rect key="frame" x="135" y="140" width="294" height="31"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="290" id="Jt6-tp-Njo"/>
+                    </constraints>
+                </slider>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZLB-up-QN0" firstAttribute="centerY" secondItem="MYR-d2-rHf" secondAttribute="centerY" id="0c8-v6-0c2"/>
+                <constraint firstItem="3yY-V7-wms" firstAttribute="centerY" secondItem="s9O-gA-btW" secondAttribute="centerY" id="6V0-4P-9Sb"/>
+                <constraint firstAttribute="bottom" secondItem="wuO-U3-NpN" secondAttribute="bottom" constant="20" id="DqM-Wy-crE"/>
+                <constraint firstItem="KbO-0k-hR7" firstAttribute="leading" secondItem="3yY-V7-wms" secondAttribute="leading" id="FFb-dS-05V"/>
+                <constraint firstItem="ZTa-XL-9Pw" firstAttribute="centerY" secondItem="3yY-V7-wms" secondAttribute="centerY" id="GQn-W2-g8T"/>
+                <constraint firstItem="J13-Yn-VtE" firstAttribute="centerY" secondItem="Kne-1m-I6E" secondAttribute="centerY" id="JjB-4u-3fc"/>
+                <constraint firstItem="s9O-gA-btW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="OPy-H9-M5w"/>
+                <constraint firstItem="KbO-0k-hR7" firstAttribute="centerY" secondItem="0zB-sf-hgg" secondAttribute="centerY" id="QJ6-eb-uKC"/>
+                <constraint firstItem="MYR-d2-rHf" firstAttribute="leading" secondItem="0zB-sf-hgg" secondAttribute="leading" id="RM9-K5-8rJ"/>
+                <constraint firstItem="3yY-V7-wms" firstAttribute="leading" secondItem="s9O-gA-btW" secondAttribute="trailing" constant="10" id="SYf-em-XBa"/>
+                <constraint firstItem="wuO-U3-NpN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="SeB-g4-1Wk"/>
+                <constraint firstItem="s9O-gA-btW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="25" id="W6p-t0-H1Y"/>
+                <constraint firstItem="ZTa-XL-9Pw" firstAttribute="leading" secondItem="3yY-V7-wms" secondAttribute="trailing" constant="10" id="c3n-Ig-rEA"/>
+                <constraint firstItem="Kne-1m-I6E" firstAttribute="top" secondItem="s9O-gA-btW" secondAttribute="bottom" constant="30" id="cPG-xU-vkK"/>
+                <constraint firstItem="J13-Yn-VtE" firstAttribute="leading" secondItem="3yY-V7-wms" secondAttribute="leading" id="f0W-KX-06f"/>
+                <constraint firstItem="Kne-1m-I6E" firstAttribute="leading" secondItem="s9O-gA-btW" secondAttribute="leading" id="jDp-7i-RGr"/>
+                <constraint firstItem="ZLB-up-QN0" firstAttribute="leading" secondItem="J13-Yn-VtE" secondAttribute="leading" id="nVF-u7-asR"/>
+                <constraint firstItem="0zB-sf-hgg" firstAttribute="leading" secondItem="Kne-1m-I6E" secondAttribute="leading" id="o7V-Ev-JWS"/>
+                <constraint firstItem="0zB-sf-hgg" firstAttribute="top" secondItem="Kne-1m-I6E" secondAttribute="bottom" constant="30" id="qVa-TB-etA"/>
+                <constraint firstItem="MYR-d2-rHf" firstAttribute="top" secondItem="0zB-sf-hgg" secondAttribute="bottom" constant="30" id="sc4-TD-xzz"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="btn_confirm" destination="wuO-U3-NpN" id="7B9-Ij-hTO"/>
+                <outlet property="lb_videoQuality" destination="ZTa-XL-9Pw" id="cqt-Dv-9n4"/>
+                <outlet property="slider_bright" destination="KbO-0k-hR7" id="lla-rG-pWy"/>
+                <outlet property="slider_video" destination="3yY-V7-wms" id="msS-3D-KKG"/>
+                <outlet property="switch_beauty" destination="ZLB-up-QN0" id="JLV-Lb-Qrz"/>
+                <outlet property="swith_audio" destination="J13-Yn-VtE" id="Txe-qE-6Og"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="check_round" width="64" height="64"/>
+    </resources>
+</document>
