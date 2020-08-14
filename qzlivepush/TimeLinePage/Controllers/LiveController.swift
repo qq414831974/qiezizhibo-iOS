@@ -53,6 +53,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     var pushRetryTimes:Int = 0;
     let MAX_RETRY_TIMES:Int = 3;
     var firstRetryTime:Int = -1;
+    var retryOpen:Bool = true;
+    var firstPush:Bool = true;
     
     let disposeBag = DisposeBag();
     
@@ -460,7 +462,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                 if(self.matchStatusModel != nil && self.matchStatusModel!.time != nil){
                     self.startTimer_time();
                 }
-//                self.startTimer_quality();
+                self.firstPush = true;
+                self.startTimer_quality();
             }
         } else {
             showAlert(title: "是否结束直播？", message: "") { (action) in
@@ -541,6 +544,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             qualitySettingView.slider_bright.value = Float(self.session!.brightLevel)
             qualitySettingView.slider_video.value = Float(viewModel!.getQuailtyIndex(quality: self.currentQuality)!);
             qualitySettingView.lb_videoQuality.text = viewModel!.getQualityName(quality:  self.currentQuality);
+            qualitySettingView.swith_audio.isOn = self.session!.muted == true ? false : true;
+            qualitySettingView.switch_retry.isOn = self.retryOpen;
             SwiftEntryKit.display(entry: self.qualitySettingView, using: attributes);
         }else if(name == "timeLineView"){
             let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: self.view.frame.width);
@@ -606,13 +611,22 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         }, disposeBag: disposeBag);
     }
     @objc func refreshQuality(){
+        if(firstPush){
+            firstPush = false;
+            return;
+        }
+        if(!retryOpen){
+            self.liveQualityLabel.isHidden = true;
+            self.pushRetryTimes = 0;
+            return;
+        }
         viewModel?.activityQuality(activityId: currentMatch!.activityId!, callback: { (res) in
             switch (res.data) {
                 case -1:
                     break;
                 case 1:
                     let now = Int(Date().timeIntervalSince1970)
-                    if (self.pushRetryTimes <= self.MAX_RETRY_TIMES) {
+                    if (self.pushRetryTimes < self.MAX_RETRY_TIMES) {
                         self.session.stopLive();
                         let stream = LFLiveStreamInfo();
                         stream.url = self.pushUrl;
@@ -623,6 +637,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                             self.firstRetryTime = now;
                             self.pushRetryTimes = 1;
                         }
+                        self.view.makeToast("网络不佳，推流重试:"+String(self.pushRetryTimes)+"次");
                     } else {
                         self.liveQualityLabel.isHidden = false;
                     }
