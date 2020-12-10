@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5012383D244DAE1F005726B4 /* ResponseArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012383C244DAE1F005726B4 /* ResponseArrayModel.swift */; };
 		5025444524DD427500EE67E8 /* ResponseIntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5025444424DD427500EE67E8 /* ResponseIntModel.swift */; };
+		502FE27A2581CCC900A4C511 /* ScoreBoard2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502FE2792581CCC900A4C511 /* ScoreBoard2.xib */; };
+		502FE27F2581CCDB00A4C511 /* ScoreBoard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */; };
 		507228BE244D8D17005E4039 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507228BD244D8D17005E4039 /* AuthModel.swift */; };
 		50741F5A2489DDFB000AF23C /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50741F592489DDFB000AF23C /* ActivityModel.swift */; };
 		6751157D22C5C81C008812D5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6751157C22C5C81C008812D5 /* AVFoundation.framework */; };
@@ -140,6 +142,8 @@
 		3EB97967C6D622D34A0283D3 /* Pods_qzlivepush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_qzlivepush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5012383C244DAE1F005726B4 /* ResponseArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseArrayModel.swift; sourceTree = "<group>"; };
 		5025444424DD427500EE67E8 /* ResponseIntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseIntModel.swift; sourceTree = "<group>"; };
+		502FE2792581CCC900A4C511 /* ScoreBoard2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreBoard2.xib; sourceTree = "<group>"; };
+		502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard2.swift; sourceTree = "<group>"; };
 		507228BD244D8D17005E4039 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		50741F592489DDFB000AF23C /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		6751157C22C5C81C008812D5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -376,6 +380,8 @@
 				67CD202122CB068500BE3F76 /* LiveQualitySettingView.xib */,
 				67A1D01022D04E69009C1BC3 /* WarterMarkSettingView.swift */,
 				67A1D01222D04E81009C1BC3 /* WarterMarkSettingView.xib */,
+				502FE2792581CCC900A4C511 /* ScoreBoard2.xib */,
+				502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -865,6 +871,7 @@
 				6770C85322B75472007920A0 /* redcard.svg in Resources */,
 				6770C85422B75472007920A0 /* own_goal.svg in Resources */,
 				6770C85522B75472007920A0 /* substitution_arrow.svg in Resources */,
+				502FE27A2581CCC900A4C511 /* ScoreBoard2.xib in Resources */,
 				67DA630E2293FC0100615D95 /* LaunchScreen.storyboard in Resources */,
 				67DA630B2293FC0100615D95 /* Assets.xcassets in Resources */,
 				67DA63092293FC0000615D95 /* Main.storyboard in Resources */,
@@ -934,6 +941,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				502FE27F2581CCDB00A4C511 /* ScoreBoard2.swift in Sources */,
 				67DA66E9229631CA00615D95 /* Observable+ObjectMapper.swift in Sources */,
 				67DCCB88229D183F00049A9D /* TextFieldWithLeftView.swift in Sources */,
 				67C4454F22AF3CFB0061AC28 /* TeamModel.swift in Sources */,

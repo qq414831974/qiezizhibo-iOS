@@ -143,7 +143,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         let dateNow:Date = Date();
         lb_name.text = league.name!;
         iv_headimg.sd_setImage(with: URL(string: league.headImg!), placeholderImage: UIImage(named: "logo.png"))
-        lb_city.text = league.city!;
+        lb_city.text = (league.city != nil) ? league.city : "";
         lb_time.text = DateUtils.dateConvertString(date: dateBegin).components(separatedBy: " ").first! + " - " + DateUtils.dateConvertString(date: dateEnd).components(separatedBy: " ").first!;
         if dateNow.compare(dateBegin) == .orderedAscending
         {

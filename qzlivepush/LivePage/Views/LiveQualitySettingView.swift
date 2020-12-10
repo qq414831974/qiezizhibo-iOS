@@ -19,7 +19,7 @@ class LiveQualitySettingView: UIView {
     
     @IBOutlet weak var lb_videoQuality: UILabel!
     
-    @IBOutlet weak var switch_beauty: UISwitch!
+    @IBOutlet weak var switch_retry: UISwitch!
     
     var viewModel:LiveViewModel!;
 
@@ -50,10 +50,10 @@ class LiveQualitySettingView: UIView {
             viewModel.controller!.currentQuality = quality[Int(floor(slider_video.value))]!;
         }
         viewModel.controller!.session.brightLevel = CGFloat(slider_bright.value);
-        if(switch_beauty.isOn){
-            viewModel.controller!.session.beautyFace = true;
+        if(switch_retry.isOn){
+            viewModel.controller!.retryOpen = true;
         }else{
-            viewModel.controller!.session.beautyFace = false;
+            viewModel.controller!.retryOpen = false;
         }
         if(swith_audio.isOn){
             viewModel.controller!.session.muted = false;
