@@ -94,7 +94,7 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
             self.statusRemarkVc.tf_Remark.text = nowDateString;
         }
         if(eventtype == 16){
-            let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.time == nil) ? 0 : viewModel!.controller!.matchStatus!.time;
+            let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.minute == nil) ? 0 : viewModel!.controller!.matchStatus!.minute;
             self.statusRemarkVc.v_minute.isHidden = false;
             self.statusRemarkVc.tf_minute.text = String(currentMinute!);
         }else{
@@ -142,7 +142,7 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
                 if(self.datePicker.date.compare(Date()) == .orderedDescending){
-                    self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择");
+                    self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择",position: .center);
                 }else{
                     self.statusRemarkVc.tf_Remark.text = formatter.string(from: self.datePicker.date);
                 }
@@ -179,7 +179,7 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
         if(datePicker.date.compare(Date()) == .orderedDescending){
-            self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择");
+            self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择",position: .center);
         }else{
             self.statusRemarkVc.tf_Remark.text = formatter.string(from: datePicker.date);
         }
@@ -189,13 +189,21 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
         let eventtype = self.currentEvent.eventType;
         let remark = self.statusRemarkVc.tf_Remark.text;
         let halfMinute = viewModel!.controller!.currentMatch!.duration! / 2;
-        let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.time == nil) ? 0 : viewModel!.controller!.matchStatus!.time;
+        let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.minute == nil) ? 0 : viewModel!.controller!.matchStatus!.minute;
         let minuteData:[Int:Int] = [0:0,14:halfMinute,15:halfMinute,13:currentMinute!,11:currentMinute!,12:120,21:150,16: Int(self.statusRemarkVc.tf_minute.text!)!];
         let minute = minuteData[eventtype]!;
         self.statusRemarkVc.btn_confirm.isUserInteractionEnabled = false;
+        SwiftEntryKit.dismiss();
+        viewModel!.showLoadingAnimation()
         viewModel!.addTimeLine(matchId: matchId!, teamId: nil, playerId: nil, eventtype: eventtype, minute: minute, remark: remark, text: nil, callback: { (response) in
+            self.viewModel!.hideLoadingAnimation()
             if(response.data != nil && response.data!){
-                self.viewModel!.controller!.view.makeToast("添加成功");
+                if(self.viewModel!.controller != nil){
+                    self.viewModel!.controller!.view.makeToast("添加成功",position: .center);
+                }
+                if(self.viewModel!.liveController != nil){
+                    self.viewModel!.liveController!.view.makeToast("添加成功",position: .center);
+                }
                 if(self.viewModel!.liveController != nil){
                     //比赛开始
                     if(eventtype == 0){
@@ -210,9 +218,14 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
                         self.viewModel!.liveController!.stopTimer_time();
                     }
                 }
-                SwiftEntryKit.dismiss();
+//                SwiftEntryKit.dismiss();
             }else{
-                self.viewModel!.controller!.view.makeToast(response.message);
+                if(self.viewModel!.controller != nil){
+                    self.viewModel!.controller!.view.makeToast(response.message,position: .center);
+                }
+                if(self.viewModel!.liveController != nil){
+                    self.viewModel!.liveController!.view.makeToast(response.message,position: .center);
+                }
             }
             self.statusRemarkVc.btn_confirm.isUserInteractionEnabled = true;
             self.viewModel!.controller!.refreshData();

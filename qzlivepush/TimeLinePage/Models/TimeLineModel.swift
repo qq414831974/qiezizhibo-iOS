@@ -9,10 +9,13 @@
 import ObjectMapper
 class TimeLineModel: NSObject, Mappable{
     var id: Int?;//id
+    var matchId: Int?;
     var teamId: Int?;//队伍id
+    var playerId: Int?;
     var player: PlayerModel?;//队员信息
+    var secondPlayer: PlayerModel?;
     var eventType: Int?;//时间轴类型
-    var time: Int?;//比赛时间
+    var minute: Int?;//比赛时间
     var remark: String?;//remark
     var text: String?;//文字
     
@@ -20,10 +23,13 @@ class TimeLineModel: NSObject, Mappable{
     
     func mapping(map: Map) {
         id <- map["id"]
+        matchId <- map["matchId"]
         teamId <- map["teamId"]
+        playerId <- map["playerId"]
         player <- map["player"]
+        secondPlayer <- map["secondPlayer"]
         eventType <- map["eventType"]
-        time <- map["time"]
+        minute <- map["minute"]
         remark <- map["remark"]
         text <- map["text"]
     }

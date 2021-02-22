@@ -8,31 +8,19 @@
 
 import ObjectMapper
 class MatchStatusModel: Mappable{
-    var time: Int?;
+    var minute: Int?;
     var status: Int?;
     var score: String?;
-    var halfScore: String?;
-    var penaltyscore: String?;
+    var penaltyScore: String?;
     var timeLines: [TimeLineModel]?;
-    var statistics: [Int:MatchStatisticsModel?]?;
-    var hostnooice: Int?;
-    var guestnooice: Int?;
-    var online: Int?;
-    var onlineforreal: Int?;
     
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        time <- map["time"]
+        minute <- map["minute"]
         status <- map["status"]
         score <- map["score"]
-        halfScore <- map["halfScore"]
-        penaltyscore <- map["penaltyscore"]
+        penaltyScore <- map["penaltyScore"]
         timeLines <- map["timeLines"]
-        statistics <- map["statistics"]
-        hostnooice <- map["hostnooice"]
-        guestnooice <- map["guestnooice"]
-        online <- map["online"]
-        onlineforreal <- map["onlineforreal"]
     }
 }

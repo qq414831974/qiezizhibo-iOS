@@ -45,7 +45,8 @@ class MatchTabViewController: ButtonBarPagerTabStripViewController {
     override func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
         var childList = [MatchViewController]();
         if(self.currentLeague!.round != nil && self.currentLeague!.round!.rounds != nil){
-            rounds = self.currentLeague!.round!.rounds!;
+            rounds = getRoundString(rounds: self.currentLeague!.round!);
+            
             rounds.forEach { (round) in
                 let child = MatchViewController.instantiate(itemInfo: round);
                 child.currentLeague = self.currentLeague;
@@ -61,5 +62,43 @@ class MatchTabViewController: ButtonBarPagerTabStripViewController {
         }
         
             return childList;
+    }
+    func getRoundString(rounds: LeagueRound) -> [String]{
+        var roundList:Array<String> = [];
+        var hasOpen:Bool = false;
+        var hasClose:Bool = false;
+        rounds.rounds?.forEach({ (round) in
+            if(round.hasPrefix("z-")){
+                let num = Int(round.split(separator: "-")[1]);
+                for i in 1...num! {
+                    roundList.append("第" + StringUtils.getChinesNum(number: i) + "轮");
+                }
+            }else if(round.hasPrefix("x-")){
+                let num = Int(round.split(separator: "-")[1]);
+                for i in 1...num! {
+                    roundList.append("小组赛第" + StringUtils.getChinesNum(number: i) + "轮");
+                }
+            }else if(round.hasPrefix("t-")){
+                let num = Int(round.split(separator: "-")[1]);
+                for i in 1...num! {
+                    roundList.append("小组淘汰赛第第" + StringUtils.getChinesNum(number: i) + "轮");
+                }
+            }else if(round.hasPrefix("j-")){
+                roundList.append("决赛");
+            }else if (round == "open") {
+                hasOpen = true;
+            } else if (round == "close") {
+                hasClose = true;
+            } else {
+                roundList.append(round);
+            }
+        })
+        if (hasOpen) {
+            roundList.insert("开幕式", at: 0);
+        }
+        if (hasClose) {
+            roundList.append("闭幕式");
+        }
+        return roundList;
     }
 }

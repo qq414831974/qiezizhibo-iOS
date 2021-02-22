@@ -108,30 +108,31 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
             self.collectionView.reloadData();
         }, disposeBag: disposeBag);
     }
-    func updateConstraint(scoreBoard:ScoreBoardModel){
-        scoreBoardModel = scoreBoard;
-        currentBackgroundTag = scoreBoard.id!
+    func updateConstraint(scoreboard:ScoreBoardModel){
+        let detail = scoreboard.detail!;
+        scoreBoardModel = scoreboard;
+        currentBackgroundTag = scoreboard.id!
         collectionView.reloadData();
-        leagueName_x.constant = CGFloat(scoreBoard.title!.x! * 600);
-        leagueName_y.constant = CGFloat(scoreBoard.title!.y! * 120);
-        hostShirt_x.constant = CGFloat(scoreBoard.hostshirt!.x! * 600);
-        hostShirt_y.constant = CGFloat(scoreBoard.hostshirt!.y! * 120);
-        hostName_x.constant = CGFloat(scoreBoard.hostname!.x! * 600);
-        hostName_y.constant = CGFloat(scoreBoard.hostname!.y! * 120);
-        hostScore_x.constant = CGFloat(scoreBoard.hostscore!.x! * 600);
-        hostScore_y.constant = CGFloat(scoreBoard.hostscore!.y! * 120);
-        gusetShirt_x.constant = CGFloat(scoreBoard.guestshirt!.x! * 600);
-        guestShirt_y.constant = CGFloat(scoreBoard.guestshirt!.y! * 120);
-        guestName_x.constant = CGFloat(scoreBoard.guestname!.x! * 600);
-        guestName_y.constant = CGFloat(scoreBoard.guestname!.y! * 120);
-        gusetScore_x.constant = CGFloat(scoreBoard.guestscore!.x! * 600);
-        guestScore_y.constant = CGFloat(scoreBoard.guestscore!.y! * 120);
-        time_x.constant = CGFloat(scoreBoard.time!.x! * 600);
-        time_y.constant = CGFloat(scoreBoard.time!.y! * 120);
+        leagueName_x.constant = CGFloat(detail.title!.x! * 600);
+        leagueName_y.constant = CGFloat(detail.title!.y! * 120);
+        hostShirt_x.constant = CGFloat(detail.hostshirt!.x! * 600);
+        hostShirt_y.constant = CGFloat(detail.hostshirt!.y! * 120);
+        hostName_x.constant = CGFloat(detail.hostname!.x! * 600);
+        hostName_y.constant = CGFloat(detail.hostname!.y! * 120);
+        hostScore_x.constant = CGFloat(detail.hostscore!.x! * 600);
+        hostScore_y.constant = CGFloat(detail.hostscore!.y! * 120);
+        gusetShirt_x.constant = CGFloat(detail.guestshirt!.x! * 600);
+        guestShirt_y.constant = CGFloat(detail.guestshirt!.y! * 120);
+        guestName_x.constant = CGFloat(detail.guestname!.x! * 600);
+        guestName_y.constant = CGFloat(detail.guestname!.y! * 120);
+        gusetScore_x.constant = CGFloat(detail.guestscore!.x! * 600);
+        guestScore_y.constant = CGFloat(detail.guestscore!.y! * 120);
+        time_x.constant = CGFloat(detail.time!.x! * 600);
+        time_y.constant = CGFloat(detail.time!.y! * 120);
 //        iv_hostShirt.sd_setImage(with: URL(string: scoreBoard.hostshirtpic!), placeholderImage: UIImage(named: "shirt2"))
 //        iv_guestShirt.sd_setImage(with: URL(string: scoreBoard.guestshirtpic!), placeholderImage: UIImage(named: "shirt2"))
-        iv_scoreBoard.sd_setImage(with: URL(string: scoreBoard.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
-        SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.hostshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
+        iv_scoreBoard.sd_setImage(with: URL(string: detail.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
+        SDWebImageManager.shared.loadImage(with: URL(string: detail.hostshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_hostShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
 //                self.iv_hostShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
@@ -140,7 +141,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
 //                self.iv_hostShirt2.image = UIImage(named: "shirt2")
             }
         }
-        SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
+        SDWebImageManager.shared.loadImage(with: URL(string: detail.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_guestShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
 //                self.iv_guestShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
@@ -155,7 +156,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         let index:Int = indexPath.section * 2 + indexPath.row;
         let scoreBoardModel:ScoreBoardModel = scoreBoardList[index > scoreBoardList.count ? 0 : index];
         
-        cell.background.sd_setImage(with: URL(string: scoreBoardModel.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
+        cell.background.sd_setImage(with: URL(string: scoreBoardModel.detail!.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
         
         if(scoreBoardModel.id! == currentBackgroundTag){
             cell.selectItem(isSelect: true)
@@ -197,7 +198,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
             }
         }
         scoreBoardModel = scoreBoard;
-        updateConstraint(scoreBoard: scoreBoard!);
+        updateConstraint(scoreboard: scoreBoard!);
     }
     func addCannotTarget(target:UIView){
         let tap = UITapGestureRecognizer(target:self, action:#selector(showCannotToast));
@@ -210,7 +211,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         target.addGestureRecognizer(tap);
     }
     @objc func showCannotToast(){
-        self.makeToast("自动生成，无法修改");
+        self.makeToast("自动生成，无法修改",position: .center);
     }
     @objc func showInput(sender:UITapGestureRecognizer){
         let target = sender.view as! UILabel;
@@ -282,7 +283,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
             scoreBoard.lb_time!.text = lb_time!.text;
         }
         viewModel.controller!.currentScoreBoard = scoreBoardModel;
-        scoreBoard.updateConstraint(scoreBoard: scoreBoardModel);
+        scoreBoard.updateConstraint(scoreboard: scoreBoardModel);
         viewModel.controller!.session!.warterMarkView!.layoutIfNeeded();
         viewModel.controller!.session!.warterMarkView = viewModel.controller!.session!.warterMarkView;
 

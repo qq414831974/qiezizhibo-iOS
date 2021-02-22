@@ -74,16 +74,16 @@ class ChooseTeamController: UIViewController,FloatingPanelControllerDelegate{
         if(self.viewModel!.controller!.currentMatch == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.hostteam == nil){
+        if(self.viewModel!.controller!.currentMatch!.hostTeam == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.guestteam == nil){
+        if(self.viewModel!.controller!.currentMatch!.guestTeam == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.hostteam!.id == teamId){
-            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostteam!;
+        if(self.viewModel!.controller!.currentMatch!.hostTeam!.id == teamId){
+            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostTeam!;
         }else{
-            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestteam!;
+            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestTeam!;
         }
         self.viewModel!.controller!.playerVc.getTeamPlayer(teamId: teamId);
         viewModel!.controller!.fpc_team.hide(animated: false) {
@@ -98,16 +98,16 @@ class ChooseTeamController: UIViewController,FloatingPanelControllerDelegate{
         if(self.viewModel!.controller!.currentMatch == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.hostteam == nil){
+        if(self.viewModel!.controller!.currentMatch!.hostTeam == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.guestteam == nil){
+        if(self.viewModel!.controller!.currentMatch!.guestTeam == nil){
             return;
         }
-        if(self.viewModel!.controller!.currentMatch!.hostteam!.id == teamId){
-            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostteam!;
+        if(self.viewModel!.controller!.currentMatch!.hostTeam!.id == teamId){
+            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostTeam!;
         }else{
-            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestteam!;
+            self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestTeam!;
         }
         viewModel!.controller!.fpc_team.hide(animated: false) {
             self.viewModel!.controller!.timeRemarkVc.initView();

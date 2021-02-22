@@ -19,12 +19,12 @@ class LoginViewModel {
     
     func login(username: String?, password: String?, isRemember: Bool, disposeBag: DisposeBag){
         if(username == nil || password == nil){
-            self.controller!.view.makeToast("用户名或密码不能为空");
+            self.controller!.view.makeToast("用户名或密码不能为空",position: .center);
             self.controller!.setBtnLoginState("default");
             return;
         }
         if(username?.trimmingCharacters(in: CharacterSet.whitespaces) == "" || password?.trimmingCharacters(in: CharacterSet.whitespaces) == ""){
-            self.controller!.view.makeToast("用户名或密码不能为空");
+            self.controller!.view.makeToast("用户名或密码不能为空",position: .center);
             self.controller!.setBtnLoginState("default");
             return;
         }
@@ -40,7 +40,7 @@ class LoginViewModel {
                     userDefault.set(res.data?.refreshToken, forKey: Constant.KEY_REFRESH_TOKEN);
 
                     if(isRemember){
-                        let str = "{\"userName\":\"\(username!)\",\"passWord\":\"\(password!)\"}"
+                        let str = "{\"userName\":\"\(username!)\",\"password\":\"\(password!)\"}"
                         let userData:UserModel = UserModel.init(JSONString: str)!
                         userDefault.set(userData.toJSONString(), forKey: Constant.KEY_USER_INFO)
                         userDefault.set(true, forKey: Constant.KEY_IS_REMEMBERME)
@@ -53,7 +53,7 @@ class LoginViewModel {
                     self.controller!.toHomePage();
                 }
             }else{
-                self.controller!.view.makeToast(res.message);
+                self.controller!.view.makeToast(res.message,position: .center);
             }
             self.controller!.setBtnLoginState("default");
         }).disposed(by: disposeBag);

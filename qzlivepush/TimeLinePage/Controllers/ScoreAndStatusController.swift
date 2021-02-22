@@ -157,10 +157,10 @@ class ScoreAndStatusController:UIViewController{
         }
         viewModel!.updateScoreAndStatus(matchId: match.id!, hostteamId: match.hostTeamId, guestteamId: match.guestTeamId, score: tf_score.text ?? "0-0", status: status, callback: { (response) in
             if(response.data != nil && response.data!){
-                self.viewModel!.controller!.view.makeToast("修改成功");
+                self.viewModel!.controller!.view.makeToast("修改成功",position: .center);
                 SwiftEntryKit.dismiss();
             }else{
-                self.viewModel!.controller!.view.makeToast(response.message);
+                self.viewModel!.controller!.view.makeToast(response.message,position: .center);
             }
             self.viewModel!.controller!.refreshData();
         }, disposeBag: disposeBag)

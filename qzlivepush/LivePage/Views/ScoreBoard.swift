@@ -40,32 +40,33 @@ class ScoreBoard: UIView{
     override func awakeFromNib() {
         super.awakeFromNib();
     }
-    func updateConstraint(scoreBoard:ScoreBoardModel){
-        leagueName_x.constant = CGFloat(scoreBoard.title!.x! * 900);
-        leagueName_y.constant = CGFloat(scoreBoard.title!.y! * 180);
-        hostShirt_x.constant = CGFloat(scoreBoard.hostshirt!.x! * 900);
-        hostShirt_y.constant = CGFloat(scoreBoard.hostshirt!.y! * 180);
-        hostName_x.constant = CGFloat(scoreBoard.hostname!.x! * 900);
-        hostName_y.constant = CGFloat(scoreBoard.hostname!.y! * 180);
-        hostScore_x.constant = CGFloat(scoreBoard.hostscore!.x! * 900);
-        hostScore_y.constant = CGFloat(scoreBoard.hostscore!.y! * 180);
-        gusetShirt_x.constant = CGFloat(scoreBoard.guestshirt!.x! * 900);
-        guestShirt_y.constant = CGFloat(scoreBoard.guestshirt!.y! * 180);
-        guestName_x.constant = CGFloat(scoreBoard.guestname!.x! * 900);
-        guestName_y.constant = CGFloat(scoreBoard.guestname!.y! * 180);
-        gusetScore_x.constant = CGFloat(scoreBoard.guestscore!.x! * 900);
-        guestScore_y.constant = CGFloat(scoreBoard.guestscore!.y! * 180);
-        time_x.constant = CGFloat(scoreBoard.time!.x! * 900);
-        time_y.constant = CGFloat(scoreBoard.time!.y! * 180);
-        board.sd_setImage(with: URL(string: scoreBoard.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
-        SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.hostshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
+    func updateConstraint(scoreboard:ScoreBoardModel){
+        let detail = scoreboard.detail!;
+        leagueName_x.constant = CGFloat(detail.title!.x! * 900);
+        leagueName_y.constant = CGFloat(detail.title!.y! * 180);
+        hostShirt_x.constant = CGFloat(detail.hostshirt!.x! * 900);
+        hostShirt_y.constant = CGFloat(detail.hostshirt!.y! * 180);
+        hostName_x.constant = CGFloat(detail.hostname!.x! * 900);
+        hostName_y.constant = CGFloat(detail.hostname!.y! * 180);
+        hostScore_x.constant = CGFloat(detail.hostscore!.x! * 900);
+        hostScore_y.constant = CGFloat(detail.hostscore!.y! * 180);
+        gusetShirt_x.constant = CGFloat(detail.guestshirt!.x! * 900);
+        guestShirt_y.constant = CGFloat(detail.guestshirt!.y! * 180);
+        guestName_x.constant = CGFloat(detail.guestname!.x! * 900);
+        guestName_y.constant = CGFloat(detail.guestname!.y! * 180);
+        gusetScore_x.constant = CGFloat(detail.guestscore!.x! * 900);
+        guestScore_y.constant = CGFloat(detail.guestscore!.y! * 180);
+        time_x.constant = CGFloat(detail.time!.x! * 900);
+        time_y.constant = CGFloat(detail.time!.y! * 180);
+        board.sd_setImage(with: URL(string: detail.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
+        SDWebImageManager.shared.loadImage(with: URL(string: detail.hostshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_hostShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
                 self.iv_hostShirt.image = UIImage(named: "shirt2")
             }
         }
-        SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
+        SDWebImageManager.shared.loadImage(with: URL(string: detail.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_guestShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{

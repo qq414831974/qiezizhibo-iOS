@@ -12,7 +12,7 @@ class UserModel: Mappable{
     var userNo:String?;
     var userName:String?;
     var name:String?;
-    var passWord:String?;
+    var password:String?;
     var unit:String?;
     var createTime:String?;
     var avatar:String?;
@@ -20,10 +20,10 @@ class UserModel: Mappable{
     var remark:String?;
     var wechatOpenid:String?;
     var gender:Int?;
-    var lastLoginTime:Int?;
+    var loginTime:Int?;
     var email:String?;
     var phone:Int?;
-    var role:RoleModel?;
+    var roles:[RoleModel]?;
     
     required init?(map: Map) {}
     
@@ -31,7 +31,7 @@ class UserModel: Mappable{
         userNo <- map["userNo"]
         userName <- map["userName"]
         name <- map["name"]
-        passWord <- map["passWord"]
+        password <- map["password"]
         unit <- map["unit"]
         createTime <- map["createTime"]
         avatar <- map["avatar"]
@@ -39,9 +39,9 @@ class UserModel: Mappable{
         remark <- map["remark"]
         wechatOpenid <- map["wechatOpenid"]
         gender <- map["gender"]
-        lastLoginTime <- map["lastLoginTime"]
+        loginTime <- map["loginTime"]
         email <- map["email"]
         phone <- map["phone"]
-        role <- map["role"]
+        roles <- map["role"]
     }
 }

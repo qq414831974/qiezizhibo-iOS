@@ -14,16 +14,12 @@ class PlayerModel: Mappable,ImmutableMappable{
     var shirtNum: Int?;//球衣号
     var status: Int?;
     var englishName: String?;
-    var country: String?;
+    var province: String?;
     var city: String?;
-    var birthdate: String?;
     var sex: Int?;
     var height: Int?;
     var weight: Int?;
     var headImg: String?;//头像
-    var careerTime: String?;
-    var isRetire: Bool?;
-    var retireTime: String?;
     var remark: String?;
     
     required init(map: Map) {}
@@ -35,16 +31,12 @@ class PlayerModel: Mappable,ImmutableMappable{
         shirtNum <- map["shirtNum"]
         status <- map["status"]
         englishName <- map["englishName"]
-        country <- map["country"]
+        province <- map["province"]
         city <- map["city"]
-        birthdate <- map["birthdate"]
         sex <- map["sex"]
         height <- map["height"]
         weight <- map["weight"]
         headImg <- map["headImg"]
-        careerTime <- map["careerTime"]
-        isRetire <- map["isRetire"]
-        retireTime <- map["retireTime"]
         remark <- map["remark"]
     }
 }

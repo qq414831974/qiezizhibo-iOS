@@ -101,9 +101,9 @@ class EditEventController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         let event = Constant.EVENT_TYPE[currentTimeLineEvent.eventType!];
         iv_eventImg.image = UIImage.svg(named: event!.icon, size: CGSize.init(width: 60, height: 60))
         lb_eventName.text = event!.text;
-        if(currentTimeLineEvent.time != nil){
+        if(currentTimeLineEvent.minute != nil){
             v_minute.isHidden = false;
-            lb_minute.text = String(currentTimeLineEvent.time!);
+            lb_minute.text = String(currentTimeLineEvent.minute!);
             let tap = UITapGestureRecognizer(target:self, action:#selector(showMinutePicker));
             vlb_minute.isUserInteractionEnabled = true;
             vlb_minute.addGestureRecognizer(tap);
@@ -212,7 +212,7 @@ class EditEventController: UIViewController,UIPickerViewDataSource,UIPickerViewD
         pickerView!.dataSource = self;
         pickerView!.delegate = self;
         if(currentMinutePicker == 201){
-            currentRow = (currentTimeLineEvent.time != nil ? currentTimeLineEvent.time : 0);
+            currentRow = (currentTimeLineEvent.minute != nil ? currentTimeLineEvent.minute : 0);
         }else{
             currentRow = Int(currentTimeLineEvent.remark!);
         }

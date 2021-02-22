@@ -35,33 +35,33 @@ extension ApiManager:TargetType{
     var path:String{
         switch self {
         case .login(username: _, password:_):
-            return "/service-auth/auth"
+            return "/service-admin/auth"
         case .leagues(pageNum: _, pageSize: _, city: _, country: _, name: _,status: _):
-            return "/service-football/league"
+            return "/service-admin/football/league"
         case .league(id: let id):
-            return "/service-football/league/\(id)";
+            return "/service-admin/football/league/\(id)";
         case .matches(pageNum: _, pageSize: _, leagueId: _, name: _,round: _, status: _, dateBegin: _, dateEnd: _,orderby: _,isActivity: _):
-            return "/service-football/match"
+            return "/service-admin/football/match"
         case .match(matchId: let matchId):
-            return "/service-football/match/" + String(matchId);
+            return "/service-admin/football/match/" + String(matchId);
         case .matchStatus(matchId: _,type: _):
-            return "/service-football/timeline/status";
+            return "/service-admin/football/timeline/status";
         case .getMatchPlayersByTeamId(matchId: _,teamId: _):
-            return "/service-football/player";
+            return "/service-admin/football/player";
         case .addTimeLine(matchId: _,teamId: _,playerId: _,eventtype: _,minute: _,remark: _,text: _):
-            return "/service-football/timeline";
+            return "/service-admin/football/timeline";
         case .deleteTimeLine(id: _):
-            return "/service-football/timeline";
+            return "/service-admin/football/timeline";
         case .updateScoreAndStatus(matchId: _, score: _, status: _):
-            return "/service-football/match/score";
+            return "/service-admin/football/match/score";
         case .activity(activityId: let activityId):
-            return "/service-live/activity/" + activityId;
+            return "/service-admin/activity/" + activityId;
         case .activityQuality(activityId: let activityId):
-            return "/service-live/activity/" + activityId + "/quality";
+            return "/service-admin/activity/" + activityId + "/quality";
         case .scoreboard:
-            return "/service-system/system/config/scoreboard";
+            return "/service-admin/sys/scoreboard";
         case .refreshToken(refreshToken: _):
-            return "/service-auth/auth/refresh_token";
+            return "/service-admin/auth/refresh_token";
         }
     }
     
@@ -139,17 +139,16 @@ extension ApiManager:TargetType{
     var task: Task {
         switch self {
         case .login(username: let userName, password: let pwd):
-            return .requestData(jsonToData(jsonDic: ["userName": userName  ,"passWord": pwd])!);
+            return .requestData(jsonToData(jsonDic: ["userName": userName  ,"password": pwd])!);
         case .leagues(pageNum: let pageNum, pageSize: let pageSize, city: let city, country: let country, name: let name, status: let status):
-            var params:[String:Any] = ["pageNum":pageNum,"pageSize":pageSize,"sortField":"remark","sortOrder":"desc","leagueType":4];
+            var params:[String:Any] = ["pageNum":pageNum,"pageSize":pageSize,"sortField":"sortIndex","sortOrder":"desc","leagueType":4];
             if(city != nil){params["city"] = city;}
             if(country != nil){params["country"] = country;}
             if(name != nil){params["name"] = name;}
             if(status != nil){params["status"] = status;}
             return .requestParameters(parameters: params, encoding: URLEncoding.default);
         case .league(id: _):
-            var params:[String:Any] = ["detailRound":true];
-            return .requestParameters(parameters: params, encoding: URLEncoding.default);
+            return .requestPlain;
         case .matches(pageNum: let pageNum, pageSize: let pageSize, leagueId: let leagueId, name: let name, round: let round, status: let status, dateBegin: let dateBegin, dateEnd: let dateEnd,orderby: let orderby, isActivity: let isActivity):
             var params:[String:Any] = ["pageNum":pageNum,"pageSize":pageSize];
             if(leagueId != nil){params["leagueId"] = leagueId;}
@@ -173,7 +172,7 @@ extension ApiManager:TargetType{
         case .match(matchId: _):
             return .requestPlain;
         case .matchStatus(matchId: let matchId, type: let type):
-            var params:[String:Any] = ["matchId":matchId,"fullTime":true];
+            var params:[String:Any] = ["matchId":matchId];
             if(type != nil){params["type"] = type!.joined(separator: ",");}
             return .requestParameters(parameters: params, encoding: URLEncoding.default);
         case .getMatchPlayersByTeamId(matchId: _, teamId: let teamId):

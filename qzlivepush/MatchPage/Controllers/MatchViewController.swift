@@ -68,18 +68,18 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
         let match:MatchModel = self.matchPage![index > self.matchPage!.count ? 0 : index];
         
         lb_name.text = match.name!;
-        if(match.hostteam == nil && match.guestteam == nil){
+        if(match.hostTeam == nil && match.guestTeam == nil){
             lb_hostname.text = "无";
             lb_guestname.text = "无";
             iv_host.image = UIImage(named: "logo.png");
             iv_guset.image = UIImage(named: "logo.png");
         }else{
-            lb_hostname.text = match.hostteam!.name!;
-            lb_guestname.text = match.guestteam!.name!;
+            lb_hostname.text = match.hostTeam!.name!;
+            lb_guestname.text = match.guestTeam!.name!;
 //            iv_host.sd_setImage(with: URL(string: match.hostteam!.headimg), placeholderImage: UIImage(named: "logo.png"));
 //            iv_guset.sd_setImage(with: URL(string: match.guestteam!.headimg), placeholderImage: UIImage(named: "logo.png"));
-            setImg(iv: iv_host, url: match.hostteam!.headImg);
-            setImg(iv: iv_guset, url: match.guestteam!.headImg);
+            setImg(iv: iv_host, url: match.hostTeam!.headImg);
+            setImg(iv: iv_guset, url: match.guestTeam!.headImg);
         }
         lb_score.text = (match.status == -1 ? "VS" : match.score);
         lb_time.text = match.startTime;
@@ -157,7 +157,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
         self.tv_match.es.stopLoadingMore();
         if(self.matchPage!.count == 0 || self.matchPage == nil){
             self.tv_match.es.noticeNoMoreData();
-            self.view.makeToast("暂无数据");
+            self.view.makeToast("暂无数据",position: .center);
         }
     }
     //刷新数据
@@ -204,7 +204,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             //跳转
             self.present(vc, animated: true,completion: nil);
         }else{
-            self.view.makeToast("当前比赛无直播权限");
+            self.view.makeToast("当前比赛无直播权限",position: .center);
         }
     }
     func handleLiveBasketballAction(action: UIAlertAction){
@@ -218,7 +218,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             //跳转
             self.present(vc, animated: true,completion: nil);
         }else{
-            self.view.makeToast("当前比赛无直播权限");
+            self.view.makeToast("当前比赛无直播权限",position: .center);
         }
     }
     func handleStasticsAction(action: UIAlertAction){
@@ -234,7 +234,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             //跳转
             self.navigationController?.pushViewController(vc, animated: true)
         }else{
-            self.view.makeToast("当前比赛无统计权限");
+            self.view.makeToast("当前比赛无统计权限",position: .center);
         }
     }
 }

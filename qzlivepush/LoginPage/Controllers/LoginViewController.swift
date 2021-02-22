@@ -71,7 +71,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
             let userInfo:UserModel? = viewModel?.getLoginInfo();
             if(userInfo != nil){
                 tf_username.text = userInfo!.userName;
-                tf_password.text = userInfo!.passWord;
+                tf_password.text = userInfo!.password;
             }
         }
         self.openEventServiceWithBolck(action: self.authorize);

@@ -13,7 +13,7 @@ class LeagueModel: Mappable{
     var type:Int?;//1:杯赛，2:联赛
     var round:LeagueRound?;//轮次
     var name:String?;//名字
-    var shortname:String?;//缩写
+    var shortName:String?;//缩写
     var englishName:String?;
     var majorSponsor:String?;//主办方
     var sponsor:String?;//赞助商
@@ -35,7 +35,7 @@ class LeagueModel: Mappable{
         type <- map["type"]
         round <- map["round"]
         name <- map["name"]
-        shortname <- map["shortname"]
+        shortName <- map["shortName"]
         englishName <- map["englishName"]
         majorSponsor <- map["majorSponsor"]
         sponsor <- map["sponsor"]

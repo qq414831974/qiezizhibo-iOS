@@ -114,7 +114,7 @@ class BasketballTimelineController: UIViewController{
     }
     func updateMatchSocre(matchId: Int,teamId: Int,scoreChange: Int){
         if(isUpdating){
-            self.view.makeToast("正在操作中...");
+            self.view.makeToast("正在操作中...",position: .center);
             return
         }
         isUpdating = true;
@@ -131,7 +131,7 @@ class BasketballTimelineController: UIViewController{
                 }else if(teamId == self.match!.guestTeamId && (guestScore! + scoreChange > 0)){
                     guestScore = guestScore! + scoreChange;
                 }else{
-                    self.view.makeToast("请选择正确的比分");
+                    self.view.makeToast("请选择正确的比分",position: .center);
                     self.isUpdating = false;
                     return;
                 }
@@ -139,14 +139,14 @@ class BasketballTimelineController: UIViewController{
                 HttpService().updateScoreAndStatus(matchId: matchId, hostteamId: self.match!.hostTeamId, guestteamId: self.match!.guestTeamId,  score: score, status: 0).subscribe(onNext:{(response) in
                     self.isUpdating = false;
                     if(response.data != nil && response.data!){
-                        self.view.makeToast("修改成功");
+                        self.view.makeToast("修改成功",position: .center);
                     }
                 }).disposed(by: self.disposeBag);
             }
         }).disposed(by: disposeBag);
         }catch{
             self.isUpdating = false;
-            self.view.makeToast("修改失败");
+            self.view.makeToast("修改失败",position: .center);
         }
     }
 }

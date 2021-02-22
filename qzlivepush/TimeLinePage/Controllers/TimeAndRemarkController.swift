@@ -112,10 +112,10 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         if(viewModel!.controller!.matchStatus == nil){
             tf_time.text = "0"
         }else{
-            if(viewModel!.controller!.matchStatus!.time == nil){
+            if(viewModel!.controller!.matchStatus!.minute == nil){
                 tf_time.text = "0"
             }else{
-                tf_time.text = String(viewModel!.controller!.matchStatus!.time!);
+                tf_time.text = String(viewModel!.controller!.matchStatus!.minute!);
             }
         }
         tv_description.text = "";
@@ -205,18 +205,20 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         }
         //换人
         if(eventtype == 10 && (remark == nil || remark!.trimmingCharacters(in: CharacterSet.whitespaces) == "")){
-            self.viewModel!.controller!.view.makeToast("请选择换上的球员");
+            self.viewModel!.controller!.view.makeToast("请选择换上的球员",position: .center);
             return;
         }
         btn_confirm.isUserInteractionEnabled = false;
+        viewModel!.showLoadingAnimation()
         viewModel!.addTimeLine(matchId: matchId, teamId: teamId, playerId: playerId, eventtype: eventtype, minute: minute, remark: remark, text: text, callback: { (response) in
+            self.viewModel!.hideLoadingAnimation()
             if(response.data != nil && response.data!){
-                self.viewModel!.controller!.view.makeToast("添加成功");
+                self.viewModel!.controller!.view.makeToast("添加成功",position: .center);
                 self.viewModel!.controller!.fpc_timeRemark.hide(animated: false, completion: {
                     self.viewModel!.controller!.fpc.show(animated: false);
                 })
             }else{
-                self.viewModel!.controller!.view.makeToast(response.message);
+                self.viewModel!.controller!.view.makeToast(response.message,position: .center);
             }
             self.btn_confirm.isUserInteractionEnabled = true;
             self.viewModel!.controller!.refreshData();

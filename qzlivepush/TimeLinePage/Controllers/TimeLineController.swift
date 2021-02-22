@@ -40,7 +40,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
     var currentDeleteEvent:TimeLineModel?;
     var isEntry:Bool = false;
     var timer:Timer?;
-    
+        
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100;
     }
@@ -57,7 +57,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
             var cell:TimeLineCell? = nil;
             let timeline:TimeLineModel = self.timeLineList[index > self.timeLineList.count ? 0 : index];
             
-            if(currentMatch?.hostteam!.id! ==  timeline.teamId){
+            if(currentMatch?.hostTeam!.id! ==  timeline.teamId){
                 cell = tableView.dequeueReusableCell(withIdentifier: "leftTimeLineID",for: indexPath) as! TimeLineCellLeft;
             }else{
                 cell = tableView.dequeueReusableCell(withIdentifier: "rightTimeLineID",for: indexPath) as! TimeLineCellRight;
@@ -67,7 +67,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell!.setEventImg(img: UIImage.svg(named: event.icon,size: CGSize.init(width: 35, height: 35)));
             cell!.setEventName(eventName: event.text);
             if(event.type != TimeLineEvent.timeEvent){
-                cell!.setMinute(minute: timeline.time!);
+                cell!.setMinute(minute: timeline.minute!);
             }else{
                 cell!.setMinute(minute: nil);
             }
@@ -82,7 +82,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
                 cell!.setSecondEventImg(img: UIImage.svg(named: "substitution_arrow.svg",size: CGSize.init(width: 35, height: 35)));
                 let player:PlayerModel?;
                 do{
-                    player = try Mapper<PlayerModel>().map(JSONString: timeline.remark!);
+                    player = timeline.secondPlayer;
                     cell!.setSecondPlayerImg(url: player!.headImg);
                     cell!.setSecondPlayerName(name: player!.name!);
                     cell!.showSecondPlayer();
@@ -194,7 +194,6 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
             timer!.invalidate()
         }
     }
-
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
         //开始计时器
@@ -214,16 +213,16 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     //设置主客队
     func setTeamData(match:MatchModel){
-        if(match != nil && match.hostteam != nil && match.guestteam != nil){
-            teamVc.setHostImg(url: match.hostteam!.headImg,tag: match.hostteam!.id!);
-            teamVc.setGuestImg(url: match.guestteam!.headImg,tag: match.guestteam!.id!);
-            teamVc.lb_host.text = match.hostteam!.name;
-            teamVc.lb_guest.text = match.guestteam!.name;
+        if(match != nil && match.hostTeam != nil && match.guestTeam != nil){
+            teamVc.setHostImg(url: match.hostTeam!.headImg,tag: match.hostTeam!.id!);
+            teamVc.setGuestImg(url: match.guestTeam!.headImg,tag: match.guestTeam!.id!);
+            teamVc.lb_host.text = match.hostTeam!.name;
+            teamVc.lb_guest.text = match.guestTeam!.name;
             
-            header.setHostImg(url: match.hostteam!.headImg);
-            header.setGuestImg(url: match.guestteam!.headImg);
-            header.lb_host.text = match.hostteam!.name;
-            header.lb_guest.text = match.guestteam!.name;
+            header.setHostImg(url: match.hostTeam!.headImg);
+            header.setGuestImg(url: match.guestTeam!.headImg);
+            header.lb_host.text = match.hostTeam!.name;
+            header.lb_guest.text = match.guestTeam!.name;
             
 //            editEventVc!.teamList.append(match.hostteam!);
 //            editEventVc!.teamList.append(match.guestteam!);
@@ -270,7 +269,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let timeline:TimeLineModel = self.timeLineList[index > self.timeLineList.count ? 0 : index];
         let event:TimeLineEvent = Constant.EVENT_TYPE[timeline.eventType!]!;
         currentDeleteEvent = timeline;
-        let alertController = UIAlertController(title: "是否删除此事件？", message: event.text + "在" + String(timeline.time ?? 0) + "分钟", preferredStyle: .actionSheet);
+        let alertController = UIAlertController(title: "是否删除此事件？", message: event.text + "在" + String(timeline.minute ?? 0) + "分钟", preferredStyle: .actionSheet);
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil);
         let confirmAction = UIAlertAction(title: "确定", style: .destructive, handler: self.handleDeleteConfirm);
         alertController.addAction(cancelAction);
@@ -302,9 +301,9 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
         if(currentDeleteEvent != nil){
             viewModel!.deleteTimeLine(id: currentDeleteEvent!.id!, callback: { (response) in
                 if(response.data != nil && response.data!){
-                    self.view.makeToast("删除成功");
+                    self.view.makeToast("删除成功",position: .center);
                 }else{
-                    self.view.makeToast(response.message);
+                    self.view.makeToast(response.message,position: .center);
                 }
                 self.refreshData();
             }, disposeBag: disposeBag)

@@ -213,7 +213,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         self.tv_league.es.stopLoadingMore();
         if(self.leaguePage!.count == 0 || self.leaguePage == nil){
             self.tv_league.es.noticeNoMoreData();
-            self.view.makeToast("暂无数据");
+            self.view.makeToast("暂无数据",position: .center);
         }
     }
     //刷新数据

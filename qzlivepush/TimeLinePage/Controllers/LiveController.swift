@@ -200,11 +200,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         if(isBasketBall){
             scoreBoard_basketBall = Bundle.main.loadNibNamed("ScoreBoard2", owner: self, options: nil)!.first as! ScoreBoard2;
             scoreBoard_basketBall.frame = CGRect.init(x: view.bounds.width * 0.0214, y:  1080 - 200 - view.bounds.width * 0.0214, width: 600, height: 200);
-            if(currentMatch != nil && currentMatch!.hostteam != nil){
-                scoreBoard_basketBall.lb_hostName.text = currentMatch!.hostteam!.name;
+            if(currentMatch != nil && currentMatch!.hostTeam != nil){
+                scoreBoard_basketBall.lb_hostName.text = currentMatch!.hostTeam!.name;
             }
-            if(currentMatch != nil && currentMatch!.guestteam != nil){
-                scoreBoard_basketBall.lb_guestName.text = currentMatch!.guestteam!.name;
+            if(currentMatch != nil && currentMatch!.guestTeam != nil){
+                scoreBoard_basketBall.lb_guestName.text = currentMatch!.guestTeam!.name;
             }
             if(currentMatch != nil && currentMatch!.score != nil){
                 let score = currentMatch!.score!.split(separator: "-");
@@ -223,8 +223,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             scoreBoard.frame = CGRect.init(x: view.bounds.width - 900 - view.bounds.width * 0.0214, y: view.bounds.height * 0.023, width: 900, height: 180);
             if(currentMatch != nil && currentMatch!.league != nil){
                 scoreBoard.lb_leagueName.text = currentMatch!.league!.name;
-                if(currentMatch!.league!.shortname != nil){
-                    scoreBoard.lb_leagueName.text = currentMatch!.league!.shortname;
+                if(currentMatch!.league!.shortName != nil){
+                    scoreBoard.lb_leagueName.text = currentMatch!.league!.shortName;
                 }
                 if(currentMatch!.league!.name!.count > 12){
                     scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 30)
@@ -232,11 +232,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                     scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 35)
                 }
             }
-            if(currentMatch != nil && currentMatch!.hostteam != nil){
-                scoreBoard.lb_hostName.text = currentMatch!.hostteam!.name;
+            if(currentMatch != nil && currentMatch!.hostTeam != nil){
+                scoreBoard.lb_hostName.text = currentMatch!.hostTeam!.name;
             }
-            if(currentMatch != nil && currentMatch!.guestteam != nil){
-                scoreBoard.lb_guestName.text = currentMatch!.guestteam!.name;
+            if(currentMatch != nil && currentMatch!.guestTeam != nil){
+                scoreBoard.lb_guestName.text = currentMatch!.guestTeam!.name;
             }
             if(currentMatch != nil && currentMatch!.score != nil){
                 let score = currentMatch!.score!.split(separator: "-");
@@ -246,7 +246,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             viewModel!.scoreboard(callback: { (scoreBoardModels) in
                 if(scoreBoardModels.count > 0){
                     self.scoreBoard.tag = 101;
-                    self.scoreBoard.updateConstraint(scoreBoard: scoreBoardModels[0]);
+                    self.scoreBoard.updateConstraint(scoreboard: scoreBoardModels[0]);
                     self.currentScoreBoard = scoreBoardModels[0];
                     view.addSubview(self.scoreBoard);
                     //添加水印
@@ -256,7 +256,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                     self.logoWarterMark = self.session!.warterMarkView?.viewWithTag(201);
                     
                     self.viewModel!.getMatchStatus(matchId: self.currentMatchId!, type: nil, callback: { (matchStatusModel) in
-                        var minute = matchStatusModel.time;
+                        var minute = matchStatusModel.minute;
                         var minuteString = "00";
                         if(minute != nil){
                             if(minute! < 10){
@@ -354,7 +354,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             if(res.pushStreamUrl != nil){
                 self.pushUrl = res.pushStreamUrl;
             }else{
-                self.view.makeToast("获取直播信息失败，请联系管理员");
+                self.view.makeToast("获取直播信息失败，请联系管理员",position: .center);
             }
         }, disposeBag: disposeBag)
         //开始定时
@@ -513,7 +513,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                 self.session.startLive(stream)
                 self.bandWidthLabel.isHidden = false;
                 self.qualitySettingView.slider_video.isEnabled = false;
-                if((self.matchStatusModel != nil && self.matchStatusModel!.time != nil) || self.isBasketBall){
+                if((self.matchStatusModel != nil && self.matchStatusModel!.minute != nil) || self.isBasketBall){
                     self.startTimer_time();
                 }
                 self.firstPush = true;
@@ -542,7 +542,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                 self.showEntry(name: "qualitySettingView");
             }else if(index == 1){
                 if(self.isBasketBall){
-                    self.view.makeToast("暂不支持修改比分牌");
+                    self.view.makeToast("暂不支持修改比分牌",position: .center);
                 }else{
                     let scoreBoard = self.warterMarkView!.viewWithTag(101) as! ScoreBoard;
                     self.scoreBoardSettingVc.scoreBoardModel = self.currentScoreBoard!;
@@ -593,7 +593,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                 self.scoreBoardSettingVc.stopTimer();
             }
             attributes.lifecycleEvents.didAppear = {
-                self.scoreBoardSettingVc.updateConstraint(scoreBoard: self.scoreBoardSettingVc.scoreBoardModel);
+                self.scoreBoardSettingVc.updateConstraint(scoreboard: self.scoreBoardSettingVc.scoreBoardModel);
                 if(self.startLiveButton.isSelected && self.matchStatusModel != nil && self.matchStatusModel!.status! != -1 && self.matchStatusModel!.status != 21 && self.matchStatusModel!.status != 14){
                     self.scoreBoardSettingVc.startTimer();
                 }
@@ -700,7 +700,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             basketballTimelineVc.onSectionChangeClick = { (section) in
                 let currentSection = Int(self.scoreBoardWarterMark_basketBall.lb_time.text!);
                 if(currentSection! + section <= 0){
-                    self.view.makeToast("请选择正确的节数");
+                    self.view.makeToast("请选择正确的节数",position: .center);
                     return;
                 }
                 self.scoreBoardWarterMark_basketBall.lb_time.text =  String(currentSection! + section);
@@ -777,7 +777,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                             self.firstRetryTime = now;
                             self.pushRetryTimes = 1;
                         }
-                        self.view.makeToast("网络不佳，推流重试:"+String(self.pushRetryTimes)+"次");
+                        self.view.makeToast("网络不佳，推流重试:"+String(self.pushRetryTimes)+"次",position: .center);
                     } else {
                         self.liveQualityLabel.isHidden = false;
                     }

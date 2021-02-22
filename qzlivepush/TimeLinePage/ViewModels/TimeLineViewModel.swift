@@ -42,9 +42,9 @@ class TimeLineViewModel {
             self.controller!.matchStatus = res;
             self.controller!.header.lb_score.text = res.score;
             self.controller!.header.lb_status.text = Constant.EVENT_TYPE[res.status!]!.text;
-            if(self.controller!.timeRemarkVc != nil && res.time != nil){
-                self.controller!.timeRemarkVc.tf_time.text = String(res.time!);
-                self.controller!.header.lb_minute.text = String(res.time!) + "'";
+            if(self.controller!.timeRemarkVc != nil && res.minute != nil){
+                self.controller!.timeRemarkVc.tf_time.text = String(res.minute!);
+                self.controller!.header.lb_minute.text = String(res.minute!) + "'";
             }else{
                 self.controller!.header.lb_minute.isHidden = true;
             }
@@ -83,5 +83,21 @@ class TimeLineViewModel {
         HttpService().updateScoreAndStatus(matchId: matchId, hostteamId: hostteamId, guestteamId: guestteamId, score: score, status: status).subscribe(onNext:{(res) in
             callback(res);
         }).disposed(by: disposeBag);
+    }
+    func showLoadingAnimation(){
+        if(self.controller != nil){
+            self.controller!.view.makeToastActivity(.center)
+        }
+        if(self.liveController != nil){
+            self.liveController!.view.makeToastActivity(.center)
+        }
+    }
+    func hideLoadingAnimation(){
+        if(self.controller != nil){
+            self.controller!.view.hideToastActivity();
+        }
+        if(self.liveController != nil){
+            self.liveController!.view.hideToastActivity();
+        }
     }
 }

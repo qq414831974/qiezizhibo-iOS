@@ -9,15 +9,17 @@
 import ObjectMapper
 
 class RoleModel: Mappable{
-    var roleCode:String?;
-    var roleName:String?;
-    var menuList:[MenuModel]?;
+    var id:Int?;
+    var name:String?;
+    var description:String?;
+    var isAnchor:Bool?;
     
     required init?(map: Map) {}
     
     func mapping(map: Map) {
-        roleCode <- map["roleCode"]
-        roleName <- map["roleName"]
-        menuList <- map["menuList"]
+        id <- map["id"]
+        name <- map["name"]
+        description <- map["description"]
+        isAnchor <- map["isAnchor"]
     }
 }
