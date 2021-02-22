@@ -16,8 +16,8 @@ class ScoreBoardCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = UIColor.white.withAlphaComponent(0.8);
-        self.layer.cornerRadius = 10;
-        self.layer.masksToBounds = true;
+//        self.layer.cornerRadius = 10;
+//        self.layer.masksToBounds = true;
     }
     func selectItem(isSelect:Bool){
         if(isSelect){

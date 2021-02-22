@@ -21,12 +21,13 @@ enum ApiManager {
     case activity(activityId:String);
     case activityQuality(activityId:String);
     case scoreboard;
+    case refreshToken(refreshToken:String);
 }
 
 extension ApiManager:TargetType{
     
     var baseURL: URL {
-        return URL.init(string: "https://git.qiezizhibo.com")!
+        return URL.init(string: "https://www.qiezizhibo.com")!
 //        return URL.init(string: "http://192.168.170.103:8080")!
     }
     
@@ -59,6 +60,8 @@ extension ApiManager:TargetType{
             return "/service-live/activity/" + activityId + "/quality";
         case .scoreboard:
             return "/service-system/system/config/scoreboard";
+        case .refreshToken(refreshToken: _):
+            return "/service-auth/auth/refresh_token";
         }
     }
     
@@ -67,6 +70,8 @@ extension ApiManager:TargetType{
         let token = userDefault.string(forKey: Constant.KEY_ACCESS_TOKEN);
         switch self {
         case .login(username: _, password:_):
+            return ["Content-type" : "application/json"]
+        case .refreshToken(refreshToken: _):
             return ["Content-type" : "application/json"]
         default:
             if(token != nil ){
@@ -115,6 +120,8 @@ extension ApiManager:TargetType{
             return .get;
         case .scoreboard:
             return .get;
+        case .refreshToken(refreshToken: _):
+            return .post;
         }
     }
     
@@ -167,7 +174,7 @@ extension ApiManager:TargetType{
             return .requestPlain;
         case .matchStatus(matchId: let matchId, type: let type):
             var params:[String:Any] = ["matchId":matchId,"fullTime":true];
-            if(type != nil){params["type"] = type;}
+            if(type != nil){params["type"] = type!.joined(separator: ",");}
             return .requestParameters(parameters: params, encoding: URLEncoding.default);
         case .getMatchPlayersByTeamId(matchId: _, teamId: let teamId):
             let params:[String:Int] = ["teamId":teamId,"pageNum":1,"pageSize":100];
@@ -191,6 +198,9 @@ extension ApiManager:TargetType{
             return .requestPlain;
         case .scoreboard:
             return .requestPlain;
+        case .refreshToken(refreshToken: let refreshToken):
+            let params:[String:String] = ["refresh_token":refreshToken];
+            return .requestData(jsonToData(jsonDic: params)!);
         }
     }
     

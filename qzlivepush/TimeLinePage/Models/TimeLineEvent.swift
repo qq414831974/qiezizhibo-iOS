@@ -9,7 +9,7 @@
 class TimeLineEvent {
     var text:String;
     var icon:String;
-    var type:Int;//1:重要球赛事件 2:非重要球赛事件 0:球赛时间事件
+    var type:Int;//1:重要球赛事件 2:非重要球赛事件 0:球赛时间事件 -1:无用
     var eventType:Int;
     var remarkName:String?;
     var remarkValue:[[String:String]]?;

@@ -9,10 +9,17 @@
 /* Begin PBXBuildFile section */
 		5012383D244DAE1F005726B4 /* ResponseArrayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5012383C244DAE1F005726B4 /* ResponseArrayModel.swift */; };
 		5025444524DD427500EE67E8 /* ResponseIntModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5025444424DD427500EE67E8 /* ResponseIntModel.swift */; };
-		502FE27A2581CCC900A4C511 /* ScoreBoard2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502FE2792581CCC900A4C511 /* ScoreBoard2.xib */; };
 		502FE27F2581CCDB00A4C511 /* ScoreBoard2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */; };
+		502FE2872581CF5900A4C511 /* ScoreBoard2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 502FE2862581CF5900A4C511 /* ScoreBoard2.xib */; };
+		5060609C25A6B19800A4A994 /* ColorPicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5060609B25A6B19800A4A994 /* ColorPicker.xib */; };
+		506060A125A6B37D00A4A994 /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506060A025A6B37D00A4A994 /* ColorPicker.swift */; };
+		506060A625A6B68600A4A994 /* ColorPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506060A525A6B68600A4A994 /* ColorPickerCell.swift */; };
+		506060A825A6B69100A4A994 /* ColorPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 506060A725A6B69100A4A994 /* ColorPickerCell.xib */; };
+		506060AA25A6B87B00A4A994 /* ColorPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506060A925A6B87B00A4A994 /* ColorPickerDelegate.swift */; };
 		507228BE244D8D17005E4039 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507228BD244D8D17005E4039 /* AuthModel.swift */; };
 		50741F5A2489DDFB000AF23C /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50741F592489DDFB000AF23C /* ActivityModel.swift */; };
+		509C543D25A6CB4C00721C1B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C543C25A6CB4C00721C1B /* UIColor+.swift */; };
+		50DCDB8C2582214D00A530E5 /* BasketballTimelineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */; };
 		6751157D22C5C81C008812D5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6751157C22C5C81C008812D5 /* AVFoundation.framework */; };
 		6751158122C617CA008812D5 /* ScoreBoard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751158022C617CA008812D5 /* ScoreBoard.xib */; };
 		6751158322C61D36008812D5 /* ScoreBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751158222C61D36008812D5 /* ScoreBoard.swift */; };
@@ -142,10 +149,17 @@
 		3EB97967C6D622D34A0283D3 /* Pods_qzlivepush.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_qzlivepush.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5012383C244DAE1F005726B4 /* ResponseArrayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseArrayModel.swift; sourceTree = "<group>"; };
 		5025444424DD427500EE67E8 /* ResponseIntModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseIntModel.swift; sourceTree = "<group>"; };
-		502FE2792581CCC900A4C511 /* ScoreBoard2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreBoard2.xib; sourceTree = "<group>"; };
 		502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard2.swift; sourceTree = "<group>"; };
+		502FE2862581CF5900A4C511 /* ScoreBoard2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreBoard2.xib; sourceTree = "<group>"; };
+		5060609B25A6B19800A4A994 /* ColorPicker.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPicker.xib; sourceTree = "<group>"; };
+		506060A025A6B37D00A4A994 /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		506060A525A6B68600A4A994 /* ColorPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerCell.swift; sourceTree = "<group>"; };
+		506060A725A6B69100A4A994 /* ColorPickerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorPickerCell.xib; sourceTree = "<group>"; };
+		506060A925A6B87B00A4A994 /* ColorPickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerDelegate.swift; sourceTree = "<group>"; };
 		507228BD244D8D17005E4039 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		50741F592489DDFB000AF23C /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
+		509C543C25A6CB4C00721C1B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballTimelineController.swift; sourceTree = "<group>"; };
 		6751157C22C5C81C008812D5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6751158022C617CA008812D5 /* ScoreBoard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreBoard.xib; sourceTree = "<group>"; };
 		6751158222C61D36008812D5 /* ScoreBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreBoard.swift; sourceTree = "<group>"; };
@@ -380,8 +394,13 @@
 				67CD202122CB068500BE3F76 /* LiveQualitySettingView.xib */,
 				67A1D01022D04E69009C1BC3 /* WarterMarkSettingView.swift */,
 				67A1D01222D04E81009C1BC3 /* WarterMarkSettingView.xib */,
-				502FE2792581CCC900A4C511 /* ScoreBoard2.xib */,
 				502FE27E2581CCDB00A4C511 /* ScoreBoard2.swift */,
+				502FE2862581CF5900A4C511 /* ScoreBoard2.xib */,
+				5060609B25A6B19800A4A994 /* ColorPicker.xib */,
+				506060A025A6B37D00A4A994 /* ColorPicker.swift */,
+				506060A525A6B68600A4A994 /* ColorPickerCell.swift */,
+				506060A725A6B69100A4A994 /* ColorPickerCell.xib */,
+				506060A925A6B87B00A4A994 /* ColorPickerDelegate.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -408,6 +427,7 @@
 			isa = PBXGroup;
 			children = (
 				6753D82222B49A4600BA77BC /* LiveController.swift */,
+				50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -459,6 +479,7 @@
 				67AAD498229E73DE0076C139 /* UICheckBox.swift */,
 				6770C81222B738D4007920A0 /* UIImage+SVG+Extension.swift */,
 				67CD201822C9E97B00BE3F76 /* UIAlertController+Extension.swift */,
+				509C543C25A6CB4C00721C1B /* UIColor+.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -853,7 +874,9 @@
 				6770C84322B75472007920A0 /* shoot_out.svg in Resources */,
 				6770C84422B75472007920A0 /* save.svg in Resources */,
 				6751158122C617CA008812D5 /* ScoreBoard.xib in Resources */,
+				5060609C25A6B19800A4A994 /* ColorPicker.xib in Resources */,
 				67A1D01322D04E81009C1BC3 /* WarterMarkSettingView.xib in Resources */,
+				506060A825A6B69100A4A994 /* ColorPickerCell.xib in Resources */,
 				6770C84522B75472007920A0 /* shoot.svg in Resources */,
 				6770C84622B75472007920A0 /* start.svg in Resources */,
 				6770C84722B75472007920A0 /* injury.svg in Resources */,
@@ -871,7 +894,7 @@
 				6770C85322B75472007920A0 /* redcard.svg in Resources */,
 				6770C85422B75472007920A0 /* own_goal.svg in Resources */,
 				6770C85522B75472007920A0 /* substitution_arrow.svg in Resources */,
-				502FE27A2581CCC900A4C511 /* ScoreBoard2.xib in Resources */,
+				502FE2872581CF5900A4C511 /* ScoreBoard2.xib in Resources */,
 				67DA630E2293FC0100615D95 /* LaunchScreen.storyboard in Resources */,
 				67DA630B2293FC0100615D95 /* Assets.xcassets in Resources */,
 				67DA63092293FC0000615D95 /* Main.storyboard in Resources */,
@@ -947,12 +970,15 @@
 				67C4454F22AF3CFB0061AC28 /* TeamModel.swift in Sources */,
 				6753D82922B4D59000BA77BC /* TimeLineCellRight.swift in Sources */,
 				67ADA78322C27503005A1543 /* ScoreAndStatusController.swift in Sources */,
+				50DCDB8C2582214D00A530E5 /* BasketballTimelineController.swift in Sources */,
+				509C543D25A6CB4C00721C1B /* UIColor+.swift in Sources */,
 				6770C80D22B4E585007920A0 /* MatchStatisticsModel.swift in Sources */,
 				67C4454D22AF3C7D0061AC28 /* MatchModel.swift in Sources */,
 				6751158322C61D36008812D5 /* ScoreBoard.swift in Sources */,
 				67ADA77422C074FB005A1543 /* ResponseBoolModel.swift in Sources */,
 				6753D82722B4A34000BA77BC /* TimeLineCellLeft.swift in Sources */,
 				6770C87822B88AFA007920A0 /* ChooseTeamController.swift in Sources */,
+				506060A125A6B37D00A4A994 /* ColorPicker.swift in Sources */,
 				6751158522C75930008812D5 /* LiveViewModel.swift in Sources */,
 				5012383D244DAE1F005726B4 /* ResponseArrayModel.swift in Sources */,
 				67DA66D42295220700615D95 /* ApiManager.swift in Sources */,
@@ -983,11 +1009,13 @@
 				67AAD495229D4ACE0076C139 /* LoginViewModel.swift in Sources */,
 				67CD201622C9A47200BE3F76 /* ScoreBoardCollectionViewCell.swift in Sources */,
 				67C4455622AF43FD0061AC28 /* MatchViewController.swift in Sources */,
+				506060A625A6B68600A4A994 /* ColorPickerCell.swift in Sources */,
 				67C4455822AF4FBD0061AC28 /* MatchViewModel.swift in Sources */,
 				67629A8E22D73B7C00F885D4 /* ScoreBoardModel.swift in Sources */,
 				67ADA77D22C1FD56005A1543 /* StatusRemarkController.swift in Sources */,
 				50741F5A2489DDFB000AF23C /* ActivityModel.swift in Sources */,
 				6770C81122B72B69007920A0 /* TimeLineEvent.swift in Sources */,
+				506060AA25A6B87B00A4A994 /* ColorPickerDelegate.swift in Sources */,
 				67AAD52A22A5102C0076C139 /* UIViewController+Extension.swift in Sources */,
 				67C4455422AF40EA0061AC28 /* PlayerModel.swift in Sources */,
 				67DCCB82229B843000049A9D /* PageModel.swift in Sources */,

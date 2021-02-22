@@ -17,16 +17,19 @@ struct HttpService {
         let target = ApiManager.login(username: username, password: password);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-//            .filterSuccelssfulStatusCodes()
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<AuthModel>.self);
     }
     func leagues(pageNum:Int,pageSize:Int,city:String?,country:String?,name:String?,status:String?) -> Observable<PageModel<LeagueModel>> {
         let target = ApiManager.leagues(pageNum: pageNum, pageSize: pageSize, city: city, country: country, name: name, status: status);
         return provider.rx.request(target)
-            .filter(statusCodes: 200...399)
-            .mapJSON().asObservable()
+            .filter(statusCodes: 200...500)
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<PageModel<LeagueModel>>.self)
             .map { (result) -> PageModel<LeagueModel> in
@@ -36,8 +39,10 @@ struct HttpService {
     func league(id:Int)-> Observable<LeagueModel> {
         let target = ApiManager.league(id: id);
         return provider.rx.request(target)
-            .filter(statusCodes: 200...399)
-            .mapJSON().asObservable()
+            .filter(statusCodes: 200...500)
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<LeagueModel>.self)
             .map { (result) -> LeagueModel in
@@ -47,8 +52,10 @@ struct HttpService {
     func matches(pageNum:Int,pageSize:Int,leagueId:Int?,name:String?,round:[String?]?,status:String?,dateBegin:Date?,dateEnd:Date?,orderby:String?,isActivity:Bool?)-> Observable<PageModel<MatchModel>> {
         let target = ApiManager.matches(pageNum: pageNum, pageSize: pageSize, leagueId: leagueId,name: name, round: round, status: status, dateBegin: dateBegin, dateEnd: dateEnd, orderby: orderby, isActivity: isActivity);
         return provider.rx.request(target)
-            .filter(statusCodes: 200...399)
-            .mapJSON().asObservable()
+            .filter(statusCodes: 200...500)
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<PageModel<MatchModel>>.self)
             .map { (result) -> PageModel<MatchModel> in
@@ -58,8 +65,10 @@ struct HttpService {
     func match(matchId:Int)-> Observable<MatchModel> {
         let target = ApiManager.match(matchId: matchId);
         return provider.rx.request(target)
-            .filter(statusCodes: 200...399)
-            .mapJSON().asObservable()
+            .filter(statusCodes: 200...500)
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<MatchModel>.self)
             .map { (result) -> MatchModel in
@@ -70,7 +79,9 @@ struct HttpService {
         let target = ApiManager.matchStatus(matchId: matchId, type: type);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<MatchStatusModel>.self)
             .map { (result) -> MatchStatusModel in
@@ -80,8 +91,10 @@ struct HttpService {
     func getMatchPlayersByTeamId(matchId:Int,teamId:Int) -> Observable<Array<PlayerModel>>{
         let target = ApiManager.getMatchPlayersByTeamId(matchId: matchId, teamId: teamId);
         return provider.rx.request(target)
-            .filter(statusCodes: 200...399)
-            .mapJSON().asObservable()
+            .filter(statusCodes: 200...500)
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<PageModel<PlayerModel>>.self)
             .map { (result) -> Array<PlayerModel> in
@@ -92,7 +105,9 @@ struct HttpService {
         let target = ApiManager.addTimeLine(matchId: matchId, teamId: teamId, playerId: playerId, eventtype: eventtype, minute: minute, remark: remark, text: text);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseBoolModel.self);
     }
@@ -100,7 +115,9 @@ struct HttpService {
         let target = ApiManager.deleteTimeLine(id: id);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseBoolModel.self);
     }
@@ -108,7 +125,9 @@ struct HttpService {
         let target = ApiManager.updateScoreAndStatus(matchId: matchId, score: score, status: status);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseBoolModel.self);
     }
@@ -116,7 +135,9 @@ struct HttpService {
         let target = ApiManager.activity(activityId: activityId);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<ActivityModel>.self)
             .map { (result) -> ActivityModel in
@@ -127,7 +148,9 @@ struct HttpService {
         let target = ApiManager.activityQuality(activityId: activityId);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseIntModel.self);
     }
@@ -135,7 +158,9 @@ struct HttpService {
         let target = ApiManager.scoreboard;
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
-            .mapJSON().asObservable()
+            .asObservable()
+            .filterSuccess(target: target)
+            .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseArrayModel<ScoreBoardModel>.self)
             .map { (result) -> Array<ScoreBoardModel> in
@@ -143,50 +168,38 @@ struct HttpService {
             };
     }
 }
-//
-////扩展Moya
-//extension ObservableType where E == Response {
-//
-//    func filterSuccess(disposeBag:DisposeBag,target:TargetType) -> Observable<E> {
-//        return flatMap { (response) -> Observable<E> in
-//
-//            guard 200 ... 299 ~= response.statusCode else{
-//                return Observable.just(response)
-//            }
-//
-//            let json = try JSON(data: response.data).dictionaryValue
-//            guard let code = json["code"]?.intValue else{
-//                return Observable.just(response)
-//            }
-////
-////            //处理过期（过期的code是后台定好的）
-////            guard code == ErrorCode.sys_tokenExpired.rawValue else{
-////                return Observable.just(response)
-////            }
-////            //缓存过期是请求的target
-////            UserManager.shared.needResendTarget = target
-////
-////            guard let target = UserManager.shared.needResendTarget else{
-////                fatalError("没有target")
-////            }
-////            //更新token
-////            let updateToken =  MineServices().updateToken()
-////            //替换本地的token
-////            updateToken.drive(onNext: { (json) in
-////                let token = json.dictionaryValue["data"]?.dictionaryValue["token"]?.stringValue
-////                UserManager.shared.loginInfo.token = token
-////                UserManager.shared.updateLocalToken(json.dictionaryValue["data"]?.dictionaryValue["token"]?.stringValue ?? "")
-////            }).disposed(by: disposeBag)
-////
-////            let updateTokenSuccess = updateToken.map{$0.dictionaryValue["code"]?.intValue == 0}
-////
-////            //利用flatMapLatest把上一次缓存的target发送出去
-////            let responses = updateTokenSuccess.asObservable().flatMapLatest({ _ -> Observable<Response> in
-//                return provider.rx.request(target).asObservable()
-////            })
-////
-////            return responses
-//
-//        }
-//    }
-//}
+
+//扩展Moya,刷新token
+extension ObservableType where E == Response {
+
+    func filterSuccess(target:TargetType) -> Observable<E> {
+        return flatMap { (response) -> Observable<E> in
+        
+            if(response.statusCode == 401){
+                let userDefault = UserDefaults.standard;
+                let token = userDefault.string(forKey: Constant.KEY_REFRESH_TOKEN);
+                if(token != nil){
+                    return provider.rx.request(ApiManager.refreshToken(refreshToken: token!))
+                        .mapJSON().asObservable()
+                        .showAPIErrorToast()
+                        .mapObject(type: ResponseModel<AuthModel>.self)
+                        .flatMapLatest { (res) -> Observable<Response> in
+                            if(res.data != nil){
+                                let userDefault = UserDefaults.standard;
+                                if(userDefault.object(forKey: Constant.KEY_ACCESS_TOKEN) != nil){
+                                    userDefault.removeObject(forKey: Constant.KEY_ACCESS_TOKEN)
+                                    userDefault.removeObject(forKey: Constant.KEY_REFRESH_TOKEN)
+                                }
+                                userDefault.set(res.data?.accessToken, forKey: Constant.KEY_ACCESS_TOKEN);
+                                userDefault.set(res.data?.refreshToken, forKey: Constant.KEY_REFRESH_TOKEN);
+                                userDefault.synchronize();
+                            }
+                            return provider.rx.request(target as! ApiManager).asObservable();
+                        }
+                }
+            }
+
+            return Observable.just(response)
+        }
+    }
+}

@@ -38,8 +38,14 @@ class ScoreAndStatusController:UIViewController{
         super.viewDidLoad();
         viewModel = TimeLineViewModel.sharedInstance;
         
-        currentStatus = viewModel!.controller!.matchStatus!.status!;
-        tf_score.text = viewModel!.controller!.matchStatus!.score!;
+        if(viewModel!.controller!.matchStatus != nil){
+            currentStatus = viewModel!.controller!.matchStatus!.status!;
+            tf_score.text = viewModel!.controller!.matchStatus!.score!;
+        }else {
+            currentStatus = -1;
+            tf_score.text = "0-0";
+        }
+        
         
         var index:Int = 0;
         
@@ -94,6 +100,13 @@ class ScoreAndStatusController:UIViewController{
             i = i + 1;
         }
         btn_confirm.addTarget(self, action: #selector(onConfirmClick), for: UIControl.Event.touchUpInside);
+    }
+    func refreshData(){
+        if(viewModel!.controller!.matchStatus != nil){
+            tf_score.text = viewModel!.controller!.matchStatus!.score!;
+        }else{
+            tf_score.text = "0-0"
+        }
     }
     @objc func unselectOther(sender: Any){
         var index:Int?;

@@ -214,7 +214,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
     }
     //设置主客队
     func setTeamData(match:MatchModel){
-        if(match.hostteam != nil && match.guestteam != nil){
+        if(match != nil && match.hostteam != nil && match.guestteam != nil){
             teamVc.setHostImg(url: match.hostteam!.headImg,tag: match.hostteam!.id!);
             teamVc.setGuestImg(url: match.guestteam!.headImg,tag: match.guestteam!.id!);
             teamVc.lb_host.text = match.hostteam!.name;
@@ -288,7 +288,7 @@ class TimeLineController: UIViewController,UITableViewDelegate,UITableViewDataSo
         attributes.entryBackground = .color(color: .white);
         attributes.screenBackground = .color(color: UIColor(white: 50.0/255.0, alpha: 0.3));
         attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero));
-        attributes.roundCorners = .all(radius: 10)
+//        attributes.roundCorners = .all(radius: 10)
         attributes.entranceAnimation = .translation;
         attributes.exitAnimation = .translation;
         attributes.displayDuration = .infinity;

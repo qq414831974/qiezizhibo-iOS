@@ -185,9 +185,11 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
         let alertController = UIAlertController(title: currentMatch!.name, message: currentMatch!.startTime, preferredStyle: .actionSheet);
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil);
         let liveAction = UIAlertAction(title: "直播+统计", style: .default, handler: self.handleLiveAction);
+        let liveActionBasketBall = UIAlertAction(title: "直播+统计（篮球）", style: .default, handler: self.handleLiveBasketballAction);
         let stasticsAction = UIAlertAction(title: "仅统计", style: .default, handler: self.handleStasticsAction);
         alertController.addAction(cancelAction);
         alertController.addAction(liveAction);
+        alertController.addAction(liveActionBasketBall);
         alertController.addAction(stasticsAction);
         self.present(alertController, animated: true, completion: nil);
     }
@@ -197,6 +199,21 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             let vc = sb.instantiateViewController(withIdentifier: "LivePage") as! LiveController
             vc.currentMatchId = currentMatch!.id!;
             vc.currentMatch = currentMatch!;
+            vc.isBasketBall = false;
+            vc.modalPresentationStyle = .fullScreen
+            //跳转
+            self.present(vc, animated: true,completion: nil);
+        }else{
+            self.view.makeToast("当前比赛无直播权限");
+        }
+    }
+    func handleLiveBasketballAction(action: UIAlertAction){
+        if(currentMatch != nil && currentMatch!.activityId != nil){
+            let sb = UIStoryboard(name: "Main", bundle:nil)
+            let vc = sb.instantiateViewController(withIdentifier: "LivePage") as! LiveController
+            vc.currentMatchId = currentMatch!.id!;
+            vc.currentMatch = currentMatch!;
+            vc.isBasketBall = true;
             vc.modalPresentationStyle = .fullScreen
             //跳转
             self.present(vc, animated: true,completion: nil);

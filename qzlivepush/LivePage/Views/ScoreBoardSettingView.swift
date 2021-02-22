@@ -9,7 +9,7 @@
 import UIKit
 import Toast_Swift
 import SwiftEntryKit
-import Pikko
+//import Pikko
 import RxSwift
 import SDWebImage
 class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDataSource {
@@ -25,6 +25,10 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var btn_confirm: UIButton!
     @IBOutlet weak var btn_pause: UIButton!
+    @IBOutlet weak var iv_hostShirt2: UIImageView!
+    @IBOutlet weak var iv_guestShirt2: UIImageView!
+    @IBOutlet weak var btn_hostShirt: UIButton!
+    @IBOutlet weak var btn_guestShirt: UIButton!
     //Constraint
     @IBOutlet weak var leagueName_x: NSLayoutConstraint!
     @IBOutlet weak var leagueName_y: NSLayoutConstraint!
@@ -51,7 +55,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
     
     var scoreBoardList:[ScoreBoardModel] = [ScoreBoardModel]();
     var currentBackgroundTag = 0;
-    var currentShirt:UIImageView!;
+    var currentShirt:[UIImageView] = [UIImageView]();
     var timer:Timer?;
     let disposeBag = DisposeBag();
     
@@ -61,7 +65,10 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         super.awakeFromNib();
         collectionView.register(UINib(nibName: "ScoreBoardCollectionViewCell", bundle: nil), forCellWithReuseIdentifier:cellIdentifier);
         viewModel = LiveViewModel.sharedInstance;
-        
+        iv_hostShirt.tag = 1001;
+        iv_guestShirt.tag = 1002;
+        btn_hostShirt.tag = 2001;
+        btn_guestShirt.tag = 2002;
         addInputTarget(target: lb_leagueName);
         addInputTarget(target: lb_host);
         addInputTarget(target: lb_guest);
@@ -70,16 +77,18 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         addColorPicker(target: iv_guestShirt);
         addCannotTarget(target: lb_hostscore);
         addCannotTarget(target: lb_guestscore);
+        addColorPicker(target: btn_hostShirt);
+        addColorPicker(target: btn_guestShirt);
         
         btn_confirm.addTarget(self, action: #selector(onBtnConfirmClick), for: UIControl.Event.touchUpInside);
         
         btn_pause.addTarget(self, action: #selector(onBtnPauseClick), for: UIControl.Event.touchUpInside);
-        btn_pause.layer.cornerRadius = 15;
+//        btn_pause.layer.cornerRadius = 15;
         btn_pause.layer.masksToBounds = true;
         btn_pause.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5);
         btn_pause.isHidden = true;
         
-        self.layer.cornerRadius = 10;
+//        self.layer.cornerRadius = 10;
         self.layer.masksToBounds = true;
     }
     func setUp(){
@@ -92,6 +101,8 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         lb_time.text = scoreBoard.lb_time.text;
         iv_hostShirt.tintColor = scoreBoard.iv_hostShirt.tintColor;
         iv_guestShirt.tintColor = scoreBoard.iv_guestShirt.tintColor;
+        iv_hostShirt2.tintColor = scoreBoard.iv_hostShirt.tintColor;
+        iv_guestShirt2.tintColor = scoreBoard.iv_guestShirt.tintColor;
         viewModel.scoreboard(callback: { (scoreBoardModels) in
             self.scoreBoardList = scoreBoardModels;
             self.collectionView.reloadData();
@@ -123,21 +134,25 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.hostshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_hostShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
+//                self.iv_hostShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
                self.iv_hostShirt.image = UIImage(named: "shirt2")
+//                self.iv_hostShirt2.image = UIImage(named: "shirt2")
             }
         }
         SDWebImageManager.shared.loadImage(with: URL(string: scoreBoard.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_guestShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
+//                self.iv_guestShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
                 self.iv_guestShirt.image = UIImage(named: "shirt2")
+//                self.iv_guestShirt2.image = UIImage(named: "shirt2")
             }
         }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! ScoreBoardCollectionViewCell;
-        let index:Int = indexPath.section * 4 + indexPath.row;
+        let index:Int = indexPath.section * 2 + indexPath.row;
         let scoreBoardModel:ScoreBoardModel = scoreBoardList[index > scoreBoardList.count ? 0 : index];
         
         cell.background.sd_setImage(with: URL(string: scoreBoardModel.scoreboardpic!), placeholderImage: UIImage(named: "score-board-default.png"))
@@ -158,10 +173,10 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         if(scoreBoardList.count == 0){
             return 0;
         }
-        if(scoreBoardList.count % 4 == 0){
-            return 4;
+        if(scoreBoardList.count % 2 == 0){
+            return 2;
         }
-        return scoreBoardList.count % 4;
+        return scoreBoardList.count % 2;
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int
@@ -169,7 +184,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         if(scoreBoardList.count == 0){
             return 1;
         }
-        return Int(ceil(Double(scoreBoardList.count) / 4.0));
+        return Int(ceil(Double(scoreBoardList.count) / 2.0));
     }
     
     @objc func onCellSelect(sender:UITapGestureRecognizer){
@@ -215,14 +230,17 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
             alertVC.view.removeFromSuperview();
         });
     }
-    func addColorPicker(target:UIImageView){
+    func addColorPicker(target:UIView){
         let tap = UITapGestureRecognizer(target:self, action:#selector(showColorPicker));
         target.isUserInteractionEnabled = true;
         target.addGestureRecognizer(tap);
     }
     @objc func showColorPicker(target:UITapGestureRecognizer){
-        let view:UIImageView = target.view! as! UIImageView
-        currentShirt = view;
+        if(target.view!.tag == 1001 || target.view!.tag == 2001){
+            currentShirt = [iv_hostShirt,iv_hostShirt2];
+        }else if(target.view!.tag == 1002 || target.view!.tag == 2002){
+            currentShirt = [iv_guestShirt,iv_guestShirt2];
+        }
         var attributes = EKAttributes.centerFloat;
         let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 300);
         let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 300);
@@ -237,14 +255,15 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         attributes.displayDuration = .infinity;
         attributes.entryInteraction = .absorbTouches;
         attributes.screenInteraction = .dismiss;
-        attributes.roundCorners = .all(radius: 10);
+        attributes.name = "colorPicker";
+//        attributes.roundCorners = .all(radius: 10);
         attributes.lifecycleEvents.didDisappear = {
 //            self.viewModel!.controller!.currentScoreBoard = self.scoreBoardModel;
             self.viewModel!.controller!.showEntry(name: "scoreBoardSettingVc");
         }
-        let pikko = Pikko(dimension: 300, setToColor: view.tintColor)
-        pikko.delegate = self
-        SwiftEntryKit.display(entry: pikko, using: attributes);
+        let colorPicker: ColorPicker = Bundle.main.loadNibNamed("ColorPicker", owner: self, options: nil)!.first as! ColorPicker;
+        colorPicker.delegate = self;
+        SwiftEntryKit.display(entry: colorPicker, using: attributes);
     }
     @objc func onBtnConfirmClick(){
         let scoreBoard = viewModel.controller!.session!.warterMarkView!.viewWithTag(101) as! ScoreBoard;
@@ -310,10 +329,22 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
         return minteString + ":" + secondString
     }
 }
-extension ScoreBoardSettingView: PikkoDelegate {
+//extension ScoreBoardSettingView: PikkoDelegate {
+//
+//    /// This method gets called whenever the pikko color was updated.
+//    func writeBackColor(color: UIColor) {
+//        for shirt in currentShirt {
+//            shirt.tintColor = color;
+//        }
+//    }
+//}
+extension ScoreBoardSettingView: ColorPickerDelegate {
     
     /// This method gets called whenever the pikko color was updated.
-    func writeBackColor(color: UIColor) {
-        currentShirt.tintColor = color;
+    func onColorChange(color: UIColor) {
+        for shirt in currentShirt {
+            shirt.tintColor = color;
+        }
+        SwiftEntryKit.dismiss();
     }
 }

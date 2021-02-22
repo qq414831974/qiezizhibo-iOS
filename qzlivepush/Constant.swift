@@ -5,12 +5,14 @@
 //  Created by 吴帆 on 2019/5/23.
 //  Copyright © 2019 qiezizhibo. All rights reserved.
 //
+import UIKit
 
 struct Constant{
     static let KEY_IS_REMEMBERME:String = "IS_REMEMBERME";
     static let KEY_ACCESS_TOKEN:String = "ACCESS_TOKEN";
+    static let KEY_REFRESH_TOKEN:String = "REFRESH_TOKEN";
     static let KEY_USER_INFO:String = "UESR_INFO";
-    static let STATUS_TEXT_MAP:[Int:String] = [-1:"未开始",0:"比赛开始",14:"中场",15:"下半场",13:"伤停",11:"加时",12:"点球大战",21:"比赛结束",16:"比赛暂停"]
+    static let STATUS_TEXT_MAP:[Int:String] = [-1:"未开始",0:"比赛开始",14:"中场",15:"下半场",21:"比赛结束"]
     static let STATUS_MAP:[String?:String?] = ["未开始":"unopen","进行中":"live","已结束":"finish",nil:nil];
     static let EVENT_TYPE:[Int:TimeLineEvent] =
         [-1:TimeLineEvent.init(text: "未开始", icon: "start.svg", eventType: -1, type: TimeLineEvent.none),
@@ -41,10 +43,31 @@ struct Constant{
          24:TimeLineEvent.init(text: "点球", icon: "penalty.svg", eventType: 24, type: TimeLineEvent.important, remarkName: "状态", remarkValue: [["成功":"1","失败":"0"]]),
          25:TimeLineEvent.init(text: "进球(点球大战)", icon: "penalty.svg", eventType: 25, type: TimeLineEvent.notImportant),
     ];
-    static let EVENT_SHOW:[Int:Int] = [0:1,1:7,2:8,3:17,4:5,5:2,6:24,7:10,
-                                       8:9,9:3,10:4,11:6,12:22,13:25,14:20,15:18,
-                                       16:19]
-    static let STATUS_SHOW:[Int:Int] = [0:0,1:14,2:15,3:21,4:13,5:11,6:12,7:16]
+    static let EVENT_SHOW:[Int:Int] = [0:1,1:22,2:25,3:7,4:8,5:10]
+    static let STATUS_SHOW:[Int:Int] = [0:0,1:14,2:15,3:21]
+    static let COLOR_LIST:[String] = [
+        "#FFFFFF","#DDDDDD","#AAAAAA","#888888","#666666","#444444","#000000",
+        "#FFB7DD","#FF88C2","#FF44AA","#FF0088","#C10066","#A20055","#8C0044",
+        "#FFCCCC","#FF8888","#FF3333","#FF0000","#CC0000","#AA0000","#880000",
+        "#FFC8B4","#FFA488","#FF7744","#FF5511","#E63F00","#C63300","#A42D00",
+        "#FFDDAA","#FFBB66","#FFAA33","#FF8800","#EE7700","#CC6600","#BB5500",
+        "#FFEE99","#FFDD55","#FFCC22","#FFBB00","#DDAA00","#AA7700","#886600",
+        "#FFFFBB","#FFFF77","#FFFF33","#FFFF00","#EEEE00","#BBBB00","#888800",
+        "#EEFFBB","#DDFF77","#CCFF33","#BBFF00","#99DD00","#88AA00","#668800",
+        "#CCFF99","#BBFF66","#99FF33","#77FF00","#66DD00","#55AA00","#227700",
+        "#99FF99","#66FF66","#33FF33","#00FF00","#00DD00","#00AA00","#008800",
+        "#BBFFEE","#77FFCC","#33FFAA","#00FF99","#00DD77","#00AA55","#008844",
+        "#AAFFEE","#77FFEE","#33FFDD","#00FFCC","#00DDAA","#00AA88","#008866",
+        "#99FFFF","#66FFFF","#33FFFF","#00FFFF","#00DDDD","#00AAAA","#008888",
+        "#CCEEFF","#77DDFF","#33CCFF","#00BBFF","#009FCC","#0088A8","#007799",
+        "#CCDDFF","#99BBFF","#5599FF","#0066FF","#0044BB","#003C9D","#003377",
+        "#CCCCFF","#9999FF","#5555FF","#0000FF","#0000CC","#0000AA","#000088",
+        "#CCBBFF","#9F88FF","#7744FF","#5500FF","#4400CC","#2200AA","#220088",
+        "#D1BBFF","#B088FF","#9955FF","#7700FF","#5500DD","#4400B3","#3A0088",
+        "#E8CCFF","#D28EFF","#B94FFF","#9900FF","#7700BB","#66009D","#550088",
+        "#F0BBFF","#E38EFF","#E93EFF","#CC00FF","#A500CC","#7A0099","#660077",
+        "#FFB3FF","#FF77FF","#FF3EFF","#FF00FF","#CC00CC","#990099","#770077",
+    ]
     static let PROVINCE:[String] = ["请选择城市","北京市","上海市","天津市","重庆市","河北省","山西省","辽宁省","吉林省","河南省","江苏省","浙江省","安徽省","福建省","江西省","山东省","湖北省","湖南省","广东省","海南省","四川省","贵州省","云南省","陕西省","甘肃省","青海省","黑龙江省","内蒙古自治区","广西壮族自治区","西藏自治区","宁夏回族自治区","新疆维吾尔自治区","台湾省","香港特别行政区","澳门特别行政区","其它"];
     static let CITY:[[String]] = [
         ["请选择城市"],

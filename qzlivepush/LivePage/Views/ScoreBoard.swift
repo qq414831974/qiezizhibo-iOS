@@ -8,7 +8,7 @@
 
 import UIKit
 import SDWebImage
-class ScoreBoard:UIView{
+class ScoreBoard: UIView{
     @IBOutlet weak var board: UIImageView!
     @IBOutlet weak var lb_hostscore: UILabel!
     @IBOutlet weak var lb_guestscore: UILabel!

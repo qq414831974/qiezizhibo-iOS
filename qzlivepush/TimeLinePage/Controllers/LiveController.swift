@@ -29,6 +29,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     var warterMarkView: UIView!;
     var scoreBoard:ScoreBoard!;
     var scoreBoardWarterMark:ScoreBoard!;
+    var scoreBoard_basketBall:ScoreBoard2!;
+    var scoreBoardWarterMark_basketBall:ScoreBoard2!;
     var logoWarterMark:UIView!;
     
     var viewModel:LiveViewModel?;
@@ -38,6 +40,10 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     var warterMarkSettingView:WarterMarkSettingView!;
     var timeLineView:TimeLineController!;
     var statusVc: ChooseStatusController!
+    var scoreAndStatusVc: ScoreAndStatusController!
+    var basketballTimelineVc: BasketballTimelineController!
+    
+    var isBasketBall:Bool = false;
     
     var currentScoreBoard:ScoreBoardModel?;
     var currentQuality = LFLiveVideoQuality.high5;
@@ -93,7 +99,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     }()
     // 关闭按钮
     lazy var closeButton: UIButton = {
-        let closeButton = UIButton(frame: CGRect(x: 10, y: self.view.bounds.width - 60, width: 44, height: 44))
+        var x:CGFloat = 10;
+        if(isBasketBall){
+            x = self.view.bounds.height - 10 - 54;
+        }
+        let closeButton = UIButton(frame: CGRect(x: x, y: self.view.bounds.width - 60, width: 44, height: 44))
         closeButton.setImage(UIImage(named: "close_preview"), for: UIControl.State());
         closeButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         closeButton.layer.cornerRadius = 22
@@ -103,7 +113,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     
     // 设置按钮
     lazy var settingsButton: UIButton = {
-        let settingsButton = UIButton(frame: CGRect(x: 10 + 54, y: self.view.bounds.width - 60, width: 44, height: 44))
+        var x:CGFloat = 10 + 54;
+        if(isBasketBall){
+            x = self.view.bounds.height - 10 - 54 * 2;
+        }
+        let settingsButton = UIButton(frame: CGRect(x: x, y: self.view.bounds.width - 60, width: 44, height: 44))
         settingsButton.setImage(UIImage(named: "settings"), for: UIControl.State())
         settingsButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         settingsButton.layer.cornerRadius = 22
@@ -113,7 +127,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     
     // 开始直播按钮
     lazy var startLiveButton: UIButton = {
-        let startLiveButton = UIButton(frame: CGRect(x: 10 + 54 + 54, y: self.view.bounds.width - 60, width: 44, height: 44))
+        var x:CGFloat = 10 + 54 * 2;
+        if(isBasketBall){
+            x = self.view.bounds.height - 10 - 54 * 3;
+        }
+        let startLiveButton = UIButton(frame: CGRect(x: x, y: self.view.bounds.width - 60, width: 44, height: 44))
         startLiveButton.setImage(UIImage(named: "play"), for: UIControl.State())
         startLiveButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         startLiveButton.layer.cornerRadius = 22
@@ -123,17 +141,26 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     
     // 时间轴统计按钮
     lazy var timeLineButton: UIButton = {
-        let timeLineButton = UIButton(frame: CGRect(x: 10 + 54 + 54 + 54, y: self.view.bounds.width - 60, width: 44, height: 44))
+        var x:CGFloat = 10 + 54 * 3;
+        if(isBasketBall){
+            x = self.view.bounds.height - 10 - 54 * 4;
+        }
+        let timeLineButton = UIButton(frame: CGRect(x: x, y: self.view.bounds.width - 60, width: 44, height: 44))
         timeLineButton.setImage(UIImage.svg(named: "offside.svg", size: CGSize.init(width: 40, height: 40)), for: UIControl.State())
         timeLineButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         timeLineButton.layer.cornerRadius = 22
         timeLineButton.layer.masksToBounds = true
+        let y = self.view.bounds.width - 60
         return timeLineButton
     }()
     
     // 比赛状态统计按钮
     lazy var statusButton: UIButton = {
-        let statusButton = UIButton(frame: CGRect(x: 10 + 54 + 54 + 54 + 54, y: self.view.bounds.width - 60, width: 44, height: 44))
+        var x:CGFloat = 10 + 54 * 4;
+        if(isBasketBall){
+            x = self.view.bounds.height - 10 - 54 * 5;
+        }
+        let statusButton = UIButton(frame: CGRect(x: x, y: self.view.bounds.width - 60, width: 44, height: 44))
         statusButton.setImage(UIImage.svg(named: "extra.svg", size: CGSize.init(width: 40, height: 40)), for: UIControl.State())
         statusButton.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
         statusButton.layer.cornerRadius = 22
@@ -170,65 +197,79 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         view.addSubview(imageView_logo);
         
         //比分牌
-        scoreBoard = Bundle.main.loadNibNamed("ScoreBoard", owner: self, options: nil)!.first as! ScoreBoard;
-        scoreBoard.frame = CGRect.init(x: view.bounds.width - 900 - view.bounds.width * 0.0214, y: view.bounds.height * 0.023, width: 900, height: 180);
-//        let hConstraint_scoreBoard = NSLayoutConstraint.init(item: scoreBoard!, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 180)
-//        let wConstraint_scoreBoard = NSLayoutConstraint.init(item: scoreBoard!, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 900)
-//        let topConstraint_scoreBoard = NSLayoutConstraint.init(item: scoreBoard!, attribute: NSLayoutConstraint.Attribute.top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: view.bounds.height * 0.023)
-//        let leadingConstraint_scoreBoard = NSLayoutConstraint.init(item: scoreBoard!, attribute: NSLayoutConstraint.Attribute.leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: view.bounds.width - 900 - view.bounds.width * 0.0214)
-//        scoreBoard.addConstraint(hConstraint_scoreBoard)
-//        scoreBoard.addConstraint(wConstraint_scoreBoard)
-//        scoreBoard.addConstraint(topConstraint_scoreBoard)
-//        scoreBoard.addConstraint(leadingConstraint_scoreBoard)
-        
-        if(currentMatch != nil && currentMatch!.league != nil){
-            scoreBoard.lb_leagueName.text = currentMatch!.league!.name;
-            if(currentMatch!.league!.shortname != nil){
-                scoreBoard.lb_leagueName.text = currentMatch!.league!.shortname;
+        if(isBasketBall){
+            scoreBoard_basketBall = Bundle.main.loadNibNamed("ScoreBoard2", owner: self, options: nil)!.first as! ScoreBoard2;
+            scoreBoard_basketBall.frame = CGRect.init(x: view.bounds.width * 0.0214, y:  1080 - 200 - view.bounds.width * 0.0214, width: 600, height: 200);
+            if(currentMatch != nil && currentMatch!.hostteam != nil){
+                scoreBoard_basketBall.lb_hostName.text = currentMatch!.hostteam!.name;
             }
-            if(currentMatch!.league!.name!.count > 12){
-                scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 30)
-            }else{
-                scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 35)
+            if(currentMatch != nil && currentMatch!.guestteam != nil){
+                scoreBoard_basketBall.lb_guestName.text = currentMatch!.guestteam!.name;
             }
-        }
-        if(currentMatch != nil && currentMatch!.hostteam != nil){
-            scoreBoard.lb_hostName.text = currentMatch!.hostteam!.name;
-        }
-        if(currentMatch != nil && currentMatch!.guestteam != nil){
-            scoreBoard.lb_guestName.text = currentMatch!.guestteam!.name;
-        }
-        if(currentMatch != nil && currentMatch!.score != nil){
-            let score = currentMatch!.score!.split(separator: "-");
-            scoreBoard.lb_hostscore.text = String(score[0]);
-            scoreBoard.lb_guestscore.text = String(score[1]);
-        }
-        viewModel!.scoreboard(callback: { (scoreBoardModels) in
-            if(scoreBoardModels.count > 0){
-                self.scoreBoard.tag = 101;
-                self.scoreBoard.updateConstraint(scoreBoard: scoreBoardModels[0]);
-                self.currentScoreBoard = scoreBoardModels[0];
-                view.addSubview(self.scoreBoard);
-                //添加水印
-                self.warterMarkView = view;
-                self.session!.warterMarkView = self.warterMarkView;
-                self.scoreBoardWarterMark = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard;
-                self.logoWarterMark = self.session!.warterMarkView?.viewWithTag(201);
-                
-                self.viewModel!.getMatchStatus(matchId: self.currentMatchId!, type: nil, callback: { (matchStatusModel) in
-                    var minute = matchStatusModel.time;
-                    var minuteString = "00";
-                    if(minute != nil){
-                        if(minute! < 10){
-                            minuteString = "0" + String(minute!)
-                        }else{
-                            minuteString = String(minute!)
-                        }}
-                    self.scoreBoardWarterMark.lb_time.text = minuteString + ":" + "00";
-                    self.session!.warterMarkView = self.session!.warterMarkView;
-                }, disposeBag: self.disposeBag)
+            if(currentMatch != nil && currentMatch!.score != nil){
+                let score = currentMatch!.score!.split(separator: "-");
+                scoreBoard_basketBall.lb_hostscore.text = String(score[0]);
+                scoreBoard_basketBall.lb_guestscore.text = String(score[1]);
             }
-        }, disposeBag: disposeBag);
+            scoreBoard_basketBall.lb_time.text = "1";
+            self.scoreBoard_basketBall.tag = 101;
+            view.addSubview(scoreBoard_basketBall);
+            self.warterMarkView = view;
+            self.session!.warterMarkView = self.warterMarkView;
+            self.scoreBoardWarterMark_basketBall = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard2;
+            self.logoWarterMark = self.session!.warterMarkView?.viewWithTag(201);
+        }else{
+            scoreBoard = Bundle.main.loadNibNamed("ScoreBoard", owner: self, options: nil)!.first as! ScoreBoard;
+            scoreBoard.frame = CGRect.init(x: view.bounds.width - 900 - view.bounds.width * 0.0214, y: view.bounds.height * 0.023, width: 900, height: 180);
+            if(currentMatch != nil && currentMatch!.league != nil){
+                scoreBoard.lb_leagueName.text = currentMatch!.league!.name;
+                if(currentMatch!.league!.shortname != nil){
+                    scoreBoard.lb_leagueName.text = currentMatch!.league!.shortname;
+                }
+                if(currentMatch!.league!.name!.count > 12){
+                    scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 30)
+                }else{
+                    scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 35)
+                }
+            }
+            if(currentMatch != nil && currentMatch!.hostteam != nil){
+                scoreBoard.lb_hostName.text = currentMatch!.hostteam!.name;
+            }
+            if(currentMatch != nil && currentMatch!.guestteam != nil){
+                scoreBoard.lb_guestName.text = currentMatch!.guestteam!.name;
+            }
+            if(currentMatch != nil && currentMatch!.score != nil){
+                let score = currentMatch!.score!.split(separator: "-");
+                scoreBoard.lb_hostscore.text = String(score[0]);
+                scoreBoard.lb_guestscore.text = String(score[1]);
+            }
+            viewModel!.scoreboard(callback: { (scoreBoardModels) in
+                if(scoreBoardModels.count > 0){
+                    self.scoreBoard.tag = 101;
+                    self.scoreBoard.updateConstraint(scoreBoard: scoreBoardModels[0]);
+                    self.currentScoreBoard = scoreBoardModels[0];
+                    view.addSubview(self.scoreBoard);
+                    //添加水印
+                    self.warterMarkView = view;
+                    self.session!.warterMarkView = self.warterMarkView;
+                    self.scoreBoardWarterMark = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard;
+                    self.logoWarterMark = self.session!.warterMarkView?.viewWithTag(201);
+                    
+                    self.viewModel!.getMatchStatus(matchId: self.currentMatchId!, type: nil, callback: { (matchStatusModel) in
+                        var minute = matchStatusModel.time;
+                        var minuteString = "00";
+                        if(minute != nil){
+                            if(minute! < 10){
+                                minuteString = "0" + String(minute!)
+                            }else{
+                                minuteString = String(minute!)
+                            }}
+                        self.scoreBoardWarterMark.lb_time.text = minuteString + ":" + "00";
+                        self.session!.warterMarkView = self.session!.warterMarkView;
+                    }, disposeBag: self.disposeBag)
+                }
+            }, disposeBag: disposeBag);
+        }
     }
     
     func initSession(){
@@ -305,6 +346,10 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         
         statusVc = storyboard?.instantiateViewController(withIdentifier: "chooseStatusVC") as? ChooseStatusController;
         
+        scoreAndStatusVc = storyboard?.instantiateViewController(withIdentifier: "scoreAndStatusVc") as? ScoreAndStatusController;
+
+        basketballTimelineVc = storyboard?.instantiateViewController(withIdentifier: "basketballTimelineVC") as? BasketballTimelineController;
+        
         viewModel?.activity(activityId: currentMatch!.activityId!, callback: { (res) in
             if(res.pushStreamUrl != nil){
                 self.pushUrl = res.pushStreamUrl;
@@ -317,8 +362,11 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         
     }
     @objc func refreshTime(){
-        let time = addTime(time: scoreBoardWarterMark.lb_time.text!);
-        scoreBoardWarterMark.lb_time.text = time;
+        if(isBasketBall){
+        }else{
+            let time = addTime(time: scoreBoardWarterMark.lb_time.text!);
+            scoreBoardWarterMark.lb_time.text = time;
+        }
         self.session!.warterMarkView = self.session!.warterMarkView;
     }
     func stopTimeToHalf(){
@@ -339,7 +387,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         }
     }
     func startTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(refreshData), userInfo: nil, repeats: true)
         //开始计时器
         timer!.fire()
     }
@@ -437,6 +485,12 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             break;
         case LFLiveState.error:
             stateLabel.text = "连接错误"
+            showAlert(title: "推流失败，是否电话联系直播管理员？", message: "") { (action) in
+                let phone = "telprompt://17750235615"
+                 if UIApplication.shared.canOpenURL(URL(string: phone)!) {
+                      UIApplication.shared.openURL(URL(string: phone)!)
+                  }
+            }
             break;
         case LFLiveState.stop:
             stateLabel.text = "未连接"
@@ -451,7 +505,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     // 开始直播
     @objc func didTappedStartLiveButton(_ button: UIButton) -> Void {
         if (!startLiveButton.isSelected) {
-            showAlert(title: "是否开始直播？", message: "") { (action) in
+            showSheet(title: "是否开始直播？", message: "") { (action) in
                 self.startLiveButton.isSelected = !self.startLiveButton.isSelected;
                 self.startLiveButton.setImage(UIImage(named: "stop"), for: UIControl.State())
                 let stream = LFLiveStreamInfo()
@@ -459,14 +513,14 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                 self.session.startLive(stream)
                 self.bandWidthLabel.isHidden = false;
                 self.qualitySettingView.slider_video.isEnabled = false;
-                if(self.matchStatusModel != nil && self.matchStatusModel!.time != nil){
+                if((self.matchStatusModel != nil && self.matchStatusModel!.time != nil) || self.isBasketBall){
                     self.startTimer_time();
                 }
                 self.firstPush = true;
                 self.startTimer_quality();
             }
         } else {
-            showAlert(title: "是否结束直播？", message: "") { (action) in
+            showSheet(title: "是否结束直播？", message: "") { (action) in
                 self.startLiveButton.isSelected = !self.startLiveButton.isSelected;
                 self.startLiveButton.setImage(UIImage(named: "play"), for: UIControl.State())
                 self.session.stopLive()
@@ -487,19 +541,31 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             if(index == 0){
                 self.showEntry(name: "qualitySettingView");
             }else if(index == 1){
-                let scoreBoard = self.warterMarkView!.viewWithTag(101) as! ScoreBoard;
-                self.scoreBoardSettingVc.scoreBoardModel = self.currentScoreBoard!;
-                self.scoreBoardSettingVc.scoreBoard = scoreBoard;
-                self.scoreBoardSettingVc.setUp();
-                self.showEntry(name: "scoreBoardSettingVc")
+                if(self.isBasketBall){
+                    self.view.makeToast("暂不支持修改比分牌");
+                }else{
+                    let scoreBoard = self.warterMarkView!.viewWithTag(101) as! ScoreBoard;
+                    self.scoreBoardSettingVc.scoreBoardModel = self.currentScoreBoard!;
+                    self.scoreBoardSettingVc.scoreBoard = scoreBoard;
+                    self.scoreBoardSettingVc.setUp();
+                    self.showEntry(name: "scoreBoardSettingVc")
+                }
             }else if(index == 2){
                 self.showEntry(name: "warterMarkSettingView");
             }
         }
         dropDown.show();
     }
-    func showAlert(title:String,message:String,callBack:((UIAlertAction) -> Void)?){
+    func showSheet(title:String,message:String,callBack:((UIAlertAction) -> Void)?){
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet);
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil);
+        let confirmAction = UIAlertAction(title: "确定", style: .destructive, handler: callBack);
+        alertController.addAction(cancelAction);
+        alertController.addAction(confirmAction);
+        self.present(alertController, animated: true, completion: nil);
+    }
+    func showAlert(title:String,message:String,callBack:((UIAlertAction) -> Void)?){
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert);
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil);
         let confirmAction = UIAlertAction(title: "确定", style: .destructive, handler: callBack);
         alertController.addAction(cancelAction);
@@ -517,7 +583,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         attributes.displayDuration = .infinity;
         attributes.entryInteraction = .absorbTouches;
         attributes.screenInteraction = .dismiss;
-        attributes.roundCorners = .all(radius: 10);
+//        attributes.roundCorners = .all(radius: 10);
         if(name == "scoreBoardSettingVc"){
             let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 600);
             let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 300);
@@ -528,7 +594,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             }
             attributes.lifecycleEvents.didAppear = {
                 self.scoreBoardSettingVc.updateConstraint(scoreBoard: self.scoreBoardSettingVc.scoreBoardModel);
-                if(self.startLiveButton.isSelected && self.matchStatusModel!.status! != -1 && self.matchStatusModel!.status != 21 && self.matchStatusModel!.status != 14){
+                if(self.startLiveButton.isSelected && self.matchStatusModel != nil && self.matchStatusModel!.status! != -1 && self.matchStatusModel!.status != 21 && self.matchStatusModel!.status != 14){
                     self.scoreBoardSettingVc.startTimer();
                 }
             }
@@ -581,32 +647,106 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             attributes.name = "warterMarkSettingView";
             
             SwiftEntryKit.display(entry: self.warterMarkSettingView, using: attributes);
+        }else if(name == "scoreAndStatusVc"){
+            let widthConstraint = EKAttributes.PositionConstraints.Edge.fill;
+            let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 190);
+            attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint);
+            let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20);
+            let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset);
+            attributes.positionConstraints.keyboardRelation = keyboardRelation;
+            attributes.entryBackground = .color(color: .white);
+            attributes.screenBackground = .color(color: UIColor(white: 50.0/255.0, alpha: 0.3));
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero));
+//            attributes.roundCorners = .all(radius: 10)
+            attributes.entranceAnimation = .translation;
+            attributes.exitAnimation = .translation;
+            attributes.displayDuration = .infinity;
+            attributes.entryInteraction = .absorbTouches;
+            attributes.screenInteraction = .dismiss;
+            attributes.name = "scoreAndStatusVc";
+            
+            viewModel!.getMatchStatus(matchId: currentMatchId!, type: nil, callback: { (matchStatusModel) in
+                self.matchStatusModel = matchStatusModel;
+                self.timeLineView.currentMatchId = self.currentMatch!.id!;
+                self.timeLineView.currentMatch = self.currentMatch!;
+                self.timeLineView.matchStatus = self.matchStatusModel!;
+                self.timeLineView.isEntry = true;
+                TimeLineViewModel.sharedInstance.initWith(self.timeLineView);
+                self.timeLineView.viewModel = TimeLineViewModel.sharedInstance;
+                attributes.lifecycleEvents.didAppear = {
+                    self.scoreAndStatusVc.refreshData()
+                }
+                SwiftEntryKit.display(entry: self.scoreAndStatusVc, using: attributes);
+            }, disposeBag: disposeBag);
+        }else if(name == "basketballTimelineVC"){
+            let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 375);
+            let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 260);
+            attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint);
+            let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20);
+            let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset);
+            attributes.positionConstraints.keyboardRelation = keyboardRelation;
+            attributes.entryBackground = .color(color: .white);
+            attributes.screenBackground = .color(color: UIColor(white: 50.0/255.0, alpha: 0.3));
+            attributes.shadow = .active(with: .init(color: .black, opacity: 0.3, radius: 10, offset: .zero));
+//            attributes.roundCorners = .all(radius: 10)
+            attributes.entranceAnimation = .translation;
+            attributes.exitAnimation = .translation;
+            attributes.displayDuration = .infinity;
+            attributes.entryInteraction = .absorbTouches;
+            attributes.screenInteraction = .dismiss;
+            attributes.name = "basketballTimelineVC";
+            
+            basketballTimelineVc.match = currentMatch!;
+            basketballTimelineVc.onSectionChangeClick = { (section) in
+                let currentSection = Int(self.scoreBoardWarterMark_basketBall.lb_time.text!);
+                if(currentSection! + section <= 0){
+                    self.view.makeToast("请选择正确的节数");
+                    return;
+                }
+                self.scoreBoardWarterMark_basketBall.lb_time.text =  String(currentSection! + section);
+                self.session!.warterMarkView = self.session!.warterMarkView;
+            }
+            SwiftEntryKit.display(entry: basketballTimelineVc, using: attributes);
         }
     }
     // 关闭
     @objc func didTappedCloseButton(_ button: UIButton) -> Void  {
-        showAlert(title: "是否退出直播？", message: "") { (action) in
+        showSheet(title: "是否退出直播？", message: "") { (action) in
             self.session.stopLive();
             self.dismiss(animated: true);
         }
     }
     // 时间轴统计
     @objc func didTappedTimeLineButton(_ button: UIButton) -> Void  {
-        showEntry(name: "timeLineView")
+        if(self.isBasketBall){
+            showEntry(name: "basketballTimelineVC")
+        }else{
+            showEntry(name: "timeLineView")
+        }
     }
     // 比赛状态统计
     @objc func didTappedStatusButton(_ button: UIButton) -> Void  {
-        showEntry(name: "statusView")
+        if(self.isBasketBall){
+            showEntry(name: "scoreAndStatusVc")
+        }else{
+            showEntry(name: "statusView")
+        }
     }
     @objc func refreshData(){
-        viewModel!.getMatchStatus(matchId: currentMatchId!, type: nil, callback: { (matchStatusModel) in
+        viewModel!.getMatchStatus(matchId: currentMatchId!, type: (isBasketBall ? ["score"] : nil), callback: { (matchStatusModel) in
             self.matchStatusModel = matchStatusModel;
             if(matchStatusModel != nil && matchStatusModel.score != nil){
-                let scoreBoard = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard;
-                //                scoreBoard.lb_time.text = matchStatusModel.time != nil ? String(matchStatusModel.time!) : "00:00";
-                let score = matchStatusModel.score!.split(separator: "-");
-                scoreBoard.lb_hostscore.text = String(score[0]);
-                scoreBoard.lb_guestscore.text = String(score[1]);
+                if(self.isBasketBall){
+                    let scoreBoard = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard2;
+                    let score = matchStatusModel.score!.split(separator: "-");
+                    scoreBoard.lb_hostscore.text = String(score[0]);
+                    scoreBoard.lb_guestscore.text = String(score[1]);
+                }else{
+                    let scoreBoard = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard;
+                    let score = matchStatusModel.score!.split(separator: "-");
+                    scoreBoard.lb_hostscore.text = String(score[0]);
+                    scoreBoard.lb_guestscore.text = String(score[1]);
+                }
             }
         }, disposeBag: disposeBag);
     }

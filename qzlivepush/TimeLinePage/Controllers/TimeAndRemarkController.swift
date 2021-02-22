@@ -109,10 +109,14 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
             lb_remark.isHidden = true;
             btn_remarkDetail.isHidden = true;
         }
-        if(viewModel!.controller!.matchStatus!.time == nil){
+        if(viewModel!.controller!.matchStatus == nil){
             tf_time.text = "0"
         }else{
-            tf_time.text = String(viewModel!.controller!.matchStatus!.time!);
+            if(viewModel!.controller!.matchStatus!.time == nil){
+                tf_time.text = "0"
+            }else{
+                tf_time.text = String(viewModel!.controller!.matchStatus!.time!);
+            }
         }
         tv_description.text = "";
         tv_description.isEditable = false;
@@ -148,9 +152,9 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         pickerView!.dataSource = self;
         pickerView!.delegate = self;
         if(currentRow != nil){
-            pickerView!.selectRow(currentRow,inComponent:0,animated:true)
+            pickerView!.selectRow(currentRow,inComponent:0,animated:false)
         }else{
-            pickerView!.selectRow(0,inComponent:0,animated:true)
+            pickerView!.selectRow(0,inComponent:0,animated:false)
         }
         let alertController:UIAlertController=UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet);
         alertController.addAction(UIAlertAction(title: "确定", style: UIAlertAction.Style.default){
@@ -161,7 +165,7 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         let height = UIScreen.main.bounds.height;
         pickerView!.frame = CGRect(x: 0, y: 0, width: width > height ? height : width, height: 150);
         alertController.view.addSubview(pickerView!);
-        self.present(alertController, animated: true, completion: nil);
+        self.present(alertController, animated: false, completion: nil);
     }
     @objc func showDescriptionEditer(){
         let alertController:UIAlertController=UIAlertController(title: "请输入描述", message: nil, preferredStyle: UIAlertController.Style.alert);
@@ -172,7 +176,7 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel,handler:nil));
         alertController.addTextField { (textField) in
         }
-        self.present(alertController, animated: true, completion: nil);
+        self.present(alertController, animated: false, completion: nil);
     }
     func setTeamImg(url: String?) {
         if(url == nil){
@@ -199,12 +203,17 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         if(text != nil && text!.trimmingCharacters(in: CharacterSet.whitespaces) == ""){
             text = nil;
         }
+        //换人
+        if(eventtype == 10 && (remark == nil || remark!.trimmingCharacters(in: CharacterSet.whitespaces) == "")){
+            self.viewModel!.controller!.view.makeToast("请选择换上的球员");
+            return;
+        }
         btn_confirm.isUserInteractionEnabled = false;
         viewModel!.addTimeLine(matchId: matchId, teamId: teamId, playerId: playerId, eventtype: eventtype, minute: minute, remark: remark, text: text, callback: { (response) in
             if(response.data != nil && response.data!){
                 self.viewModel!.controller!.view.makeToast("添加成功");
-                self.viewModel!.controller!.fpc_timeRemark.hide(animated: true, completion: {
-                    self.viewModel!.controller!.fpc.show(animated: true);
+                self.viewModel!.controller!.fpc_timeRemark.hide(animated: false, completion: {
+                    self.viewModel!.controller!.fpc.show(animated: false);
                 })
             }else{
                 self.viewModel!.controller!.view.makeToast(response.message);
@@ -214,11 +223,11 @@ class TimeAndRemarkController: UIViewController, UIPickerViewDataSource, UIPicke
         }, disposeBag: disposeBag)
     }
     @objc func onBtnCloseClick(){
-        viewModel!.controller!.fpc_timeRemark.hide(animated: true) {
+        viewModel!.controller!.fpc_timeRemark.hide(animated: false) {
             if(self.viewModel!.currentPlayer == nil){
-                self.viewModel!.controller!.fpc_team.show(animated: true);
+                self.viewModel!.controller!.fpc_team.show(animated: false);
             }else{
-                self.viewModel!.controller!.fpc_player.show(animated: true);
+                self.viewModel!.controller!.fpc_player.show(animated: false);
             }
         }
     }

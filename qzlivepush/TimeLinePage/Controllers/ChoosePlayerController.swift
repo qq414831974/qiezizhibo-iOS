@@ -51,8 +51,8 @@ class ChoosePlayerController: UIViewController,UICollectionViewDelegate, UIColle
         return cell;
     }
     @objc func onBtnCloseClick(){
-        viewModel!.controller!.fpc_player.hide(animated: true) {
-            self.viewModel!.controller!.fpc_team.show(animated: true)
+        viewModel!.controller!.fpc_player.hide(animated: false) {
+            self.viewModel!.controller!.fpc_team.show(animated: false)
         }
     }
     @objc func showTimeAndRemark(sender:UITapGestureRecognizer){
@@ -62,12 +62,12 @@ class ChoosePlayerController: UIViewController,UICollectionViewDelegate, UIColle
                 self.viewModel!.currentPlayer = item;
             }
         }
-        viewModel!.controller!.fpc_player.hide(animated: true) {
+        viewModel!.controller!.fpc_player.hide(animated: false) {
             self.viewModel!.controller!.timeRemarkVc.initView();
             if(self.viewModel!.controller!.fpc_timeRemark.parent != nil){
-                self.viewModel!.controller!.fpc_timeRemark.show(animated: true);
+                self.viewModel!.controller!.fpc_timeRemark.show(animated: false);
             }
-            self.viewModel!.controller!.fpc_timeRemark.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: true);
+            self.viewModel!.controller!.fpc_timeRemark.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: false);
         }
     }
     func getTeamPlayer(teamId:Int){

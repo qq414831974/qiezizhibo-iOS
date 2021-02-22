@@ -20,6 +20,8 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var tf_password: UITextField!
     @IBOutlet weak var cb_rememberme: UICheckBox!
     @IBAction func btn_loginClick(_ sender: Any) {
+        tf_username.resignFirstResponder();
+        tf_password.resignFirstResponder();
         setBtnLoginState("loading");
         self.login();
     }

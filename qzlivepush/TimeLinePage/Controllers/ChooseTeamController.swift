@@ -65,38 +65,56 @@ class ChooseTeamController: UIViewController,FloatingPanelControllerDelegate{
         }
     }
     @objc func onBtnCloseClick(){
-        viewModel!.controller!.fpc_team.hide(animated: true) {
-            self.viewModel!.controller!.fpc.show(animated: true)
+        viewModel!.controller!.fpc_team.hide(animated: false) {
+            self.viewModel!.controller!.fpc.show(animated: false)
         }
     }
     @objc func showPlayer(sender: UITapGestureRecognizer){
         let teamId = sender.view!.tag;
+        if(self.viewModel!.controller!.currentMatch == nil){
+            return;
+        }
+        if(self.viewModel!.controller!.currentMatch!.hostteam == nil){
+            return;
+        }
+        if(self.viewModel!.controller!.currentMatch!.guestteam == nil){
+            return;
+        }
         if(self.viewModel!.controller!.currentMatch!.hostteam!.id == teamId){
             self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostteam!;
         }else{
             self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestteam!;
         }
         self.viewModel!.controller!.playerVc.getTeamPlayer(teamId: teamId);
-        viewModel!.controller!.fpc_team.hide(animated: true) {
+        viewModel!.controller!.fpc_team.hide(animated: false) {
             if(self.viewModel!.controller!.fpc_player.parent != nil){
-                self.viewModel!.controller!.fpc_player.show(animated: true);
+                self.viewModel!.controller!.fpc_player.show(animated: false);
             }
-            self.viewModel!.controller!.fpc_player.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: true);
+            self.viewModel!.controller!.fpc_player.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: false);
         }
     }
     @objc func showTimeAndRemark(sender:UITapGestureRecognizer){
         let teamId = sender.view!.tag;
+        if(self.viewModel!.controller!.currentMatch == nil){
+            return;
+        }
+        if(self.viewModel!.controller!.currentMatch!.hostteam == nil){
+            return;
+        }
+        if(self.viewModel!.controller!.currentMatch!.guestteam == nil){
+            return;
+        }
         if(self.viewModel!.controller!.currentMatch!.hostteam!.id == teamId){
             self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.hostteam!;
         }else{
             self.viewModel!.currentTeam = self.viewModel!.controller!.currentMatch!.guestteam!;
         }
-        viewModel!.controller!.fpc_team.hide(animated: true) {
+        viewModel!.controller!.fpc_team.hide(animated: false) {
             self.viewModel!.controller!.timeRemarkVc.initView();
             if(self.viewModel!.controller!.fpc_timeRemark.parent != nil){
-                self.viewModel!.controller!.fpc_timeRemark.show(animated: true);
+                self.viewModel!.controller!.fpc_timeRemark.show(animated: false);
             }
-            self.viewModel!.controller!.fpc_timeRemark.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: true);
+            self.viewModel!.controller!.fpc_timeRemark.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: false);
         }
     }
     // MARK: FloatingPanelControllerDelegate

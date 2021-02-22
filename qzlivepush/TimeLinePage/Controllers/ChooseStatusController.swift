@@ -45,7 +45,7 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
         self.statusRemarkVc.tf_Remark.text = String(row);
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 8;
+        return 4;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -88,9 +88,13 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
             self.statusRemarkVc.lb_RemarkName.isHidden = false;
             self.statusRemarkVc.v_Remark.isHidden = false;
             self.statusRemarkVc.tf_Remark.isHidden = false;
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
+            let nowDateString = formatter.string(from: Date());
+            self.statusRemarkVc.tf_Remark.text = nowDateString;
         }
         if(eventtype == 16){
-            let currentMinute = viewModel!.controller!.matchStatus!.time == nil ? 0 : viewModel!.controller!.matchStatus!.time;
+            let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.time == nil) ? 0 : viewModel!.controller!.matchStatus!.time;
             self.statusRemarkVc.v_minute.isHidden = false;
             self.statusRemarkVc.tf_minute.text = String(currentMinute!);
         }else{
@@ -137,22 +141,26 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
                 (alertAction)->Void in
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-                self.statusRemarkVc.tf_Remark.text = formatter.string(from: self.datePicker.date);
+                if(self.datePicker.date.compare(Date()) == .orderedDescending){
+                    self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择");
+                }else{
+                    self.statusRemarkVc.tf_Remark.text = formatter.string(from: self.datePicker.date);
+                }
             });
             alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel,handler:nil));
             let width = UIScreen.main.bounds.width;
             let height = UIScreen.main.bounds.height;
             datePicker!.frame = CGRect(x: 0, y: 0, width: width > height ? height : width, height: 150);
             alertController.view.addSubview(datePicker);
-            self.statusRemarkVc.present(alertController, animated: true, completion: nil);
+            self.statusRemarkVc.present(alertController, animated: false, completion: nil);
         }else{
             pickerView = UIPickerView.init();
             pickerView!.dataSource = self;
             pickerView!.delegate = self;
             if(currentRow != nil){
-                pickerView!.selectRow(currentRow,inComponent:0,animated:true);
+                pickerView!.selectRow(currentRow,inComponent:0,animated:false);
             }else{
-                pickerView!.selectRow(0,inComponent:0,animated:true);
+                pickerView!.selectRow(0,inComponent:0,animated:false);
             }
             let alertController:UIAlertController=UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet);
             alertController.addAction(UIAlertAction(title: "确定", style: UIAlertAction.Style.default){
@@ -164,20 +172,24 @@ class ChooseStatusController: UIViewController, UICollectionViewDelegate, UIColl
             let height = UIScreen.main.bounds.height;
             pickerView!.frame = CGRect(x: 0, y: 0, width: width > height ? height : width, height: 150);
             alertController.view.addSubview(pickerView!);
-            self.statusRemarkVc.present(alertController, animated: true, completion: nil);
+            self.statusRemarkVc.present(alertController, animated: false, completion: nil);
         }
     }
     @objc func dateChanged(datePicker : UIDatePicker){
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy/MM/dd HH:mm:ss"
-        self.statusRemarkVc.tf_Remark.text = formatter.string(from: datePicker.date);
+        if(datePicker.date.compare(Date()) == .orderedDescending){
+            self.viewModel!.controller!.view.makeToast("时间选择时间不能超过当前时间，请重新选择");
+        }else{
+            self.statusRemarkVc.tf_Remark.text = formatter.string(from: datePicker.date);
+        }
     }
     @objc func onConfirmClick(){
         let matchId = viewModel!.controller!.currentMatch!.id;
         let eventtype = self.currentEvent.eventType;
         let remark = self.statusRemarkVc.tf_Remark.text;
         let halfMinute = viewModel!.controller!.currentMatch!.duration! / 2;
-        let currentMinute = viewModel!.controller!.matchStatus!.time == nil ? 0 : viewModel!.controller!.matchStatus!.time;
+        let currentMinute = (viewModel!.controller!.matchStatus == nil || viewModel!.controller!.matchStatus!.time == nil) ? 0 : viewModel!.controller!.matchStatus!.time;
         let minuteData:[Int:Int] = [0:0,14:halfMinute,15:halfMinute,13:currentMinute!,11:currentMinute!,12:120,21:150,16: Int(self.statusRemarkVc.tf_minute.text!)!];
         let minute = minuteData[eventtype]!;
         self.statusRemarkVc.btn_confirm.isUserInteractionEnabled = false;

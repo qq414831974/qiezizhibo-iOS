@@ -34,8 +34,11 @@ class LoginViewModel {
                     let userDefault = UserDefaults.standard;
                     if(userDefault.object(forKey: Constant.KEY_ACCESS_TOKEN) != nil){
                         userDefault.removeObject(forKey: Constant.KEY_ACCESS_TOKEN)
+                        userDefault.removeObject(forKey: Constant.KEY_REFRESH_TOKEN)
                     }
                     userDefault.set(res.data?.accessToken, forKey: Constant.KEY_ACCESS_TOKEN);
+                    userDefault.set(res.data?.refreshToken, forKey: Constant.KEY_REFRESH_TOKEN);
+
                     if(isRemember){
                         let str = "{\"userName\":\"\(username!)\",\"passWord\":\"\(password!)\"}"
                         let userData:UserModel = UserModel.init(JSONString: str)!

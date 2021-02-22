@@ -22,7 +22,7 @@ class ChooseEventController: UIViewController, UICollectionViewDelegate, UIColle
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 17;
+        return 6;
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -50,15 +50,15 @@ class ChooseEventController: UIViewController, UICollectionViewDelegate, UIColle
         let eventType = sender.view!.tag;
         self.viewModel!.currentEvent = Constant.EVENT_TYPE[eventType];
         viewModel!.controller!.teamVc.initView();
-        viewModel!.controller!.fpc.hide(animated: true) {
+        viewModel!.controller!.fpc.hide(animated: false) {
             if(self.viewModel!.controller!.fpc_team.parent != nil){
-                self.viewModel!.controller!.fpc_team.show(animated: true);
+                self.viewModel!.controller!.fpc_team.show(animated: false);
             }
-            self.viewModel!.controller!.fpc_team.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: true);
+            self.viewModel!.controller!.fpc_team.addPanel(toParent: self.viewModel!.controller!, belowView: nil, animated: false);
         }
     }
     @objc func onBtnCloseClick(){
-        viewModel!.controller!.fpc.move(to: .tip, animated: true);
+        viewModel!.controller!.fpc.move(to: .tip, animated: false);
     }
     // MARK: FloatingPanelControllerDelegate
     

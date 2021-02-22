@@ -31,7 +31,7 @@ class ScoreBoardCollectionViewLayout: UICollectionViewFlowLayout {
         self.itemSize = CGSize(width: 270, height: 50);
         self.scrollDirection = .horizontal
         self.numRow = 2;
-        self.numCol = 2;
+        self.numCol = 1;
         self.contentInsets = UIEdgeInsets(top: 4, left: 10, bottom: 4, right: 10)
     }
     
@@ -71,10 +71,10 @@ class ScoreBoardCollectionViewLayout: UICollectionViewFlowLayout {
         let layoutAttribute = super.layoutAttributesForItem(at: indexPath);
         
         //计算水平距离
-        let hor_spacing = (self.collectionView!.frame.width - CGFloat(self.numRow) * self.itemSize.width - self.contentInsets.left - self.contentInsets.right) / CGFloat(self.numRow - 1);
+        let hor_spacing = self.numRow - 1 <= 0 ? 0 : (self.collectionView!.frame.width - CGFloat(self.numRow) * self.itemSize.width - self.contentInsets.left - self.contentInsets.right) / CGFloat(self.numRow - 1);
         
         //计算垂直距离
-        let ver_spacing = (self.collectionView!.frame.height - CGFloat(self.numCol) * self.itemSize.height - self.contentInsets.top - self.contentInsets.bottom) / CGFloat(self.numCol - 1);
+        let ver_spacing = self.numCol - 1 <= 0 ? 0 : (self.collectionView!.frame.height - CGFloat(self.numCol) * self.itemSize.height - self.contentInsets.top - self.contentInsets.bottom) / CGFloat(self.numCol - 1);
         
         //计算x的位置
         var frame_x = CGFloat(indexPath.section) * self.collectionView!.frame.width + CGFloat(indexPath.row%self.numRow) * self.itemSize.width + self.contentInsets.left;
