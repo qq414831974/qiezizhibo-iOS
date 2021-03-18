@@ -27,7 +27,7 @@ enum ApiManager {
 extension ApiManager:TargetType{
     
     var baseURL: URL {
-        return URL.init(string: "https://www.qiezizhibo.com")!
+        return URL.init(string: "https://git.qiezizhibo.com")!
 //        return URL.init(string: "http://192.168.170.103:8080")!
     }
     
