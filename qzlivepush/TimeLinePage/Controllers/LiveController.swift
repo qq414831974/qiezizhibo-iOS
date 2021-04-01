@@ -538,7 +538,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             SwiftEntryKit.display(entry: self.warterMarkSettingView, using: attributes);
         }else if(name == "basketballTimelineVC"){
             let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 375);
-            let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 260);
+            let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 220);
             attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint);
             let offset = EKAttributes.PositionConstraints.KeyboardRelation.Offset(bottom: 10, screenEdgeResistance: 20);
             let keyboardRelation = EKAttributes.PositionConstraints.KeyboardRelation.bind(offset: offset);

@@ -1,0 +1,138 @@
+PODS:
+  - Alamofire (4.8.2)
+  - CocoaLumberjack (3.5.3):
+    - CocoaLumberjack/Core (= 3.5.3)
+  - CocoaLumberjack/Core (3.5.3)
+  - Differentiator (3.1.0)
+  - DropDown (2.3.13)
+  - ESPullToRefresh (2.9)
+  - FloatingPanel (1.6.0)
+  - LFLiveKit (2.6)
+  - Moya (12.0.1):
+    - Moya/Core (= 12.0.1)
+  - Moya-ObjectMapper/Core (2.8):
+    - Moya (~> 12.0)
+    - ObjectMapper (~> 3.4)
+  - Moya-ObjectMapper/RxSwift (2.8):
+    - Moya-ObjectMapper/Core
+    - Moya/RxSwift
+    - RxSwift (~> 4)
+  - Moya/Core (12.0.1):
+    - Alamofire (~> 4.1)
+    - Result (~> 4.0)
+  - Moya/RxSwift (12.0.1):
+    - Moya/Core
+    - RxSwift (~> 4.0)
+  - ObjectMapper (3.4.2)
+  - Pikko (1.0.4)
+  - QuickLayout (3.0.0)
+  - Result (4.1.0)
+  - RxCocoa (4.5.0):
+    - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.5.0)
+  - SDWebImage (5.0.3):
+    - SDWebImage/Core (= 5.0.3)
+  - SDWebImage/Core (5.0.3)
+  - SPPermission/Camera (4.0.5):
+    - SPPermission/Core
+  - SPPermission/Core (4.0.5)
+  - SPPermission/Microphone (4.0.5):
+    - SPPermission/Core
+  - SPPermission/PhotoLibrary (4.0.5):
+    - SPPermission/Core
+  - SVGKit (2.1.0):
+    - CocoaLumberjack (~> 3.0)
+  - SwiftEntryKit (1.0.2):
+    - QuickLayout (= 3.0.0)
+  - SwiftyJSON (5.0.0)
+  - Toast-Swift (5.0.0)
+  - XLPagerTabStrip (9.0.0)
+
+DEPENDENCIES:
+  - DropDown
+  - ESPullToRefresh
+  - FloatingPanel
+  - LFLiveKit
+  - Moya-ObjectMapper/RxSwift
+  - Moya/RxSwift
+  - Pikko
+  - RxCocoa
+  - RxDataSources
+  - RxSwift
+  - SDWebImage (~> 5.0)
+  - SPPermission/Camera
+  - SPPermission/Microphone
+  - SPPermission/PhotoLibrary
+  - SVGKit (from `https://github.com/SVGKit/SVGKit.git`, branch `3.x`)
+  - SwiftEntryKit (= 1.0.2)
+  - SwiftyJSON
+  - Toast-Swift (~> 5.0.0)
+  - XLPagerTabStrip (~> 9.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - CocoaLumberjack
+    - Differentiator
+    - DropDown
+    - ESPullToRefresh
+    - FloatingPanel
+    - LFLiveKit
+    - Moya
+    - Moya-ObjectMapper
+    - ObjectMapper
+    - Pikko
+    - QuickLayout
+    - Result
+    - RxCocoa
+    - RxDataSources
+    - RxSwift
+    - SDWebImage
+    - SPPermission
+    - SwiftEntryKit
+    - SwiftyJSON
+    - Toast-Swift
+    - XLPagerTabStrip
+
+EXTERNAL SOURCES:
+  SVGKit:
+    :branch: 3.x
+    :git: https://github.com/SVGKit/SVGKit.git
+
+CHECKOUT OPTIONS:
+  SVGKit:
+    :commit: fc33a18a6d43042c2d389d4ab4a575e9c41a5bcf
+    :git: https://github.com/SVGKit/SVGKit.git
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  CocoaLumberjack: 2f44e60eb91c176d471fdba43b9e3eae6a721947
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  ESPullToRefresh: ce058a36454a5032519cc9d8b45da217728cf104
+  FloatingPanel: 11d3d21c1c66f40abde89a625ed3784db43b1857
+  LFLiveKit: 2219563721f8aa0f188effc3395a06e2d53b23f2
+  Moya: cf730b3cd9e005401ef37a85143aa141a12fd38f
+  Moya-ObjectMapper: c514b5eafcfd5e260f85f7a5bf66895a217e2b37
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  Pikko: b2883c3b39752c04a1953f8995f8edafcbc3ee90
+  QuickLayout: 07b45a72b10083fee3f095990cfed1c1e7b27f0a
+  Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
+  RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
+  RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
+  SDWebImage: d4f87d7d36c8a4d9f9459dc282e0caa057fdf935
+  SPPermission: ef54994522bdf471ce1fe6aea267bf471a9de701
+  SVGKit: 8a2fc74258bdb2abb54d3b65f3dd68b0277a9c4d
+  SwiftEntryKit: 7bcd42b3dbff59c431d60d6513129fd3679e4aaf
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  Toast-Swift: 36f4720243c8582c2be243a60a51e193c761f541
+  XLPagerTabStrip: 61c57fd61f611ee5f01ff1495ad6fbee8bf496c5
+
+PODFILE CHECKSUM: 246a33f27bc3dac6f808ec01a1738100c6b7eb64
+
+COCOAPODS: 1.8.3
