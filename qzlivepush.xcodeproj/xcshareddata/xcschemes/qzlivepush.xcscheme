@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "67DA62FF2293FC0000615D95"
-               BuildableName = "&#x8304;&#x5b50;TV&#x76f4;&#x64ad;&#x7aef;.app"
+               BuildableName = "&#x7edd;&#x6740;&#x65f6;&#x523b;&#x76f4;&#x64ad;&#x7aef;.app"
                BlueprintName = "qzlivepush"
                ReferencedContainer = "container:qzlivepush.xcodeproj">
             </BuildableReference>
@@ -31,7 +31,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67DA62FF2293FC0000615D95"
-            BuildableName = "&#x8304;&#x5b50;TV&#x76f4;&#x64ad;&#x7aef;.app"
+            BuildableName = "&#x7edd;&#x6740;&#x65f6;&#x523b;&#x76f4;&#x64ad;&#x7aef;.app"
             BlueprintName = "qzlivepush"
             ReferencedContainer = "container:qzlivepush.xcodeproj">
          </BuildableReference>
@@ -74,7 +74,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67DA62FF2293FC0000615D95"
-            BuildableName = "&#x8304;&#x5b50;TV&#x76f4;&#x64ad;&#x7aef;.app"
+            BuildableName = "&#x7edd;&#x6740;&#x65f6;&#x523b;&#x76f4;&#x64ad;&#x7aef;.app"
             BlueprintName = "qzlivepush"
             ReferencedContainer = "container:qzlivepush.xcodeproj">
          </BuildableReference>
@@ -91,7 +91,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "67DA62FF2293FC0000615D95"
-            BuildableName = "&#x8304;&#x5b50;TV&#x76f4;&#x64ad;&#x7aef;.app"
+            BuildableName = "&#x7edd;&#x6740;&#x65f6;&#x523b;&#x76f4;&#x64ad;&#x7aef;.app"
             BlueprintName = "qzlivepush"
             ReferencedContainer = "container:qzlivepush.xcodeproj">
          </BuildableReference>

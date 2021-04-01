@@ -13,7 +13,7 @@ import SDWebImage
 import XLPagerTabStrip
 import Toast_Swift
 
-class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewDelegate,UITableViewDataSource,IndicatorInfoProvider {
+class MatchViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,IndicatorInfoProvider {
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     var itemInfo: IndicatorInfo = "View";
     var currentMatch:MatchModel? = nil;
@@ -38,7 +38,6 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
     let disposeBag = DisposeBag();
     var pageInfo:PageModel<MatchModel>?;
     var matchPage:[MatchModel]? = [MatchModel]();
-    var searchText:String? = nil;
     
     func indicatorInfo(for pagerTabStripController: PagerTabStripViewController) -> IndicatorInfo {
         return itemInfo;
@@ -55,37 +54,80 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "matchIdentifier",for: indexPath);
         let lb_name = cell.viewWithTag(1) as! UILabel;
-        let lb_hostname = cell.viewWithTag(2) as! UILabel;
-        let lb_guestname = cell.viewWithTag(3) as! UILabel;
-        let iv_host = cell.viewWithTag(201) as! UIImageView;
-        let iv_guset = cell.viewWithTag(301) as! UIImageView;
-        let lb_score = cell.viewWithTag(4) as! UILabel;
         let lb_time = cell.viewWithTag(501) as! UILabel;
         let lb_place = cell.viewWithTag(502) as! UILabel;
         let lb_status = cell.viewWithTag(503) as! UILabel;
-        
+        let view_matchAgainst_container = cell.viewWithTag(101)!;
+        let view_matchAgainst = view_matchAgainst_container.viewWithTag(1011)!;
+
         let index:Int = indexPath.row;
         let match:MatchModel = self.matchPage![index > self.matchPage!.count ? 0 : index];
         
         lb_name.text = match.name!;
-        if(match.hostTeam == nil && match.guestTeam == nil){
-            lb_hostname.text = "无";
-            lb_guestname.text = "无";
-            iv_host.image = UIImage(named: "logo.png");
-            iv_guset.image = UIImage(named: "logo.png");
+        if(match.againstTeams != nil && !match.againstTeams!.isEmpty){
+            var index = 0;
+            for key in match.againstTeams!.keys{
+                let againstTeam = match.againstTeams![key];
+                var hostTeamName = "无";
+                var guestTeamName = "无";
+                var hostTeamHeadImg:String? = nil;
+                var guestTeamHeadImg:String? = nil;
+                var score = "0-0";
+                if(againstTeam != nil && againstTeam!.hostTeam != nil){
+                    hostTeamName = againstTeam!.hostTeam!.name!;
+                    hostTeamHeadImg = againstTeam!.hostTeam!.headImg!;
+                }
+                if(againstTeam != nil && againstTeam!.guestTeam != nil){
+                    guestTeamName = againstTeam!.guestTeam!.name!;
+                    guestTeamHeadImg = againstTeam!.guestTeam!.headImg!;
+                }
+                if(match.status != nil && match.status!.score != nil && match.status!.score![key] != nil){
+                    score = match.status!.score![key]!;
+                }
+                let matchAgainst = MatchAgainstView(frame: CGRect(x: index * 300 + (index + 1) * 10, y: 5, width: 300, height: 60));
+                matchAgainst.tag = Int(key)!;
+                matchAgainst.lb_vs?.text = score;
+                matchAgainst.lb_hostName?.text = hostTeamName;
+                matchAgainst.lb_guestName?.text = guestTeamName;
+
+                setImg(iv: matchAgainst.iv_hostHeadImg!, url: hostTeamHeadImg);
+                setImg(iv: matchAgainst.iv_guestHeadImg!, url: guestTeamHeadImg);
+                view_matchAgainst.addSubview(matchAgainst);
+                index = index + 1;
+            }
+
+            let scrollWidthConstraint = view_matchAgainst.constraints.filter { $0.identifier == "againstScrollWidth" }.first
+            scrollWidthConstraint!.constant = CGFloat(index * 300 + (index + 1) * 10);
+            if(CGFloat(index * 300 + (index + 1) * 10) < (UIScreen.main.bounds.width - 20)){
+                let contentViewLeadingConstraint = view_matchAgainst_container.constraints.filter { $0.identifier == "contentViewLeading" }.first
+                contentViewLeadingConstraint!.constant = (UIScreen.main.bounds.width - 20.0 - CGFloat(index * 300 + (index + 1) * 10)) / 2 ;
+            }
         }else{
-            lb_hostname.text = match.hostTeam!.name!;
-            lb_guestname.text = match.guestTeam!.name!;
-//            iv_host.sd_setImage(with: URL(string: match.hostteam!.headimg), placeholderImage: UIImage(named: "logo.png"));
-//            iv_guset.sd_setImage(with: URL(string: match.guestteam!.headimg), placeholderImage: UIImage(named: "logo.png"));
-            setImg(iv: iv_host, url: match.hostTeam!.headImg);
-            setImg(iv: iv_guset, url: match.guestTeam!.headImg);
+            let againstLabel = UILabel()
+            againstLabel.text = "无对阵"
+            againstLabel.textColor = UIColor.black;
+            againstLabel.font = UIFont.systemFont(ofSize: 15);
+            againstLabel.textAlignment = NSTextAlignment.center;
+            let heightConstraint = NSLayoutConstraint.init(item: againstLabel, attribute: NSLayoutConstraint.Attribute.height, relatedBy:NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: 70);
+            let widthConstraint = NSLayoutConstraint.init(item: againstLabel, attribute: NSLayoutConstraint.Attribute.width, relatedBy:NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant:UIScreen.main.bounds.width - 20)
+            let leftConstraint = NSLayoutConstraint.init(item: againstLabel, attribute: NSLayoutConstraint.Attribute.leading, relatedBy:NSLayoutConstraint.Relation.equal, toItem: view_matchAgainst, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 0)
+            let topConstraint = NSLayoutConstraint.init(item: againstLabel, attribute: NSLayoutConstraint.Attribute.top, relatedBy:NSLayoutConstraint.Relation.equal, toItem: view_matchAgainst, attribute: NSLayoutConstraint.Attribute.top, multiplier: 1, constant: 0)
+            againstLabel.translatesAutoresizingMaskIntoConstraints = false;
+            view_matchAgainst.translatesAutoresizingMaskIntoConstraints = false
+            againstLabel.addConstraint(heightConstraint);
+            againstLabel.addConstraint(widthConstraint);
+            view_matchAgainst.addSubview(againstLabel);
+            view_matchAgainst.addConstraint(leftConstraint);
+            view_matchAgainst.addConstraint(topConstraint);
+            
+            let scrollWidthConstraint = view_matchAgainst.constraints.filter { $0.identifier == "againstScrollWidth" }.first
+            scrollWidthConstraint!.constant = UIScreen.main.bounds.width - 20;
         }
-        lb_score.text = (match.status == -1 ? "VS" : match.score);
         lb_time.text = match.startTime;
         lb_place.text = match.place;
-        lb_status.text = Constant.STATUS_TEXT_MAP[match.status!];
-        
+        if(match.status != nil && match.status!.status != nil){
+            lb_status.text = Constant.STATUS_TEXT_MAP[match.status!.status!];
+        }
         cell.tag = match.id!;
         
         let tap = UITapGestureRecognizer(target:self, action:#selector(showSelect));
@@ -102,27 +144,12 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             iv.sd_setImage(with: URL(string: url!), placeholderImage: UIImage(named: "logo.png"));
         }
     }
-    func updateSearchResults(for searchController: UISearchController) {
-        if (searchController.searchBar.text == nil || searchController.searchBar.text == ""){
-            self.searchText = nil;
-            self.refreshData();
-        }else{
-            self.searchText = searchController.searchBar.text;
-            self.refreshData();
-        }
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if #available(iOS 11.0, *) {
-            //            navigationItem.hidesSearchBarWhenScrolling = false;
-        }
         appDelegate.interfaceOrientations = .portrait
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if #available(iOS 11.0, *) {
-            //            navigationItem.hidesSearchBarWhenScrolling = true;
-        }
     }
     override func viewDidLoad() {
         super.viewDidLoad();
@@ -138,14 +165,6 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
         }
         //注入
         viewModel = MatchViewModel.init(self);
-        
-        //searchBar
-        let searchController = UISearchController(searchResultsController: nil);
-        searchController.searchResultsUpdater = self;
-        searchController.obscuresBackgroundDuringPresentation = false;
-        self.navigationItem.searchController = searchController;
-        definesPresentationContext = true;
-        navigationItem.hidesSearchBarWhenScrolling = true;
         
         //加载数据
         refreshData();
@@ -164,7 +183,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
     func refreshData(){
         self.tv_match.es.resetNoMoreData();
         self.matchPage?.removeAll();
-        viewModel?.getMatchList(pageNum: 1, pageSize: 5, leagueId: currentLeague!.id, name: self.searchText, round: [self.currentRound], status: nil, dateBegin: nil, dateEnd: nil, orderby: nil, isActivity: nil, disposeBag: disposeBag);
+        viewModel?.getMatchList(pageNum: 1, pageSize: 5, sortOrder: "desc", sortField: "startTime", leagueId: currentLeague!.id, round: self.currentRound, disposeBag: disposeBag);
     }
     //加载更多
     func loadMoreData(){
@@ -173,7 +192,7 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             self.tv_match.es.noticeNoMoreData();
             return;
         }
-        viewModel?.getMatchList(pageNum: pageInfo!.current! + 1, pageSize: pageInfo!.size!, leagueId: currentLeague!.id, name: self.searchText, round: [self.currentRound], status: nil, dateBegin: nil, dateEnd: nil, orderby: nil, isActivity: nil, disposeBag: disposeBag);
+        viewModel?.getMatchList(pageNum: pageInfo!.current! + 1, pageSize: pageInfo!.size!, sortOrder: "desc", sortField: "startTime", leagueId: currentLeague!.id, round: self.currentRound, disposeBag: disposeBag);
     }
     //提示
     @objc func showSelect(sender: UITapGestureRecognizer){
@@ -185,12 +204,8 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
         let alertController = UIAlertController(title: currentMatch!.name, message: currentMatch!.startTime, preferredStyle: .actionSheet);
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil);
         let liveAction = UIAlertAction(title: "直播+统计", style: .default, handler: self.handleLiveAction);
-        let liveActionBasketBall = UIAlertAction(title: "直播+统计（篮球）", style: .default, handler: self.handleLiveBasketballAction);
-        let stasticsAction = UIAlertAction(title: "仅统计", style: .default, handler: self.handleStasticsAction);
         alertController.addAction(cancelAction);
         alertController.addAction(liveAction);
-        alertController.addAction(liveActionBasketBall);
-        alertController.addAction(stasticsAction);
         self.present(alertController, animated: true, completion: nil);
     }
     func handleLiveAction(action: UIAlertAction){
@@ -199,42 +214,11 @@ class MatchViewController: UIViewController,UISearchResultsUpdating,UITableViewD
             let vc = sb.instantiateViewController(withIdentifier: "LivePage") as! LiveController
             vc.currentMatchId = currentMatch!.id!;
             vc.currentMatch = currentMatch!;
-            vc.isBasketBall = false;
             vc.modalPresentationStyle = .fullScreen
             //跳转
             self.present(vc, animated: true,completion: nil);
         }else{
             self.view.makeToast("当前比赛无直播权限",position: .center);
-        }
-    }
-    func handleLiveBasketballAction(action: UIAlertAction){
-        if(currentMatch != nil && currentMatch!.activityId != nil){
-            let sb = UIStoryboard(name: "Main", bundle:nil)
-            let vc = sb.instantiateViewController(withIdentifier: "LivePage") as! LiveController
-            vc.currentMatchId = currentMatch!.id!;
-            vc.currentMatch = currentMatch!;
-            vc.isBasketBall = true;
-            vc.modalPresentationStyle = .fullScreen
-            //跳转
-            self.present(vc, animated: true,completion: nil);
-        }else{
-            self.view.makeToast("当前比赛无直播权限",position: .center);
-        }
-    }
-    func handleStasticsAction(action: UIAlertAction){
-        if(currentMatch != nil && currentMatch!.type!.contains(1)){
-            let sb = UIStoryboard(name: "Main", bundle:nil)
-            let vc = sb.instantiateViewController(withIdentifier: "TimeLinePage") as! TimeLineController
-            vc.currentMatchId = currentMatch!.id!;
-            vc.currentMatch = currentMatch!;
-            vc.isEntry = false;
-            TimeLineViewModel.sharedInstance.liveController = nil;
-            vc.viewModel = TimeLineViewModel.sharedInstance;
-            vc.modalPresentationStyle = .fullScreen
-            //跳转
-            self.navigationController?.pushViewController(vc, animated: true)
-        }else{
-            self.view.makeToast("当前比赛无统计权限",position: .center);
         }
     }
 }

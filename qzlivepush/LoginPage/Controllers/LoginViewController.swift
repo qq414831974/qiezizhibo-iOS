@@ -140,7 +140,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
 }
 extension LoginViewController:SPPermissionDialogDataSource,SPPermissionDialogDelegate{
-    var dialogTitle: String { return "茄子直播需要获得以下授权" }
+    var dialogTitle: String { return "绝杀时刻需要获得以下授权" }
     var dialogSubtitle: String { return "获取权限" }
     var dialogComment: String { return "" }
     var allowTitle: String { return "允许" }

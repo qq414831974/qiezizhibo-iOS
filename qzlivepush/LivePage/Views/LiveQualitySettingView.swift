@@ -28,6 +28,8 @@ class LiveQualitySettingView: UIView {
         slider_video.addTarget(self, action: #selector(onVideoValueChange), for: UIControl.Event.valueChanged);
         self.layer.cornerRadius = 10;
         self.layer.masksToBounds = true;
+    }
+    func setUp(){
         viewModel = LiveViewModel.sharedInstance;
     }
     @objc func onVideoValueChange(){

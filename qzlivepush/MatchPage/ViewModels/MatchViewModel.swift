@@ -16,8 +16,8 @@ class MatchViewModel {
     init(_ controller:MatchViewController?) {
         self.controller = controller;
     }
-    func getMatchList(pageNum:Int,pageSize:Int,leagueId:Int?,name:String?,round:[String?]?,status:String?,dateBegin:Date?,dateEnd:Date?,orderby:String?,isActivity:Bool?, disposeBag: DisposeBag) {
-        HttpService().matches(pageNum: pageNum, pageSize: pageSize, leagueId: leagueId, name: name, round: round, status: status, dateBegin: dateBegin, dateEnd: dateEnd, orderby: orderby, isActivity: isActivity).subscribe(onNext:{(res) in
+    func getMatchList(pageNum:Int,pageSize:Int,sortOrder:String,sortField:String,leagueId:Int?,round:String?, disposeBag: DisposeBag) {
+        HttpService().matches(pageNum: pageNum, pageSize: pageSize,sortOrder: sortOrder, sortField: sortField, leagueId: leagueId, round: round).subscribe(onNext:{(res) in
             self.controller!.matchPage = self.controller!.matchPage! + res.records!;
             self.controller!.pageInfo = res;
             self.controller!.reloadData();

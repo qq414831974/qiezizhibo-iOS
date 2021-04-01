@@ -12,11 +12,11 @@ class TeamModel: Mappable{
     var name:String?;
     var englishName:String?;
     var shortName:String?;
+    var headImg:String?;
+    var remark:String?;
     var province:String?;
     var city:String?;
     var population:Int?;
-    var headImg:String?;
-    var remark:String?;
     
     required init?(map: Map) {}
     
@@ -25,10 +25,10 @@ class TeamModel: Mappable{
         name <- map["name"]
         englishName <- map["englishName"]
         shortName <- map["shortName"]
+        headImg <- map["headImg"]
+        remark <- map["remark"]
         province <- map["province"]
         city <- map["city"]
         population <- map["population"]
-        headImg <- map["headImg"]
-        remark <- map["remark"]
     }
 }

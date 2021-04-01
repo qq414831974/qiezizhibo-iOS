@@ -30,18 +30,13 @@ class LiveViewModel{
             callback(res);
         }).disposed(by: disposeBag);
     }
-    func getMatchStatus(matchId:Int, type: [String]?, callback:@escaping Callback<MatchStatusModel>, disposeBag: DisposeBag){
-        HttpService().matchStatus(matchId: matchId,type: type).subscribe(onNext:{(res) in
+    func getMatchStatus(matchId:Int, callback:@escaping Callback<MatchStatusModel>, disposeBag: DisposeBag){
+        HttpService().matchStatus(matchId: matchId).subscribe(onNext:{(res) in
             callback(res);
         }).disposed(by: disposeBag);
     }
-    func getMatchPlayersByTeamId(matchId:Int, teamId:Int, callback:@escaping Callback<[PlayerModel]>, disposeBag: DisposeBag){
-        HttpService().getMatchPlayersByTeamId(matchId: matchId,teamId: teamId).subscribe(onNext:{(res) in
-            callback(res);
-        }).disposed(by: disposeBag);
-    }
-    func addTimeLine(matchId:Int,teamId:Int?,playerId:Int?,eventtype:Int,minute:Int,remark:String?,text:String?,callback:@escaping Callback<ResponseBoolModel>, disposeBag: DisposeBag){
-        HttpService().addTimeLine(matchId: matchId, teamId: teamId, playerId: playerId, eventtype: eventtype, minute: minute, remark: remark, text: text).subscribe(onNext:{(res) in
+    func addTimeLine(matchId:Int,teamId:Int?,eventType:Int,againstIndex:Int?,section:Int?,remark:String?,callback:@escaping Callback<ResponseBoolModel>, disposeBag: DisposeBag){
+        HttpService().addTimeLine(matchId: matchId, teamId: teamId, eventType: eventType, againstIndex: againstIndex, section: section, remark: remark).subscribe(onNext:{(res) in
             callback(res);
         }).disposed(by: disposeBag);
     }
@@ -50,11 +45,7 @@ class LiveViewModel{
             callback(res);
         }).disposed(by: disposeBag);
     }
-    func updateScoreAndStatus(matchId: Int, hostteamId: Int?, guestteamId: Int?, score: String, status: Int, callback:@escaping Callback<ResponseBoolModel>, disposeBag: DisposeBag) {
-        HttpService().updateScoreAndStatus(matchId: matchId, hostteamId: hostteamId, guestteamId: guestteamId, score: score, status: status).subscribe(onNext:{(res) in
-            callback(res);
-        }).disposed(by: disposeBag);
-    }
+    
     func getQuailtyIndex(quality:LFLiveVideoQuality) -> Int?{
         let qualitys:[Int:LFLiveVideoQuality] = [1:LFLiveVideoQuality.high6,2:LFLiveVideoQuality.high4,3:LFLiveVideoQuality.high5];
         for (key,value) in qualitys{
@@ -78,31 +69,5 @@ class LiveViewModel{
         HttpService().activityQuality(activityId: activityId).subscribe(onNext:{(res) in
             callback(res);
         }).disposed(by: disposeBag);
-    }
-    func scoreboard(callback:@escaping Callback<[ScoreBoardModel]>, disposeBag: DisposeBag) {
-        HttpService().scoreboard().subscribe(onNext:{(res) in
-            callback(res);
-        }).disposed(by: disposeBag);
-    }
-    func isPureTimeFormat(string: String) -> Bool {
-        if (string.contains(":") == false && string != "" && string != ":"){
-            return false;
-        }
-        let timeArray = string.split(separator: ":");
-        if(timeArray.count > 2){
-            return false;
-        }
-        if(string.hasPrefix(":")){
-            return false;
-        }
-        if(string.hasSuffix(":")){
-            return false;
-        }
-        var str = string.trimmingCharacters(in: CharacterSet.decimalDigits)
-        str = str.trimmingCharacters(in: CharacterSet.init(charactersIn: ":"))
-        if(str.count > 0){
-            return false
-        }
-        return true
     }
 }

@@ -12,39 +12,24 @@ struct Constant{
     static let KEY_ACCESS_TOKEN:String = "ACCESS_TOKEN";
     static let KEY_REFRESH_TOKEN:String = "REFRESH_TOKEN";
     static let KEY_USER_INFO:String = "UESR_INFO";
-    static let STATUS_TEXT_MAP:[Int:String] = [-1:"未开始",0:"比赛开始",14:"中场",15:"下半场",21:"比赛结束"]
+    static let STATUS_TEXT_MAP:[Int:String] = [-1:"未开始",0:"比赛开始",21:"比赛结束"]
     static let STATUS_MAP:[String?:String?] = ["未开始":"unopen","进行中":"live","已结束":"finish",nil:nil];
     static let EVENT_TYPE:[Int:TimeLineEvent] =
-        [-1:TimeLineEvent.init(text: "未开始", icon: "start.svg", eventType: -1, type: TimeLineEvent.none),
-         0:TimeLineEvent.init(text: "比赛开始", icon: "start.svg", eventType: 0, type: TimeLineEvent.timeEvent),
-         1:TimeLineEvent.init(text: "进球", icon: "goal.svg", eventType: 1, type: TimeLineEvent.important, remarkName: "助攻", remarkValue: nil),
-         2:TimeLineEvent.init(text: "射门", icon: "shoot.svg", eventType: 2, type: TimeLineEvent.important, remarkName: "状态", remarkValue: [["射偏":"3","射在门框":"2","射门被拦截":"1"]]),
-         3:TimeLineEvent.init(text: "越位", icon: "offside.svg", eventType: 3, type: TimeLineEvent.notImportant),
-         4:TimeLineEvent.init(text: "抢断", icon: "tackle.svg", eventType: 4, type: TimeLineEvent.notImportant, remarkName: "状态", remarkValue: [["成功":"1","失败":"0"]]),
-         5:TimeLineEvent.init(text: "任意球", icon: "free_kick.svg", eventType: 5, type: TimeLineEvent.important),
-         6:TimeLineEvent.init(text: "犯规", icon: "foul.svg", eventType: 6, type: TimeLineEvent.notImportant),
-         7:TimeLineEvent.init(text: "黄牌", icon: "yellowcard.svg", eventType: 7, type: TimeLineEvent.important),
-         8:TimeLineEvent.init(text: "红牌", icon: "redcard.svg", eventType: 8, type: TimeLineEvent.important),
-         9:TimeLineEvent.init(text: "扑救", icon: "save.svg", eventType: 9, type: TimeLineEvent.important),
-         10:TimeLineEvent.init(text: "换人", icon: "substitution.svg", eventType: 10, type: TimeLineEvent.notImportant, remarkName: "换上", remarkValue: nil),
-         11:TimeLineEvent.init(text: "加时", icon: "extra.svg", eventType: 11, type: TimeLineEvent.timeEvent),
-         12:TimeLineEvent.init(text: "点球大战", icon: "penalty.svg", eventType: 12, type: TimeLineEvent.timeEvent),
-         13:TimeLineEvent.init(text: "伤停", icon: "injury.svg", eventType: 13, type: TimeLineEvent.timeEvent),
-         14:TimeLineEvent.init(text: "中场", icon: "half_time.svg", eventType: 14, type: TimeLineEvent.timeEvent),
-         15:TimeLineEvent.init(text: "下半场", icon: "start.svg", eventType: 15, type: TimeLineEvent.timeEvent),
-         16:TimeLineEvent.init(text: "暂停", icon: "pause.svg", eventType: 16, type: TimeLineEvent.timeEvent),
-         17:TimeLineEvent.init(text: "角球", icon: "corner.svg", eventType: 17, type: TimeLineEvent.important),
-         18:TimeLineEvent.init(text: "传中", icon: "cross.svg", eventType: 18, type: TimeLineEvent.notImportant, remarkName: "状态", remarkValue: [["成功":"1","失败":"0"]]),
-         19:TimeLineEvent.init(text: "长传", icon: "long_pass.svg", eventType: 19, type: TimeLineEvent.notImportant),
-         20:TimeLineEvent.init(text: "解围", icon: "clearance.svg", eventType: 20, type: TimeLineEvent.notImportant),
-         21:TimeLineEvent.init(text: "比赛结束", icon: "finish.svg", eventType: 21, type: TimeLineEvent.timeEvent),
-         22:TimeLineEvent.init(text: "乌龙球", icon: "own_goal.svg", eventType: 22, type: TimeLineEvent.notImportant),
-         23:TimeLineEvent.init(text: "传控率", icon: "tackle.svg", eventType: 23, type: TimeLineEvent.none),
-         24:TimeLineEvent.init(text: "点球", icon: "penalty.svg", eventType: 24, type: TimeLineEvent.important, remarkName: "状态", remarkValue: [["成功":"1","失败":"0"]]),
-         25:TimeLineEvent.init(text: "进球(点球大战)", icon: "penalty.svg", eventType: 25, type: TimeLineEvent.notImportant),
+        [-1:TimeLineEvent.init(text: "未开始", icon: "ball.svg", eventType: -1, type: TimeLineEvent.none),
+         0:TimeLineEvent.init(text: "比赛开始", icon: "ball.svg", eventType: 0, type: TimeLineEvent.timeEvent),
+         1:TimeLineEvent.init(text: "一分球", icon: "ball.svg", eventType: 1, type: TimeLineEvent.important),
+         2:TimeLineEvent.init(text: "二分球", icon: "ball2.svg", eventType: 2, type: TimeLineEvent.important),
+         3:TimeLineEvent.init(text: "三分球", icon: "ball3.svg", eventType: 3, type: TimeLineEvent.important),
+         4:TimeLineEvent.init(text: "下一节", icon: "calendar.svg", eventType: 4, type: TimeLineEvent.timeEvent),
+         5:TimeLineEvent.init(text: "更换对阵", icon: "vest.svg", eventType: 5, type: TimeLineEvent.timeEvent),
+         11:TimeLineEvent.init(text: "一分球撤销", icon: "free_kick.svg", eventType: 11, type: TimeLineEvent.important),
+         12:TimeLineEvent.init(text: "二分球撤销", icon: "foul.svg", eventType: 12, type: TimeLineEvent.important),
+         13:TimeLineEvent.init(text: "三分球撤销", icon: "yellowcard.svg", eventType: 13, type: TimeLineEvent.important),
+         14:TimeLineEvent.init(text: "上一节", icon: "calendar.svg", eventType: 14, type: TimeLineEvent.timeEvent),
+         21:TimeLineEvent.init(text: "比赛结束", icon: "flag.svg", eventType: 21, type: TimeLineEvent.timeEvent),
     ];
     static let EVENT_SHOW:[Int:Int] = [0:1,1:22,2:25,3:7,4:8,5:10]
-    static let STATUS_SHOW:[Int:Int] = [0:0,1:14,2:15,3:21]
+    static let STATUS_SHOW:[Int:Int] = [0:0,1:5,2:21,3:14,4:4]
     static let COLOR_LIST:[String] = [
         "#FFFFFF","#DDDDDD","#AAAAAA","#888888","#666666","#444444","#000000",
         "#FFB7DD","#FF88C2","#FF44AA","#FF0088","#C10066","#A20055","#8C0044",

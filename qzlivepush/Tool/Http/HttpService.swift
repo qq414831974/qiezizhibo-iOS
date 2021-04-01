@@ -23,8 +23,8 @@ struct HttpService {
             .showAPIErrorToast()
             .mapObject(type: ResponseModel<AuthModel>.self);
     }
-    func leagues(pageNum:Int,pageSize:Int,city:String?,country:String?,name:String?,status:String?) -> Observable<PageModel<LeagueModel>> {
-        let target = ApiManager.leagues(pageNum: pageNum, pageSize: pageSize, city: city, country: country, name: name, status: status);
+    func leagues(pageNum:Int,pageSize:Int,name:String?,status:String?) -> Observable<PageModel<LeagueModel>> {
+        let target = ApiManager.leagues(pageNum: pageNum, pageSize: pageSize, name: name, status: status);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
             .asObservable()
@@ -49,8 +49,8 @@ struct HttpService {
                     return result.data!
             };
     }
-    func matches(pageNum:Int,pageSize:Int,leagueId:Int?,name:String?,round:[String?]?,status:String?,dateBegin:Date?,dateEnd:Date?,orderby:String?,isActivity:Bool?)-> Observable<PageModel<MatchModel>> {
-        let target = ApiManager.matches(pageNum: pageNum, pageSize: pageSize, leagueId: leagueId,name: name, round: round, status: status, dateBegin: dateBegin, dateEnd: dateEnd, orderby: orderby, isActivity: isActivity);
+    func matches(pageNum:Int,pageSize:Int,sortOrder:String,sortField:String,leagueId:Int?,round:String?)-> Observable<PageModel<MatchModel>> {
+        let target = ApiManager.matches(pageNum: pageNum, pageSize: pageSize, sortOrder: sortOrder, sortField: sortField, leagueId: leagueId, round: round);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
             .asObservable()
@@ -75,8 +75,8 @@ struct HttpService {
                     return result.data!
             };
     }
-    func matchStatus(matchId:Int,type:[String]?) -> Observable<MatchStatusModel> {
-        let target = ApiManager.matchStatus(matchId: matchId, type: type);
+    func matchStatus(matchId:Int) -> Observable<MatchStatusModel> {
+        let target = ApiManager.matchStatus(matchId: matchId);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
             .asObservable()
@@ -88,21 +88,8 @@ struct HttpService {
                     return result.data!
             };
     }
-    func getMatchPlayersByTeamId(matchId:Int,teamId:Int) -> Observable<Array<PlayerModel>>{
-        let target = ApiManager.getMatchPlayersByTeamId(matchId: matchId, teamId: teamId);
-        return provider.rx.request(target)
-            .filter(statusCodes: 200...500)
-            .asObservable()
-            .filterSuccess(target: target)
-            .mapJSON()
-            .showAPIErrorToast()
-            .mapObject(type: ResponseModel<PageModel<PlayerModel>>.self)
-            .map { (result) -> Array<PlayerModel> in
-                return result.data!.records!
-            };
-    }
-    func addTimeLine(matchId:Int,teamId:Int?,playerId:Int?,eventtype:Int,minute:Int,remark:String?,text:String?) -> Observable<ResponseBoolModel>{
-        let target = ApiManager.addTimeLine(matchId: matchId, teamId: teamId, playerId: playerId, eventtype: eventtype, minute: minute, remark: remark, text: text);
+    func addTimeLine(matchId:Int,teamId:Int?,eventType:Int,againstIndex:Int?,section:Int?,remark:String?) -> Observable<ResponseBoolModel>{
+        let target = ApiManager.addTimeLine(matchId: matchId, teamId: teamId, eventType: eventType, againstIndex: againstIndex, section: section, remark: remark);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
             .asObservable()
@@ -113,16 +100,6 @@ struct HttpService {
     }
     func deleteTimeLine(id:Int)-> Observable<ResponseBoolModel>{
         let target = ApiManager.deleteTimeLine(id: id);
-        return provider.rx.request(target)
-            .filter(statusCodes: 200...500)
-            .asObservable()
-            .filterSuccess(target: target)
-            .mapJSON()
-            .showAPIErrorToast()
-            .mapObject(type: ResponseBoolModel.self);
-    }
-    func updateScoreAndStatus(matchId: Int, hostteamId: Int?, guestteamId: Int?, score: String, status: Int)-> Observable<ResponseBoolModel>{
-        let target = ApiManager.updateScoreAndStatus(matchId: matchId, score: score, status: status);
         return provider.rx.request(target)
             .filter(statusCodes: 200...500)
             .asObservable()
@@ -153,19 +130,6 @@ struct HttpService {
             .mapJSON()
             .showAPIErrorToast()
             .mapObject(type: ResponseIntModel.self);
-    }
-    func scoreboard()-> Observable<Array<ScoreBoardModel>>{
-        let target = ApiManager.scoreboard;
-        return provider.rx.request(target)
-            .filter(statusCodes: 200...500)
-            .asObservable()
-            .filterSuccess(target: target)
-            .mapJSON()
-            .showAPIErrorToast()
-            .mapObject(type: ResponseArrayModel<ScoreBoardModel>.self)
-            .map { (result) -> Array<ScoreBoardModel> in
-                    return result.data!
-            };
     }
 }
 

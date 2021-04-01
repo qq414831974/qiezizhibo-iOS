@@ -62,24 +62,6 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         view.frame = CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 25);
         view.backgroundColor = UIColor.groupTableViewBackground;
         
-        let btn_location:UIButton = UIButton.init(type: UIButton.ButtonType.custom);
-        btn_location.frame = CGRect.init(x: tableView.frame.size.width - 190, y: 5, width: 90, height: 18);
-        btn_location.titleLabel?.textAlignment = NSTextAlignment.center;
-        if(currentCity != nil){
-            btn_location.isSelected = true;
-            btn_location.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15);
-            btn_location.setTitle(self.currentCity! + " ▼", for: UIControl.State.selected);
-        }else{
-            btn_location.isSelected = false;
-            btn_location.titleLabel?.font = UIFont.systemFont(ofSize: 15);
-            btn_location.setTitle("地区 ▽", for: UIControl.State.normal);
-        }
-        
-        btn_location.tag = 201;
-        btn_location.setTitleColor(UIColor.darkGray, for: UIControl.State.normal);
-        btn_location.setTitleColor(UIColor.black, for: UIControl.State.selected);
-        btn_location.addTarget(self, action: #selector(btn_locationClick), for: UIControl.Event.touchUpInside);
-        
         let btn_status:UIButton = UIButton.init(type: UIButton.ButtonType.custom);
         btn_status.frame = CGRect.init(x: tableView.frame.size.width - 100, y: 5, width: 90, height: 18);
         btn_status.titleLabel?.textAlignment = NSTextAlignment.center;
@@ -111,7 +93,6 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
             self.refreshData();
         }
         
-//        view.addSubview(btn_location);
         view.addSubview(btn_status);
         return view;
     }
@@ -142,7 +123,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         let dateEnd:Date = DateUtils.stringConvertDate(string: league.dateEnd!);
         let dateNow:Date = Date();
         lb_name.text = league.name!;
-        iv_headimg.sd_setImage(with: URL(string: league.headImg!), placeholderImage: UIImage(named: "logo.png"))
+        setImg(iv: iv_headimg, url: league.headImg)
         lb_city.text = (league.city != nil) ? league.city : "";
         lb_time.text = DateUtils.dateConvertString(date: dateBegin).components(separatedBy: " ").first! + " - " + DateUtils.dateConvertString(date: dateEnd).components(separatedBy: " ").first!;
         if dateNow.compare(dateBegin) == .orderedAscending
@@ -160,7 +141,6 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         return cell;
     }
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
         if (searchController.searchBar.text == nil || searchController.searchBar.text == ""){
             self.searchText = nil;
             self.refreshData();
@@ -220,7 +200,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
     func refreshData() {
         self.tv_league.es.resetNoMoreData();
         self.leaguePage?.removeAll();
-        viewModel?.getLeagueList(pageNum: 1, pageSize: 5, city: currentCity, country: "中国", name: self.searchText, state: Constant.STATUS_MAP[currentStatus] ?? nil, disposeBag: disposeBag);
+        viewModel?.getLeagueList(pageNum: 1, pageSize: 5, name: self.searchText, status: Constant.STATUS_MAP[currentStatus] ?? nil, disposeBag: disposeBag);
     }
     //加载更多
     func loadMoreData(){
@@ -229,16 +209,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
             self.tv_league.es.noticeNoMoreData();
             return;
         }
-        viewModel?.getLeagueList(pageNum: pageInfo!.current! + 1, pageSize: pageInfo!.size!, city: currentCity, country: "中国", name: self.searchText, state: Constant.STATUS_MAP[currentStatus] ?? nil, disposeBag: disposeBag);
-    }
-    //地区筛选点击
-    @objc func btn_locationClick(){
-        let btn_location:UIButton = self.tv_league.headerView(forSection: 0)!.viewWithTag(201) as! UIButton;
-        if(btn_location.isSelected == true){
-            switchLocationPicker(isFilter: false);
-            return;
-        }
-        showLocationPickerView();
+        viewModel?.getLeagueList(pageNum: pageInfo!.current! + 1, pageSize: pageInfo!.size!, name: self.searchText, status: Constant.STATUS_MAP[currentStatus] ?? nil, disposeBag: disposeBag);
     }
     //状态筛选点击
     @objc func btn_statusClick(){
@@ -247,28 +218,6 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         //        btn_location.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15);
         //        btn_location.setTitle("状态 ▼", for: UIControl.State.selected);
         showStatusPickerView();
-    }
-    //地区选择器
-    func showLocationPickerView(){
-        pickerView = UIPickerView.init();
-        pickerView!.dataSource = self;
-        pickerView!.delegate = self;
-        if(currentCity != nil){
-            pickerView!.selectRow(currentIndex,inComponent:currentRow,animated:true)
-        }else{
-            pickerView!.selectRow(0,inComponent:0,animated:true)
-        }
-        self.currentCity = Constant.CITY[1][0];
-        let alertController:UIAlertController=UIAlertController(title: "\n\n\n\n\n\n\n\n\n\n\n\n", message: nil, preferredStyle: UIAlertController.Style.actionSheet);
-        alertController.addAction(UIAlertAction(title: "确定", style: UIAlertAction.Style.default){
-            (alertAction)->Void in
-            self.switchLocationPicker(isFilter: true);
-        });
-        alertController.addAction(UIAlertAction(title: "取消", style: UIAlertAction.Style.cancel,handler:nil));
-        let width = self.view.frame.width;
-        pickerView!.frame = CGRect(x: 10, y: 0, width: width, height: 250);
-        alertController.view.addSubview(pickerView!);
-        self.present(alertController, animated: true, completion: nil);
     }
     //切换筛选状态
     func switchLocationPicker(isFilter: Bool){
@@ -310,6 +259,13 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
                 let detailViewController = segue.destination as! MatchTabViewController;
                 detailViewController.currentLeague = data
             }
+        }
+    }
+    func setImg(iv:UIImageView,url: String?) {
+        if(url == nil){
+            iv.image = UIImage.init(named: "logo.png")
+        }else{
+            iv.sd_setImage(with: URL(string: url!), placeholderImage: UIImage(named: "logo.png"));
         }
     }
 }

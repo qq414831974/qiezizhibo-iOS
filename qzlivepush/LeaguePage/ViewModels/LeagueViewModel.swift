@@ -16,8 +16,8 @@ class LeagueViewModel {
     init(_ controller:LeagueViewController?) {
         self.controller = controller;
     }
-    func getLeagueList(pageNum:Int, pageSize:Int, city:String?, country:String?, name:String?, state:String? = "live", disposeBag: DisposeBag) {
-        HttpService().leagues(pageNum: pageNum, pageSize: pageSize, city: city, country: country,name: name, status: state).subscribe(onNext:{(res) in
+    func getLeagueList(pageNum:Int, pageSize:Int, name:String?, status:String? = "live", disposeBag: DisposeBag) {
+        HttpService().leagues(pageNum: pageNum, pageSize: pageSize, name: name, status: status).subscribe(onNext:{(res) in
             self.controller!.leaguePage = self.controller!.leaguePage! + res.records!;
             self.controller!.pageInfo = res;
             self.controller!.reloadData();
