@@ -60,7 +60,7 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt2" translatesAutoresizingMaskIntoConstraints="NO" id="XQ7-x7-nSs">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt-left" translatesAutoresizingMaskIntoConstraints="NO" id="XQ7-x7-nSs">
                     <rect key="frame" x="30" y="74" width="52.5" height="52.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -68,7 +68,7 @@
                         <constraint firstAttribute="height" constant="52.5" id="Wze-wk-sKY"/>
                     </constraints>
                 </imageView>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt2" translatesAutoresizingMaskIntoConstraints="NO" id="SQP-9G-fSv">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt-right" translatesAutoresizingMaskIntoConstraints="NO" id="SQP-9G-fSv">
                     <rect key="frame" x="828" y="74" width="52.5" height="52.5"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="52.5" id="K3f-ax-n7m"/>
@@ -151,6 +151,7 @@
     </objects>
     <resources>
         <image name="score-board-default" width="750" height="150"/>
-        <image name="shirt2" width="178" height="177"/>
+        <image name="shirt-left" width="213" height="213"/>
+        <image name="shirt-right" width="213" height="213"/>
     </resources>
 </document>

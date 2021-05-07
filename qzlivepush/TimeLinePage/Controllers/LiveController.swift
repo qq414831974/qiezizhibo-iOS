@@ -222,13 +222,16 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             scoreBoard = Bundle.main.loadNibNamed("ScoreBoard", owner: self, options: nil)!.first as! ScoreBoard;
             scoreBoard.frame = CGRect.init(x: view.bounds.width - 900 - view.bounds.width * 0.0214, y: view.bounds.height * 0.023, width: 900, height: 180);
             if(currentMatch != nil && currentMatch!.league != nil){
-                scoreBoard.lb_leagueName.text = currentMatch!.league!.name;
+                var text = currentMatch!.league!.name;
                 if(currentMatch!.league!.shortName != nil){
-                    scoreBoard.lb_leagueName.text = currentMatch!.league!.shortName;
+                    text = currentMatch!.league!.shortName;
                 }
-                if(currentMatch!.league!.name!.count > 12){
-                    scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 30)
+                if(text!.count > 11){
+                    let letterfontIncrease = (text!.count - 11 ) / 2;
+                    let letterSpacingIncrease = (text!.count - 11 ) / 4;
+                    scoreBoard.lb_leagueName!.attributedText = text!.attributedString(font: UIFont.boldSystemFont(ofSize: CGFloat(30 - letterfontIncrease)), textColor: UIColor.white, lineSpaceing: 0, wordSpaceing: CGFloat(-0.5 * Double(letterSpacingIncrease)),expansion: CGFloat(-0.1 * Double(letterSpacingIncrease)))
                 }else{
+                    scoreBoard.lb_leagueName!.text = text;
                     scoreBoard.lb_leagueName!.font = UIFont.boldSystemFont(ofSize: 35)
                 }
             }
@@ -246,8 +249,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             viewModel!.scoreboard(callback: { (scoreBoardModels) in
                 if(scoreBoardModels.count > 0){
                     self.scoreBoard.tag = 101;
-                    self.scoreBoard.updateConstraint(scoreboard: scoreBoardModels[0]);
                     self.currentScoreBoard = scoreBoardModels[0];
+                    self.scoreBoard.updateConstraint(scoreboard: scoreBoardModels[0]);
                     view.addSubview(self.scoreBoard);
                     //添加水印
                     self.warterMarkView = view;

@@ -137,7 +137,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
                 self.iv_hostShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
 //                self.iv_hostShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
-               self.iv_hostShirt.image = UIImage(named: "shirt2")
+               self.iv_hostShirt.image = UIImage(named: "shirt-left")
 //                self.iv_hostShirt2.image = UIImage(named: "shirt2")
             }
         }
@@ -146,7 +146,7 @@ class ScoreBoardSettingView: UIView,UICollectionViewDelegate,UICollectionViewDat
                 self.iv_guestShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
 //                self.iv_guestShirt2.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
-                self.iv_guestShirt.image = UIImage(named: "shirt2")
+                self.iv_guestShirt.image = UIImage(named: "shirt-right")
 //                self.iv_guestShirt2.image = UIImage(named: "shirt2")
             }
         }

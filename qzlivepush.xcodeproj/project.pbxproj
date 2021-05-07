@@ -21,6 +21,7 @@
 		507228BE244D8D17005E4039 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507228BD244D8D17005E4039 /* AuthModel.swift */; };
 		50741F5A2489DDFB000AF23C /* ActivityModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50741F592489DDFB000AF23C /* ActivityModel.swift */; };
 		509C543D25A6CB4C00721C1B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C543C25A6CB4C00721C1B /* UIColor+.swift */; };
+		50CCCA76260DBCC30048B210 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA75260DBCC30048B210 /* String+Extension.swift */; };
 		50DCDB8C2582214D00A530E5 /* BasketballTimelineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */; };
 		6751157D22C5C81C008812D5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6751157C22C5C81C008812D5 /* AVFoundation.framework */; };
 		6751158122C617CA008812D5 /* ScoreBoard.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6751158022C617CA008812D5 /* ScoreBoard.xib */; };
@@ -161,6 +162,7 @@
 		507228BD244D8D17005E4039 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
 		50741F592489DDFB000AF23C /* ActivityModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityModel.swift; sourceTree = "<group>"; };
 		509C543C25A6CB4C00721C1B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		50CCCA75260DBCC30048B210 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballTimelineController.swift; sourceTree = "<group>"; };
 		6751157C22C5C81C008812D5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6751158022C617CA008812D5 /* ScoreBoard.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ScoreBoard.xib; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				6770C81222B738D4007920A0 /* UIImage+SVG+Extension.swift */,
 				67CD201822C9E97B00BE3F76 /* UIAlertController+Extension.swift */,
 				509C543C25A6CB4C00721C1B /* UIColor+.swift */,
+				50CCCA75260DBCC30048B210 /* String+Extension.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1028,6 +1031,7 @@
 				67CD201922C9E97B00BE3F76 /* UIAlertController+Extension.swift in Sources */,
 				67AAD49E229FBF730076C139 /* DateUtils.swift in Sources */,
 				507228BE244D8D17005E4039 /* AuthModel.swift in Sources */,
+				50CCCA76260DBCC30048B210 /* String+Extension.swift in Sources */,
 				5025444524DD427500EE67E8 /* ResponseIntModel.swift in Sources */,
 				67DA66F022963FA800615D95 /* Constant.swift in Sources */,
 				67A1D01122D04E69009C1BC3 /* WarterMarkSettingView.swift in Sources */,
@@ -1151,14 +1155,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = CSHSKP44D9;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.football.livepusher;
 				PRODUCT_NAME = "茄子TV直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
@@ -1331,14 +1335,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = CSHSKP44D9;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.football.livepusher;
 				PRODUCT_NAME = "茄子TV直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
@@ -1354,14 +1358,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = CSHSKP44D9;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.football.livepusher;
 				PRODUCT_NAME = "茄子TV直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";

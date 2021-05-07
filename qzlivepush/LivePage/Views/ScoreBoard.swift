@@ -63,14 +63,14 @@ class ScoreBoard: UIView{
             if(image != nil){
                 self.iv_hostShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
-                self.iv_hostShirt.image = UIImage(named: "shirt2")
+                self.iv_hostShirt.image = UIImage(named: "shirt-left")
             }
         }
         SDWebImageManager.shared.loadImage(with: URL(string: detail.guestshirtpic!), progress: nil) { (image, data, error, cacheType, finished, imageURL) in
             if(image != nil){
                 self.iv_guestShirt.image = image!.withRenderingMode(UIImage.RenderingMode.alwaysTemplate);
             }else{
-                self.iv_guestShirt.image = UIImage(named: "shirt2")
+                self.iv_guestShirt.image = UIImage(named: "shirt-right")
             }
         }
         layoutIfNeeded();

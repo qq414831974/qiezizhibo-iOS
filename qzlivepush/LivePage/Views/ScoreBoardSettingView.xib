@@ -82,14 +82,14 @@
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt2" translatesAutoresizingMaskIntoConstraints="NO" id="JXS-et-4oS">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt-left" translatesAutoresizingMaskIntoConstraints="NO" id="JXS-et-4oS">
                             <rect key="frame" x="15" y="47.5" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="35" id="Dt5-8h-DMk"/>
                                 <constraint firstAttribute="height" constant="35" id="vKN-8O-kup"/>
                             </constraints>
                         </imageView>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt2" translatesAutoresizingMaskIntoConstraints="NO" id="bWZ-yX-D91">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shirt-right" translatesAutoresizingMaskIntoConstraints="NO" id="bWZ-yX-D91">
                             <rect key="frame" x="550" y="47.5" width="35" height="35"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="35" id="SEi-JJ-LW4"/>
@@ -239,6 +239,8 @@
         <image name="check_round" width="64" height="64"/>
         <image name="pause" width="18" height="18"/>
         <image name="score-board-default" width="750" height="150"/>
+        <image name="shirt-left" width="213" height="213"/>
+        <image name="shirt-right" width="213" height="213"/>
         <image name="shirt2" width="178" height="177"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

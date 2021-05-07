@@ -142,7 +142,7 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         let dateEnd:Date = DateUtils.stringConvertDate(string: league.dateEnd!);
         let dateNow:Date = Date();
         lb_name.text = league.name!;
-        iv_headimg.sd_setImage(with: URL(string: league.headImg!), placeholderImage: UIImage(named: "logo.png"))
+        setImg(iv: iv_headimg, url: league.headImg)
         lb_city.text = (league.city != nil) ? league.city : "";
         lb_time.text = DateUtils.dateConvertString(date: dateBegin).components(separatedBy: " ").first! + " - " + DateUtils.dateConvertString(date: dateEnd).components(separatedBy: " ").first!;
         if dateNow.compare(dateBegin) == .orderedAscending
@@ -310,6 +310,13 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
                 let detailViewController = segue.destination as! MatchTabViewController;
                 detailViewController.currentLeague = data
             }
+        }
+    }
+    func setImg(iv:UIImageView,url: String?) {
+        if(url == nil){
+            iv.image = UIImage.init(named: "logo.png")
+        }else{
+            iv.sd_setImage(with: URL(string: url!), placeholderImage: UIImage(named: "logo.png"));
         }
     }
 }
