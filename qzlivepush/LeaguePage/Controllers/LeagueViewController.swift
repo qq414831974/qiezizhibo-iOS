@@ -122,7 +122,11 @@ class LeagueViewController: UIViewController,UISearchResultsUpdating,UITableView
         let dateBegin:Date = DateUtils.stringConvertDate(string: league.dateBegin!);
         let dateEnd:Date = DateUtils.stringConvertDate(string: league.dateEnd!);
         let dateNow:Date = Date();
-        lb_name.text = league.name!;
+        var leagueName = league.name!;
+        if(league.shortName != nil){
+            leagueName = league.shortName!
+        }
+        lb_name.text = leagueName;
         setImg(iv: iv_headimg, url: league.headImg)
         lb_city.text = (league.city != nil) ? league.city : "";
         lb_time.text = DateUtils.dateConvertString(date: dateBegin).components(separatedBy: " ").first! + " - " + DateUtils.dateConvertString(date: dateEnd).components(separatedBy: " ").first!;

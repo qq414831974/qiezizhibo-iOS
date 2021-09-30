@@ -171,7 +171,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         let view = UIView.init(frame: CGRect.init(x: 0, y: 0, width: videoConfiguration!.videoSize.width, height: videoConfiguration!.videoSize.height));
         
         //logo
-        let imageView_logo = UIImageView.init(frame: CGRect.init(x: videoConfiguration!.videoSize.width * 0.0214, y: videoConfiguration!.videoSize.height * 0.023, width: videoConfiguration!.videoSize.width / 6, height: videoConfiguration!.videoSize.width / 6 / 2.818))
+        let imageView_logo = UIImageView.init(frame: CGRect.init(x: videoConfiguration!.videoSize.width * 0.0214, y: videoConfiguration!.videoSize.height * 0.023, width: videoConfiguration!.videoSize.width / 6, height: videoConfiguration!.videoSize.width / 6 / 2))
         imageView_logo.image = UIImage.init(named: "logo-t.png");
         imageView_logo.tag = 201;
         view.addSubview(imageView_logo);
@@ -199,6 +199,9 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         self.session!.warterMarkView = self.warterMarkView;
         self.scoreBoardWarterMark = self.session!.warterMarkView?.viewWithTag(101) as! ScoreBoard;
         self.logoWarterMark = self.session!.warterMarkView?.viewWithTag(201);
+        if(self.currentMatch == nil || self.currentMatch!.againstTeams == nil){
+            self.scoreBoardWarterMark.isHidden = true;
+        }
     }
     
     func initSession(){
@@ -235,10 +238,9 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
         containerView.addSubview(startLiveButton)
         containerView.addSubview(bandWidthLabel)
         containerView.addSubview(liveQualityLabel)
-        if(currentMatch!.type!.contains(1)){
-            containerView.addSubview(timeLineButton)
-            containerView.addSubview(statusButton)
-        }
+        containerView.addSubview(timeLineButton)
+        containerView.addSubview(statusButton)
+        
         bandWidthLabel.isHidden = true;
         liveQualityLabel.isHidden = true;
         

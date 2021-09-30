@@ -987,14 +987,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = VBZKH4WM44;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush.basketball;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
 				PRODUCT_NAME = "绝杀时刻直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
@@ -1167,14 +1167,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = VBZKH4WM44;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush.basketball;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
 				PRODUCT_NAME = "绝杀时刻直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
@@ -1190,14 +1190,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 792SY878DW;
+				DEVELOPMENT_TEAM = VBZKH4WM44;
 				INFOPLIST_FILE = qzlivepush/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezizhibo.livepush.basketball;
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
 				PRODUCT_NAME = "绝杀时刻直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";

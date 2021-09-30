@@ -100,7 +100,16 @@ class WarterMarkSettingView: UIView {
         let scoreBoard = viewModel.controller!.session!.warterMarkView!.viewWithTag(101) as! ScoreBoard;
         scoreBoard.v_guestShirt!.backgroundColor = iv_guestShirt.tintColor;
         scoreBoard.v_hostShirt!.backgroundColor = iv_hostShirt.tintColor;
-        
+        if(iv_guestShirt.tintColor.y() > 0.75){
+            scoreBoard.lb_guestName!.textColor = UIColor.black;
+        }else{
+            scoreBoard.lb_guestName!.textColor = UIColor.white;
+        }
+        if(iv_hostShirt.tintColor.y() > 0.75){
+            scoreBoard.lb_hostName!.textColor = UIColor.black;
+        }else{
+            scoreBoard.lb_hostName!.textColor = UIColor.white;
+        }
         viewModel.controller!.session!.warterMarkView = viewModel.controller!.session!.warterMarkView;
         SwiftEntryKit.dismiss();
     }

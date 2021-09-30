@@ -65,4 +65,33 @@ extension UIColor {
             )
         }
     }
+    func r() -> CGFloat {
+        return self.cgColor.components![0];
+    }
+        
+    func g() -> CGFloat {
+        let count = self.cgColor.numberOfComponents;
+        if (count == 2) {
+            return self.cgColor.components![0];
+        } else {
+            return self.cgColor.components![1];
+        }
+    }
+        
+    func b() -> CGFloat {
+        let count = self.cgColor.numberOfComponents;
+        if (count == 2) {
+            return self.cgColor.components![0];
+        } else {
+            return self.cgColor.components![2];
+        }
+    }
+        
+    func a() -> CGFloat {
+        let count = self.cgColor.numberOfComponents;
+        return self.cgColor.components![count - 1];
+    }
+    func y() -> CGFloat{
+        return 0.299 * r() + 0.587 * g() + 0.114 * b();
+    }
 }

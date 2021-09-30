@@ -75,17 +75,17 @@ class MatchViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                 var score = "0-0";
                 if(againstTeam != nil && againstTeam!.hostTeam != nil){
                     hostTeamName = againstTeam!.hostTeam!.name!;
-                    hostTeamHeadImg = againstTeam!.hostTeam!.headImg!;
+                    hostTeamHeadImg = againstTeam!.hostTeam!.headImg != nil ? againstTeam!.hostTeam!.headImg! : nil;
                 }
                 if(againstTeam != nil && againstTeam!.guestTeam != nil){
                     guestTeamName = againstTeam!.guestTeam!.name!;
-                    guestTeamHeadImg = againstTeam!.guestTeam!.headImg!;
+                    guestTeamHeadImg = againstTeam!.guestTeam!.headImg != nil ? againstTeam!.guestTeam!.headImg! : nil;
                 }
                 if(match.status != nil && match.status!.score != nil && match.status!.score![key] != nil){
                     score = match.status!.score![key]!;
                 }
                 let matchAgainst = MatchAgainstView(frame: CGRect(x: index * 300 + (index + 1) * 10, y: 5, width: 300, height: 60));
-                matchAgainst.tag = Int(key)!;
+                matchAgainst.tag = 2000 + Int(key)!;
                 matchAgainst.lb_vs?.text = score;
                 matchAgainst.lb_hostName?.text = hostTeamName;
                 matchAgainst.lb_guestName?.text = guestTeamName;

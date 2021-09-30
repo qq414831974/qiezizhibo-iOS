@@ -25,16 +25,16 @@ class ScoreBoard: UIView {
     }
     
     func setTeamNameHost(teamName:String) {
-        if (teamName != nil && teamName.count > 7) {
-            let textsize:CGFloat = 30 - (CGFloat(teamName.count) - 7) * 2.5;
+        if (teamName != nil && getTextLength(str: teamName) > 7) {
+            let textsize:CGFloat = 30 - (CGFloat(getTextLength(str: teamName)) - 7) * 2.5;
             lb_hostName.font = UIFont.boldSystemFont(ofSize: textsize);
         }
         lb_hostName.text = teamName;
     }
 
     func setTeamNameGuest(teamName:String) {
-        if (teamName != nil && teamName.count > 7) {
-            let textsize:CGFloat = 30 - (CGFloat(teamName.count) - 7) * 2.5;
+        if (teamName != nil && getTextLength(str: teamName) > 7) {
+            let textsize:CGFloat = 30 - (CGFloat(getTextLength(str: teamName)) - 7) * 2.5;
             lb_guestName.font = UIFont.boldSystemFont(ofSize: textsize);
         }
         lb_guestName.text = teamName;
@@ -44,5 +44,17 @@ class ScoreBoard: UIView {
     }
     func hideLogoMask(){
         iv_boardLogoMask.isHidden = true;
+    }
+    func getTextLength(str:String) -> Double{
+        var number = 0.0;
+        for i in 0...str.count - 1 {
+                let c: unichar = (str as NSString).character(at: i)
+                if (c >= 0x4E00) {
+                    number += 1
+                }else {
+                    number += 0.5
+                }
+            }
+        return number;
     }
 }
