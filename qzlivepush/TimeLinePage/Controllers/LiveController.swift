@@ -38,7 +38,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     var qualitySettingView:LiveQualitySettingView!;
     var warterMarkSettingView:WarterMarkSettingView!;
     var statusVc: ChooseStatusController!
-    var basketballTimelineVc: BasketballTimelineController!
+    var oneyuanTimelineVc: OneyuanTimelineController!
         
     var currentQuality = LFLiveVideoQuality.high5;
     var currentMatchId:Int?;
@@ -272,7 +272,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
                     
         statusVc = storyboard?.instantiateViewController(withIdentifier: "chooseStatusVC") as? ChooseStatusController;
         
-        basketballTimelineVc = storyboard?.instantiateViewController(withIdentifier: "basketballTimelineVC") as? BasketballTimelineController;
+        oneyuanTimelineVc = storyboard?.instantiateViewController(withIdentifier: "oneyuanTimelineVC") as? OneyuanTimelineController;
         
         viewModel?.activity(activityId: currentMatch!.activityId!, callback: { (res) in
             if(res.pushStreamUrl != nil){
@@ -538,7 +538,7 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             attributes.name = "warterMarkSettingView";
             
             SwiftEntryKit.display(entry: self.warterMarkSettingView, using: attributes);
-        }else if(name == "basketballTimelineVC"){
+        }else if(name == "oneyuanTimelineVC"){
             let widthConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 375);
             let heightConstraint = EKAttributes.PositionConstraints.Edge.constant(value: 220);
             attributes.positionConstraints.size = .init(width: widthConstraint, height: heightConstraint);
@@ -554,18 +554,18 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
             attributes.displayDuration = .infinity;
             attributes.entryInteraction = .absorbTouches;
             attributes.screenInteraction = .dismiss;
-            attributes.name = "basketballTimelineVC";
+            attributes.name = "oneyuanTimelineVC";
             
-//            basketballTimelineVc.onSectionChangeClick = { (sectionChange) in
-//                let currentSection = Int(self.scoreBoardWarterMark_basketBall.lb_time.text!);
+//            oneyuanTimelineVc.onSectionChangeClick = { (sectionChange) in
+//                let currentSection = Int(self.scoreBoardWarterMark_Oneyuan.lb_time.text!);
 //                if(currentSection! + sectionChange <= 0){
 //                    self.view.makeToast("请选择正确的节数",position: .center);
 //                    return;
 //                }
-//                self.scoreBoardWarterMark_basketBall.lb_time.text =  String(currentSection! + sectionChange);
+//                self.scoreBoardWarterMark_Oneyuan.lb_time.text =  String(currentSection! + sectionChange);
 //                self.reloadWatermark();
 //            }
-            SwiftEntryKit.display(entry: basketballTimelineVc, using: attributes);
+            SwiftEntryKit.display(entry: oneyuanTimelineVc, using: attributes);
         }
     }
     // 关闭
@@ -577,8 +577,8 @@ class LiveController: UIViewController, LFLiveSessionDelegate{
     }
     // 时间轴统计
     @objc func didTappedTimeLineButton(_ button: UIButton) -> Void  {
-        basketballTimelineVc.setUp();
-        showEntry(name: "basketballTimelineVC")
+        oneyuanTimelineVc.setUp();
+        showEntry(name: "oneyuanTimelineVC")
     }
     // 比赛状态统计
     @objc func didTappedStatusButton(_ button: UIButton) -> Void  {

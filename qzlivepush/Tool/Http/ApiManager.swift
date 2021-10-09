@@ -24,7 +24,7 @@ enum ApiManager {
 extension ApiManager:TargetType{
     
     var baseURL: URL {
-        return URL.init(string: "https://basketball.qiezizhibo.com")!
+        return URL.init(string: "https://oneyuan.qiezizhibo.com")!
     }
     
     //请求路径
@@ -33,17 +33,17 @@ extension ApiManager:TargetType{
         case .login(username: _, password:_):
             return "/service-admin/auth"
         case .leagues(pageNum: _, pageSize: _, name: _,status: _):
-            return "/service-admin/basketball/league"
+            return "/service-admin/oneyuan/league"
         case .league(id: let id):
-            return "/service-admin/basketball/league/\(id)";
+            return "/service-admin/oneyuan/league/\(id)";
         case .matches(pageNum: _, pageSize: _, sortOrder: _, sortField: _, leagueId: _, round: _):
-            return "/service-admin/basketball/match"
+            return "/service-admin/oneyuan/match"
         case .match(matchId: let matchId):
-            return "/service-admin/basketball/match/" + String(matchId);
+            return "/service-admin/oneyuan/match/" + String(matchId);
         case .matchStatus(matchId: _):
-            return "/service-admin/basketball/timeline/status";
+            return "/service-admin/oneyuan/timeline/status";
         case .addTimeLine(matchId: _,teamId: _,eventType: _,againstIndex: _,section: _,remark: _):
-            return "/service-admin/basketball/timeline";
+            return "/service-admin/oneyuan/timeline";
         case .deleteTimeLine(id: _):
             return "/service-admin/football/timeline";
         case .activity(activityId: let activityId):

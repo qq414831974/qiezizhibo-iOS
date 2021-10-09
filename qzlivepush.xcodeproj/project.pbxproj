@@ -33,7 +33,7 @@
 		508342BE261421D400D19BC4 /* StatusRemarkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508342BD261421D400D19BC4 /* StatusRemarkController.swift */; };
 		508342C6261460F500D19BC4 /* UIView+Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508342C5261460F500D19BC4 /* UIView+Shape.swift */; };
 		509C543D25A6CB4C00721C1B /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 509C543C25A6CB4C00721C1B /* UIColor+.swift */; };
-		50DCDB8C2582214D00A530E5 /* BasketballTimelineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */; };
+		50DCDB8C2582214D00A530E5 /* OneyuanTimelineController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50DCDB8B2582214D00A530E5 /* OneyuanTimelineController.swift */; };
 		6751157D22C5C81C008812D5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6751157C22C5C81C008812D5 /* AVFoundation.framework */; };
 		6751158522C75930008812D5 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6751158422C75930008812D5 /* LiveViewModel.swift */; };
 		6753D82322B49A4600BA77BC /* LiveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6753D82222B49A4600BA77BC /* LiveController.swift */; };
@@ -132,7 +132,7 @@
 		508342BD261421D400D19BC4 /* StatusRemarkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusRemarkController.swift; sourceTree = "<group>"; };
 		508342C5261460F500D19BC4 /* UIView+Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shape.swift"; sourceTree = "<group>"; };
 		509C543C25A6CB4C00721C1B /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
-		50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketballTimelineController.swift; sourceTree = "<group>"; };
+		50DCDB8B2582214D00A530E5 /* OneyuanTimelineController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneyuanTimelineController.swift; sourceTree = "<group>"; };
 		6751157C22C5C81C008812D5 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		6751158422C75930008812D5 /* LiveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
 		6753D82222B49A4600BA77BC /* LiveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LiveController.swift; path = qzlivepush/TimeLinePage/Controllers/LiveController.swift; sourceTree = SOURCE_ROOT; };
@@ -164,7 +164,7 @@
 		67CD201822C9E97B00BE3F76 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		67CD201F22CB062200BE3F76 /* LiveQualitySettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveQualitySettingView.swift; sourceTree = "<group>"; };
 		67CD202122CB068500BE3F76 /* LiveQualitySettingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LiveQualitySettingView.xib; sourceTree = "<group>"; };
-		67DA63002293FC0000615D95 /* 绝杀时刻直播端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "绝杀时刻直播端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		67DA63002293FC0000615D95 /* 一元体育直播端.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "一元体育直播端.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67DA63032293FC0000615D95 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67DA63052293FC0000615D95 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		67DA63082293FC0000615D95 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -271,7 +271,7 @@
 		6753D81722B4997300BA77BC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				50DCDB8B2582214D00A530E5 /* BasketballTimelineController.swift */,
+				50DCDB8B2582214D00A530E5 /* OneyuanTimelineController.swift */,
 				508342BD261421D400D19BC4 /* StatusRemarkController.swift */,
 				67ADA77922C1C283005A1543 /* ChooseStatusController.swift */,
 			);
@@ -440,7 +440,7 @@
 		67DA63012293FC0000615D95 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				67DA63002293FC0000615D95 /* 绝杀时刻直播端.app */,
+				67DA63002293FC0000615D95 /* 一元体育直播端.app */,
 				67DA63142293FC0100615D95 /* qzlivepushTests.xctest */,
 				67DA631F2293FC0100615D95 /* qzlivepushUITests.xctest */,
 			);
@@ -645,7 +645,7 @@
 			);
 			name = qzlivepush;
 			productName = qzlivepush;
-			productReference = 67DA63002293FC0000615D95 /* 绝杀时刻直播端.app */;
+			productReference = 67DA63002293FC0000615D95 /* 一元体育直播端.app */;
 			productType = "com.apple.product-type.application";
 		};
 		67DA63132293FC0100615D95 /* qzlivepushTests */ = {
@@ -820,7 +820,7 @@
 				67DCCB88229D183F00049A9D /* TextFieldWithLeftView.swift in Sources */,
 				67C4454F22AF3CFB0061AC28 /* TeamModel.swift in Sources */,
 				6753D82922B4D59000BA77BC /* TimeLineCellRight.swift in Sources */,
-				50DCDB8C2582214D00A530E5 /* BasketballTimelineController.swift in Sources */,
+				50DCDB8C2582214D00A530E5 /* OneyuanTimelineController.swift in Sources */,
 				509C543D25A6CB4C00721C1B /* UIColor+.swift in Sources */,
 				508342BE261421D400D19BC4 /* StatusRemarkController.swift in Sources */,
 				67C4454D22AF3C7D0061AC28 /* MatchModel.swift in Sources */,
@@ -994,8 +994,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
-				PRODUCT_NAME = "绝杀时刻直播端";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.oneyuan.livepusher;
+				PRODUCT_NAME = "一元体育直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1174,8 +1174,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
-				PRODUCT_NAME = "绝杀时刻直播端";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.oneyuan.livepusher;
+				PRODUCT_NAME = "一元体育直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
@@ -1197,8 +1197,8 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.basketball.livepusher;
-				PRODUCT_NAME = "绝杀时刻直播端";
+				PRODUCT_BUNDLE_IDENTIFIER = com.qiezitv.oneyuan.livepusher;
+				PRODUCT_NAME = "一元体育直播端";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"SWIFT_OBJC_BRIDGING_HEADER[arch=*]" = "$(SRCROOT)/qzlivepush/qzlivepush-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;

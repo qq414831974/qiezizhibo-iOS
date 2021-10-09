@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vQy-Dp-7hD">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vQy-Dp-7hD">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -30,25 +28,25 @@
             <objects>
                 <viewController storyboardIdentifier="leagueView" id="BYZ-38-t0r" customClass="LeagueViewController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rAg-41-OPE">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="556"/>
                                 <color key="backgroundColor" systemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="leagueIdentifier" rowHeight="135" id="bab-1Z-HPp">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="135"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="600" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bab-1Z-HPp" id="wqG-BR-3x8">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rue-E9-AK5">
-                                                    <rect key="frame" x="0.0" y="5" width="375" height="125"/>
+                                                    <rect key="frame" x="0.0" y="5" width="600" height="125"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="联赛名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kGc-TZ-Vde">
-                                                            <rect key="frame" x="20" y="10" width="335" height="23"/>
+                                                            <rect key="frame" x="20" y="10" width="560" height="23"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -66,7 +64,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="城市" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KrT-0w-Ujg">
-                                                            <rect key="frame" x="120" y="53" width="235" height="21"/>
+                                                            <rect key="frame" x="120" y="53" width="460" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -78,7 +76,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2019/01/01 - 2019/01/01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fjl-9u-tev">
-                                                            <rect key="frame" x="176" y="95.666666666666671" width="179" height="17"/>
+                                                            <rect key="frame" x="176" y="95.5" width="404" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -146,22 +144,22 @@
             <objects>
                 <viewController storyboardIdentifier="sb_matchList" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YSj-Ey-cPw" userLabel="比赛列表" customClass="MatchViewController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jir-fx-bTk">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KRG-ta-Ghc">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="matchIdentifier" rowHeight="135" id="Uyi-nF-byJ">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="135"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="600" height="135"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uyi-nF-byJ" id="DoG-qa-egd">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="135"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="135"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NiF-YV-BXR">
-                                                    <rect key="frame" x="10" y="30" width="355" height="70"/>
+                                                    <rect key="frame" x="10" y="30" width="580" height="70"/>
                                                     <subviews>
                                                         <view tag="1011" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sb9-0X-ccL" userLabel="Content View">
                                                             <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
@@ -184,13 +182,13 @@
                                                     <viewLayoutGuide key="frameLayoutGuide" id="Q2s-ra-9HK"/>
                                                 </scrollView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="比赛名" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RYE-Gx-1SY">
-                                                    <rect key="frame" x="11" y="11" width="353" height="17"/>
+                                                    <rect key="frame" x="11" y="11" width="578" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="601" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="77g-DD-4by">
-                                                    <rect key="frame" x="15" y="114.33333333333333" width="10" height="10"/>
+                                                    <rect key="frame" x="15" y="114.5" width="10" height="10"/>
                                                     <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="jUT-K2-6nC"/>
@@ -198,13 +196,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="501" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2020-10-10 20:20" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMx-ZW-NXa">
-                                                    <rect key="frame" x="30.000000000000007" y="113.33333333333333" width="88.666666666666686" height="12"/>
+                                                    <rect key="frame" x="30" y="113.5" width="88.5" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="602" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pin" translatesAutoresizingMaskIntoConstraints="NO" id="LXR-cg-192">
-                                                    <rect key="frame" x="128.66666666666666" y="114.33333333333333" width="10" height="10"/>
+                                                    <rect key="frame" x="128.5" y="114.5" width="10" height="10"/>
                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="10" id="0Fk-jF-PEF"/>
@@ -212,7 +210,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="603" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="push-pin" translatesAutoresizingMaskIntoConstraints="NO" id="vxL-hU-tXH">
-                                                    <rect key="frame" x="184.66666666666666" y="114.33333333333333" width="10" height="10"/>
+                                                    <rect key="frame" x="184.5" y="114.5" width="10" height="10"/>
                                                     <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="10" id="0Ow-OY-MyY"/>
@@ -220,13 +218,13 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="502" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="体育场" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcl-aN-Wzq">
-                                                    <rect key="frame" x="143.66666666666666" y="113.33333333333333" width="31" height="12"/>
+                                                    <rect key="frame" x="143.5" y="113.5" width="31" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="503" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="比赛结束" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="baM-yZ-dcU">
-                                                    <rect key="frame" x="199.66666666666666" y="113.33333333333333" width="41" height="12"/>
+                                                    <rect key="frame" x="199.5" y="113.5" width="41" height="12"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -285,7 +283,7 @@
             <objects>
                 <viewController storyboardIdentifier="LivePage" useStoryboardIdentifierAsRestorationIdentifier="YES" id="swq-LR-bOz" customClass="LiveController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="idX-9N-vKI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="K9z-wR-hVG"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -296,10 +294,10 @@
             </objects>
             <point key="canvasLocation" x="-1175" y="1346"/>
         </scene>
-        <!--Basketball Timeline Controller-->
+        <!--Oneyuan Timeline Controller-->
         <scene sceneID="8yb-bd-cwZ">
             <objects>
-                <viewController storyboardIdentifier="basketballTimelineVC" id="2Al-Gm-Fm4" customClass="BasketballTimelineController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="oneyuanTimelineVC" id="2Al-Gm-Fm4" customClass="OneyuanTimelineController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="pvK-zb-4lw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="220"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,7 +315,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="csO-pd-G0a">
-                                <rect key="frame" x="22.666666666666671" y="45" width="70" height="33"/>
+                                <rect key="frame" x="22.5" y="45" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="Ygf-7o-Huo"/>
@@ -326,7 +324,7 @@
                                 <state key="normal" title="-1"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mfg-bc-59U">
-                                <rect key="frame" x="102.66666666666669" y="45" width="70" height="33"/>
+                                <rect key="frame" x="102.5" y="45" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="Dwn-AB-KVe"/>
@@ -335,7 +333,7 @@
                                 <state key="normal" title="+1"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bOk-WZ-IBl">
-                                <rect key="frame" x="102.66666666666669" y="88" width="70" height="33"/>
+                                <rect key="frame" x="102.5" y="88" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="Ni3-qe-OtI"/>
@@ -344,7 +342,7 @@
                                 <state key="normal" title="+2"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aVg-kE-0el">
-                                <rect key="frame" x="282.66666666666669" y="45" width="70" height="33"/>
+                                <rect key="frame" x="282.5" y="45" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="Npo-yN-zlG"/>
@@ -353,7 +351,7 @@
                                 <state key="normal" title="+1"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Plc-qi-GZn">
-                                <rect key="frame" x="22.666666666666671" y="88" width="70" height="33"/>
+                                <rect key="frame" x="22.5" y="88" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="LOg-NG-MMl"/>
@@ -362,7 +360,7 @@
                                 <state key="normal" title="-2"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HyS-1u-GBR">
-                                <rect key="frame" x="282.66666666666669" y="88" width="70" height="33"/>
+                                <rect key="frame" x="282.5" y="88" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="CYO-fK-7Ut"/>
@@ -371,7 +369,7 @@
                                 <state key="normal" title="+2"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqx-a7-jwl">
-                                <rect key="frame" x="22.666666666666671" y="131" width="70" height="33"/>
+                                <rect key="frame" x="22.5" y="131" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="ZOV-dt-U3P"/>
@@ -380,7 +378,7 @@
                                 <state key="normal" title="-3"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6wz-Qg-PxI">
-                                <rect key="frame" x="202.66666666666666" y="45" width="69.999999999999972" height="33"/>
+                                <rect key="frame" x="202.5" y="45" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="51m-yd-pPQ"/>
@@ -389,7 +387,7 @@
                                 <state key="normal" title="-1"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVk-7i-R2J">
-                                <rect key="frame" x="202.66666666666666" y="88" width="69.999999999999972" height="33"/>
+                                <rect key="frame" x="202.5" y="88" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="VFp-m6-9TR"/>
@@ -398,7 +396,7 @@
                                 <state key="normal" title="-2"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7PL-J1-iZS">
-                                <rect key="frame" x="202.66666666666666" y="131" width="69.999999999999972" height="33"/>
+                                <rect key="frame" x="202.5" y="131" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="33" id="5by-7C-9hh"/>
@@ -407,7 +405,7 @@
                                 <state key="normal" title="-3"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fa9-3y-QtC">
-                                <rect key="frame" x="102.66666666666669" y="131" width="70" height="33"/>
+                                <rect key="frame" x="102.5" y="131" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="PWs-V4-SVa"/>
@@ -416,7 +414,7 @@
                                 <state key="normal" title="+3"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhk-Pn-1WC">
-                                <rect key="frame" x="282.66666666666669" y="131" width="70" height="33"/>
+                                <rect key="frame" x="282.5" y="131" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemRedColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="97F-hB-3Li"/>
@@ -425,7 +423,7 @@
                                 <state key="normal" title="+3"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BXt-VP-tiW">
-                                <rect key="frame" x="202.66666666666666" y="175" width="69.999999999999972" height="33"/>
+                                <rect key="frame" x="202.5" y="175" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="D9D-ly-qst"/>
@@ -434,7 +432,7 @@
                                 <state key="normal" title="下一节"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rT3-tt-ltg">
-                                <rect key="frame" x="102.66666666666669" y="175" width="70" height="33"/>
+                                <rect key="frame" x="102.5" y="175" width="70" height="33"/>
                                 <color key="backgroundColor" systemColor="systemTealColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="U0l-pW-uqX"/>
@@ -589,20 +587,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fbx-0a-Ahu">
-                                <rect key="frame" x="162.66666666666666" y="10" width="50" height="50"/>
+                                <rect key="frame" x="162.5" y="10" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="MaD-h5-8qe"/>
                                     <constraint firstAttribute="height" constant="50" id="NSD-Nr-zMf"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="比赛开始" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEh-1R-S2F">
-                                <rect key="frame" x="157.66666666666666" y="65" width="60" height="17"/>
+                                <rect key="frame" x="157.5" y="65" width="60" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-Lp-VSG">
-                                <rect key="frame" x="167.66666666666666" y="167.66666666666666" width="40" height="40"/>
+                                <rect key="frame" x="167.5" y="168" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DJb-M1-cj1"/>
                                     <constraint firstAttribute="width" constant="40" id="FVI-We-AOH"/>
@@ -610,41 +608,41 @@
                                 <state key="normal" image="check_round"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择对阵" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bwm-AE-wSb">
-                                <rect key="frame" x="0.0" y="92" width="375" height="15.666666666666671"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ZG-Fb-Ji1">
-                                <rect key="frame" x="40" y="117.66666666666669" width="295" height="40"/>
+                                <rect key="frame" x="40" y="118" width="295" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6F6-NB-ppg">
-                                        <rect key="frame" x="0.0" y="11.666666666666671" width="95" height="17"/>
+                                        <rect key="frame" x="0.0" y="11.5" width="95" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99-99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQz-An-9X0">
-                                        <rect key="frame" x="128" y="12.333333333333329" width="39" height="15.666666666666664"/>
+                                        <rect key="frame" x="128" y="12" width="39" height="16"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="客队" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5k0-Xo-qjq">
-                                        <rect key="frame" x="200" y="11.666666666666671" width="95" height="17"/>
+                                        <rect key="frame" x="200" y="11.5" width="95" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l8E-Ot-5ER">
-                                        <rect key="frame" x="175" y="7.6666666666666572" width="25" height="25"/>
+                                        <rect key="frame" x="175" y="7.5" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="Gsu-my-xGk"/>
                                             <constraint firstAttribute="width" constant="25" id="tPa-3X-5Qu"/>
                                         </constraints>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="V0i-RH-ikm">
-                                        <rect key="frame" x="95" y="7.6666666666666572" width="25" height="25"/>
+                                        <rect key="frame" x="95" y="7.5" width="25" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="25" id="cmA-nf-p9M"/>
                                             <constraint firstAttribute="height" constant="25" id="tqv-Rj-jnN"/>
@@ -725,11 +723,11 @@
             <objects>
                 <viewController id="amj-do-xnf" customClass="MatchTabViewController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cd5-zF-d90">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gKO-aj-PJF" customClass="ButtonBarView" customModule="XLPagerTabStrip">
-                                <rect key="frame" x="0.0" y="735" width="375" height="43"/>
+                                <rect key="frame" x="0.0" y="557" width="600" height="43"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="43" id="9qJ-Al-eBH"/>
@@ -744,7 +742,7 @@
                                 <cells/>
                             </collectionView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTc-hg-YoY">
-                                <rect key="frame" x="0.0" y="88" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="44" width="600" height="513"/>
                             </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zW2-16-UT5"/>
@@ -789,14 +787,14 @@
             <objects>
                 <viewController id="aiP-SD-5tJ" userLabel="登陆" customClass="LoginViewController" customModule="绝杀时刻直播端" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="doy-PA-VIl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aHh-1V-2ga">
-                                <rect key="frame" x="70" y="328" width="235" height="250"/>
+                                <rect key="frame" x="70" y="150" width="460" height="250"/>
                                 <subviews>
                                     <textField opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="账号" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mtr-QY-Sn2" customClass="TextFieldWithLeftView" customModule="绝杀时刻直播端" customModuleProvider="target">
-                                        <rect key="frame" x="7.6666666666666714" y="40" width="220" height="40"/>
+                                        <rect key="frame" x="120" y="40" width="220" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="8QU-Ae-kxv"/>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="LWz-7b-3cx"/>
@@ -820,7 +818,7 @@
                                         </connections>
                                     </textField>
                                     <textField opaque="NO" tag="12" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QUZ-qd-I5B" customClass="TextFieldWithLeftView" customModule="绝杀时刻直播端" customModuleProvider="target">
-                                        <rect key="frame" x="7.6666666666666714" y="110" width="220" height="40"/>
+                                        <rect key="frame" x="120" y="110" width="220" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="220" id="VWn-D5-X1A"/>
                                             <constraint firstAttribute="height" constant="40" id="ly3-Lw-D7M"/>
@@ -844,7 +842,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsb-nf-fWv" userLabel="登陆">
-                                        <rect key="frame" x="27.666666666666671" y="190" width="180" height="40"/>
+                                        <rect key="frame" x="140" y="190" width="180" height="40"/>
                                         <color key="backgroundColor" red="0.0" green="0.57010596990585327" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="3FV-Ct-q64"/>
@@ -859,14 +857,14 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JjM-LF-ojJ" userLabel="CheckBox" customClass="UICheckBox" customModule="绝杀时刻直播端" customModuleProvider="target">
-                                        <rect key="frame" x="147" y="160" width="20" height="20"/>
+                                        <rect key="frame" x="372" y="160" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="4Np-E7-A16"/>
                                             <constraint firstAttribute="height" constant="20" id="Ct7-FH-Sni"/>
                                         </constraints>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="记住我" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWJ-bT-Xfn">
-                                        <rect key="frame" x="172" y="161.66666666666669" width="43" height="17"/>
+                                        <rect key="frame" x="397" y="161.5" width="43" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -888,14 +886,14 @@
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="6wE-62-qdq">
-                                <rect key="frame" x="127.66666666666669" y="177" width="120" height="120"/>
+                                <rect key="frame" x="240" y="-1" width="120" height="120"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="fvj-6u-gWd"/>
                                     <constraint firstAttribute="width" constant="120" id="v2I-Je-Dh7"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="绝杀时刻直播端" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JXn-Al-pOE">
-                                <rect key="frame" x="126.66666666666669" y="307" width="122" height="21"/>
+                                <rect key="frame" x="239" y="129" width="122" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -928,17 +926,6 @@
             <point key="canvasLocation" x="-400.80000000000001" y="-92.364532019704441"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="JjM-LF-ojJ">
-            <size key="intrinsicContentSize" width="30" height="34"/>
-        </designable>
-        <designable name="Mtr-QY-Sn2">
-            <size key="intrinsicContentSize" width="133" height="34"/>
-        </designable>
-        <designable name="QUZ-qd-I5B">
-            <size key="intrinsicContentSize" width="133" height="34"/>
-        </designable>
-    </designables>
     <resources>
         <image name="check_round" width="64" height="64"/>
         <image name="clock" width="32" height="32"/>
@@ -960,7 +947,7 @@
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemTealColor">
-            <color red="0.35294117647058826" green="0.78431372549019607" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tableCellGroupedBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

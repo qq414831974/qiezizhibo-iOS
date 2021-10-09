@@ -1,5 +1,5 @@
 //
-//  BasketballTimelineController.swift
+//  OneyuanTimelineController.swift
 //  qzlivepush
 //
 //  Created by 吴帆 on 2020/12/10.
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import ObjectMapper
 
-class BasketballTimelineController: UIViewController{
+class OneyuanTimelineController: UIViewController{
     @IBOutlet weak var btn_host_reduce1: UIButton!
     @IBOutlet weak var btn_host_reduce2: UIButton!
     @IBOutlet weak var btn_host_reduce3: UIButton!
